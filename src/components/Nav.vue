@@ -34,22 +34,30 @@ export default {
 <style lang="scss" scoped>
 nav {
   display: flex;
-  justify-content: center;
+padding: 20px 30px;
 }
 
 nav .logo h1 span {
   font-family: LoveloLineLight;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 nav .logo h1 {
   font-family: LoveloBlack;
-  font-size: 19px;
+  font-size: 25px;
+  padding-right: 40px;
 }
 
 nav .links ul li {
   display: inline;
-  padding: 5px 10px;
-  text-transform: capitalize;
+  padding: 0px 10px;
+}
+
+nav .links ul li a {
+      text-transform: capitalize;
+  font-weight: 200;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
 }
 </style>
