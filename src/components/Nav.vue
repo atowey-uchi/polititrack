@@ -12,9 +12,6 @@
           <a href="#">About</a>
         </li>
         <li>
-          <a href="#">FAQ</a>
-        </li>
-        <li>
           <a href="#">Team</a>
         </li>
         <li>
@@ -34,7 +31,9 @@ export default {
 <style lang="scss" scoped>
 nav {
   display: flex;
-padding: 20px 30px;
+  padding: 30px 40px;
+  position: absolute;
+  top: 0;
 }
 
 nav .logo h1 span {
@@ -54,10 +53,13 @@ nav .links ul li {
 }
 
 nav .links ul li a {
-      text-transform: capitalize;
+  text-transform: capitalize;
   font-weight: 200;
   text-decoration: none;
-  color: black;
   font-size: 18px;
 }
 </style>
+
+
+
+side nav: meetdevs = user-friends, home = home, about = question-circle, map= globe-america, contact = comment-dots

@@ -15,6 +15,27 @@
     src: url(fonts/Lovelo-LineLight.woff);
 }
 
+@font-face {
+    font-family: AlfaSlabOne;
+    src: url(fonts/AlfaSlabOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: LeagueSpartan;
+    src:url(fonts/league-spartan.bold.ttf);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    color: black;
+}
+
 p, a {
     font-family:"Bai Jamjuree", sans-serif;
+    color: black;
 }
+
+h1 {
+    font-family: LeagueSpartan;
+}
+
