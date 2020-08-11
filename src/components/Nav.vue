@@ -38,12 +38,12 @@ nav {
 
 nav .logo h1 span {
   font-family: LoveloLineLight;
-  font-size: 24px;
+  font-size: 31px;
 }
 
 nav .logo h1 {
   font-family: LoveloBlack;
-  font-size: 25px;
+  font-size: 32px;
   padding-right: 40px;
   color: white;
 }
@@ -60,8 +60,7 @@ nav .links ul li a {
   font-size: 18px;
   color: white;
 }
+// side nav: meetdevs = user-friends, home = home, about = question-circle, map=
+// globe-america, contact = comment-dots
 </style>
 
-
-
-side nav: meetdevs = user-friends, home = home, about = question-circle, map= globe-america, contact = comment-dots
