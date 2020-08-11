@@ -1,5 +1,8 @@
 <template>
   <section>
+    <div class="gradient">
+      <!-- <img src="@/assets/images/gradientback.png"> -->
+      </div>
     <section class="text">
       <h1>
         What are the <br />
@@ -26,6 +29,22 @@ export default {
 section {
   position: relative;
   height: 100vh;
+}
+
+.gradient {
+  position: absolute;
+  top: -40%;
+  left: -16%;
+  width: 80vw;
+  height: 80vh;
+  z-index: -1;
+  background: linear-gradient(to right, var(--blue), var(--red));
+  transform: rotate(-30deg);
+  opacity: .8;
+}
+
+.gradient img {
+  max-width: 100%;
 }
 
 section .text {

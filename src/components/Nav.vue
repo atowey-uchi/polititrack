@@ -45,11 +45,12 @@ nav .logo h1 {
   font-family: LoveloBlack;
   font-size: 25px;
   padding-right: 40px;
+  color: white;
 }
 
 nav .links ul li {
   display: inline;
-  padding: 0px 10px;
+  padding: 0px 20px;
 }
 
 nav .links ul li a {
@@ -57,6 +58,7 @@ nav .links ul li a {
   font-weight: 200;
   text-decoration: none;
   font-size: 18px;
+  color: white;
 }
 </style>
 
