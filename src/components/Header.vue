@@ -2,7 +2,7 @@
   <section>
     <div class="gradient">
       <!-- <img src="@/assets/images/gradientback.png"> -->
-      </div>
+    </div>
     <section class="text">
       <h1>
         What are the <br />
@@ -21,7 +21,47 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  created() {
+    window.addEventListener("resize", this.resizeGradient);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resizeGradient);
+  },
+  mounted() {
+    this.resizeGradient();
+  },
+  methods: {
+    resizeGradient() {
+      const gradient = document.querySelector(".gradient");
+      const textTop = document.querySelector(".text p").offsetTop;
+      const width = window.innerWidth;
+      const triangleWidth = width * 0.9;
+      const height = window.innerHeight;
+
+      gradient.style.width = width + "px";
+      gradient.style.height = height + "px";
+      if (width > height) {
+        gradient.style.setProperty(
+          "clip-path",
+          "polygon(0 0, " + triangleWidth + "px 0, 0 " + textTop + "px)"
+        );
+        gradient.style.setProperty(
+          "-webkit-clip-path",
+          "polygon(0 0, " + triangleWidth + "px 0, 0 " + textTop + "px)"
+        );
+      } else {
+        gradient.style.setProperty(
+          "-webkit-clip-path",
+          "polygon(0 0, 100vw 0, 0 " + textTop + "px)"
+        );
+        gradient.style.setProperty(
+          "clip-path",
+          "polygon(0 0, 100vw 0, 0 " + textTop + "px)"
+        );
+      }
+    }
+  }
 };
 </script>
 
@@ -33,14 +73,15 @@ section {
 
 .gradient {
   position: absolute;
-  top: -40%;
-  left: -16%;
+  top: 0;
+  left: 0;
   width: 80vw;
   height: 80vh;
   z-index: -1;
   background: linear-gradient(to right, var(--blue), var(--red));
-  transform: rotate(-30deg);
-  opacity: .8;
+  transform: rotate(0deg);
+  clip-path: polygon(0 0, 100% 0, 0 50%);
+  opacity: 0.7;
 }
 
 .gradient img {

@@ -62,6 +62,5 @@ nav .links ul li a {
 }
 </style>
 
-
-
-side nav: meetdevs = user-friends, home = home, about = question-circle, map= globe-america, contact = comment-dots
+side nav: meetdevs = user-friends, home = home, about = question-circle, map=
+globe-america, contact = comment-dots
