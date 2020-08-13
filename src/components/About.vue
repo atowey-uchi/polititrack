@@ -81,8 +81,8 @@
       </div>
       <div class="question">
         <p>
-          You are missing X campaign event, and I think it should be included.
-          What do I do?
+          You are missing <i>X</i> campaign event, and I think it should be
+          included. What do I do?
         </p>
       </div>
       <div class="answer">

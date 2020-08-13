@@ -1,5 +1,9 @@
 <template>
   <section class="meet-devs" id="developers">
+    <div class="gradients">
+      <img src="@/assets/images/brush3color.svg" id="topbar" />
+      <img src="@/assets/images/brush3color2.svg" id="secondbar" />
+    </div>
     <div class="title">
       <h1>Meet the Developers</h1>
     </div>
@@ -24,7 +28,7 @@
         <a href="#">Check out her website!</a>
       </p>
     </section>
-    <section class="developer">
+    <section class="developer" id="seconddev">
       <div class="developer-image">
         <div class="circles">
           <div class="circle">
@@ -55,10 +59,32 @@ export default {
 
 <style lang="scss" scoped>
 .meet-devs {
-  width: 100%;
+  width: 80%;
   position: relative;
   height: 100vh;
   padding-bottom: 120px;
+}
+
+.gradients img {
+  z-index: -5;
+  opacity: 0.43;
+  display: flex;
+  position: absolute;
+  width: 180vh;
+  top: 0;
+  left: 0;
+}
+
+.gradients img#topbar {
+  transform: rotate(178deg);
+  top: 18%;
+  left: -6%;
+}
+
+.gradients img#secondbar {
+  transform: rotate(-2deg);
+  top: 50%;
+  left: -2%;
 }
 
 section .title h1 {
@@ -69,16 +95,19 @@ section .title h1 {
 
 section .developer {
   display: flex;
-  width: 100%;
+  width: 80%;
   --padding-horizontal: 150px;
   --padding-vertical: 40px;
   padding: var(--padding-vertical) var(--padding-horizontal);
   width: calc(100% - (2 * var(--padding-horizontal)));
+  justify-content: center;
+  align-content: center;
 }
 
 .developer p,
 a {
   font-size: 16px;
+  font-weight: 300;
 }
 
 .developer p {
@@ -121,5 +150,12 @@ a {
 .profile {
   position: relative;
   height: 100%;
+}
+
+.developer#seconddev {
+  display: -webkit-flex;
+  -webkit-flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 </style>
