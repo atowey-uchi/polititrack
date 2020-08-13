@@ -4,6 +4,7 @@
     <Header />
     <About />
     <MeetDevs />
+    <Contact />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import About from "./components/About.vue";
 import MeetDevs from "./components/MeetDevs.vue";
+import Contact from "./components/Contact.vue";
 
 export default {
   name: "App",
@@ -19,7 +21,8 @@ export default {
     Header,
     Nav,
     About,
-    MeetDevs
+    MeetDevs,
+    Contact
   }
 };
 </script>

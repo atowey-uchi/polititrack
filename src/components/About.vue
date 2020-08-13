@@ -100,7 +100,7 @@
       </div>
       <div class="answer">
         <p>
-          Shoot us a message. We would be happy to chat! :)
+          Shoot us a message. We would be happy to chat! &#9786;
         </p>
       </div>
     </section>
