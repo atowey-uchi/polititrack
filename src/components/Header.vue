@@ -82,7 +82,7 @@ section {
   background: linear-gradient(to right, var(--blue), var(--red));
   transform: rotate(0deg);
   clip-path: polygon(0 0, 100% 0, 0 93%);
-  opacity: 0.8;
+  opacity: 0.74;
 }
 
 .gradient img {

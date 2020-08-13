@@ -49,6 +49,15 @@ export default {
   text-align: center;
   font-size: 48px;
   padding-top: 60px;
+  padding-bottom: 20px;
+  }
+
+  section.contactform {
+    justify-content: center;
+    align-content: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 60px;
   }
 
 input[type="text"],
@@ -56,7 +65,7 @@ select,
 textarea {
   width: 100%;
   padding: 20px;
-  border: 5px solid #ccc;
+  border: 1px solid var(--black-ish);
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 6px;
@@ -76,15 +85,18 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: var(--darker-blue);
 }
 
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  border: 1px solid var(--black-ish);
+  padding: 40px 30px;
   padding-right: 150px;
   padding-left: 150px;
+  width: 60%;
+  position: relative;
 }
 
 label {
