@@ -4,11 +4,11 @@
       <!-- <img src="@/assets/images/gradientback.png"> -->
     </div>
     <section class="text">
-      <h1>
+      <h1 id="headline">
         What are our presidential <br />
         candidates up to?
       </h1>
-      <h2>
+      <h2 id="subheadline">
         Tracking where they are, who they're with, <br />
         and who they're talking to
       </h2>
@@ -34,7 +34,7 @@ export default {
   methods: {
     resizeGradient() {
       const gradient = document.querySelector(".gradient");
-      const textTop = document.querySelector(".text p").offsetTop;
+      const textTop = document.getElementById("subheadline").offsetTop;
       const width = window.innerWidth;
       const triangleWidth = width * 0.9;
       const height = window.innerHeight;
