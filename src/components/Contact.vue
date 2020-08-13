@@ -45,20 +45,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  h1 {
+h1 {
   text-align: center;
   font-size: 48px;
   padding-top: 60px;
   padding-bottom: 20px;
-  }
+}
 
-  section.contactform {
-    justify-content: center;
-    align-content: center;
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-bottom: 60px;
-  }
+section.contactform {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-bottom: 60px;
+}
 
 input[type="text"],
 select,
