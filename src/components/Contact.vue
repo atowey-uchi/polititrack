@@ -1,36 +1,40 @@
 <template>
-  <section class="contactform">
-    <div class="container">
-      <form action="action_page.php">
-        <label for="fname">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          style="height:20px"
-          placeholder="Your name here..."
-        />
+  <section class="contact">
+    <h1>Contact Us!</h1>
 
-        <label for="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          style="height:20px"
-          placeholder="Your email here..."
-        />
+    <section class="contactform">
+      <div class="container">
+        <form action="action_page.php">
+          <label for="fname">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            style="height:20px"
+            placeholder="Enter your name"
+          />
 
-        <label for="subject">Message</label>
-        <textarea
-          id="subject"
-          name="subject"
-          placeholder="Write us a msessage!"
-          style="height:200px"
-        ></textarea>
+          <label for="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            style="height:20px"
+            placeholder="Enter your email"
+          />
 
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+          <label for="subject">Message</label>
+          <textarea
+            id="subject"
+            name="subject"
+            placeholder="Write us a message!"
+            style="height:200px"
+          ></textarea>
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -41,6 +45,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  h1 {
+  text-align: center;
+  font-size: 48px;
+  padding-top: 60px;
+  }
+
 input[type="text"],
 select,
 textarea {
@@ -52,15 +62,17 @@ textarea {
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical;
+  font-family: "Open Sans", sans-serif;
 }
 
 input[type="submit"] {
-  background-color: #4caf50;
+  background-color: var(--blue);
   color: white;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: "Bai Jamjuree";
 }
 
 input[type="submit"]:hover {
@@ -73,5 +85,10 @@ input[type="submit"]:hover {
   padding: 20px;
   padding-right: 150px;
   padding-left: 150px;
+}
+
+label {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 200;
 }
 </style>

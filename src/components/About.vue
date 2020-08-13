@@ -114,15 +114,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.about {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 120px;
+}
+
+.gradient-swoosh {
+  position: absolute;
+  right: 90px;
+  top: 70px;
+  z-index: -1;
+  opacity: 0.15;
+  // padding: 0;
+}
+
 .gradient-swoosh img {
   transform: rotate(180deg);
-  width: 250vh;
-  z-index: -1;
-  position: absolute;
-  padding: 0;
-  right: 0px;
-  opacity: 0.5;
-  -webkit-filter-mask: linear-gradient(to right, var(--blue), var(--red));
+  width: 200vh;
+  // -webkit-filter-mask: linear-gradient(to right, var(--blue), var(--red));
 }
 
 div .title h1 {

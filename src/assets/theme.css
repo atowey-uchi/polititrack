@@ -33,6 +33,13 @@
 :root {
     --red: #ff0000;
     --blue: #133987;
+    --darker-blue: #091c43;
+    --darker-red: #7f0000;
+    --lighter-blue: #1d59d5;
+    --lighter-red: #ff7f7f;
+    --lightest-blue: #628ee9;
+    --lightest-red: #ffbfbf;
+
 }
 
 html, body {

@@ -58,6 +58,7 @@ export default {
   width: 100%;
   position: relative;
   height: 100vh;
+  padding-bottom: 120px;
 }
 
 section .title h1 {

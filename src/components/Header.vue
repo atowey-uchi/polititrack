@@ -69,6 +69,7 @@ export default {
 section {
   position: relative;
   height: 100vh;
+  padding-bottom: 120px;
 }
 
 .gradient {
@@ -114,5 +115,6 @@ h2 {
   position: relative;
   width: 414px;
   opacity: 0.92;
+  padding-bottom: 120px;
 }
 </style>
