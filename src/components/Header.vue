@@ -5,13 +5,13 @@
     </div>
     <section class="text">
       <h1>
-        What are the <br />
+        What are our presidential <br />
         candidates up to?
       </h1>
-      <p>
+      <h2>
         Tracking where they are, who they're with, <br />
         and who they're talking to
-      </p>
+      </h2>
     </section>
     <div class="graphic">
       <img src="@/assets/images/whitehouseroad.png" id="whitehouseroad" />
@@ -75,13 +75,13 @@ section {
   position: absolute;
   top: 0;
   left: 0;
-  width: 80vw;
+  width: 85vw;
   height: 80vh;
   z-index: -1;
   background: linear-gradient(to right, var(--blue), var(--red));
   transform: rotate(0deg);
-  clip-path: polygon(0 0, 100% 0, 0 50%);
-  opacity: 0.7;
+  clip-path: polygon(0 0, 100% 0, 0 93%);
+  opacity: 0.8;
 }
 
 .gradient img {
@@ -94,13 +94,12 @@ section .text {
 }
 
 h1 {
-  font-size: 72px;
-  letter-spacing: 2px;
+  font-size: 60px;
 }
 
-p {
-  font-size: 32px;
-  padding-top: 20px;
+h2 {
+  font-size: 28px;
+  padding-top: 0px;
 }
 
 .graphic {
@@ -113,6 +112,7 @@ p {
 
 #whitehouseroad {
   position: relative;
-  width: 400px;
+  width: 414px;
+  opacity: 0.92;
 }
 </style>

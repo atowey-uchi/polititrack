@@ -1,5 +1,5 @@
 <template>
-  <section class="meet-devs">
+  <section class="meet-devs" id="developers">
     <div class="title">
       <h1>Meet the Developers</h1>
     </div>
@@ -18,8 +18,8 @@
         </div>
       </div>
       <p>
-        <span>Allison Towey</span> is a Product Manager by day, political nerd
-        by night. She graduated from the University of Notre Dame in 2019. where
+        <span>Allison Towey </span> is a Product Manager by day, political nerd
+        by night. She graduated from the University of Notre Dame in 2019, where
         she majored in Political Science.
         <a href="#">Check out her website!</a>
       </p>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <p>
-        <span> Marcus Schimizzi</span> is a Software Developer. He graduated
+        <span> Marcus Schimizzi </span> is a Software Developer. He graduated
         from the University of Notre Dame in 2019 with a degree in Computer
         Science. <a href="#">Find his website here.</a>
       </p>
@@ -63,7 +63,7 @@ export default {
 section .title h1 {
   text-align: center;
   font-size: 48px;
-  padding-top: 80px;
+  padding-top: 40px;
 }
 
 section .developer {
@@ -77,7 +77,7 @@ section .developer {
 
 .developer p,
 a {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .developer p {
@@ -110,6 +110,11 @@ a {
 .developer img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.developer p span {
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .profile {

@@ -9,10 +9,10 @@
           <a href="#">map</a>
         </li>
         <li>
-          <a href="#">About</a>
+          <a href="#about">About</a>
         </li>
         <li>
-          <a href="#">Team</a>
+          <a href="#developers">Team</a>
         </li>
         <li>
           <a href="#">Contact</a>
@@ -34,6 +34,7 @@ nav {
   padding: 30px 40px;
   position: absolute;
   top: 0;
+  z-index: 5;
 }
 
 nav .logo h1 span {
@@ -57,10 +58,9 @@ nav .links ul li a {
   text-transform: capitalize;
   font-weight: 200;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
 }
 // side nav: meetdevs = user-friends, home = home, about = question-circle, map=
 // globe-america, contact = comment-dots
 </style>
-
