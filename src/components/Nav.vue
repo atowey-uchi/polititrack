@@ -35,16 +35,21 @@ nav {
   position: absolute;
   top: 0;
   z-index: 5;
+  padding-left: 70px;
+}
+
+nav .logo {
+  padding-top: 10px;
 }
 
 nav .logo h1 span {
   font-family: LoveloLineLight;
-  font-size: 31px;
+  font-size: 34px;
 }
 
 nav .logo h1 {
   font-family: LoveloBlack;
-  font-size: 32px;
+  font-size: 35px;
   padding-right: 40px;
   color: white;
 }
