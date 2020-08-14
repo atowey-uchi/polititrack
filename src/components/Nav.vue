@@ -7,7 +7,7 @@
     <div class="links">
       <ul>
         <li>
-          <a href="#">map</a>
+          <a href="#">Map</a>
         </li>
         <li>
           <a href="#about">About</a>
@@ -22,10 +22,11 @@
     </div>
     </div>
     <div class="sidenav">
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a href="#">Map</a>
+  <a href="#about">About</a>
+  <a href="#developers">Team</a>
+  <a href="#contact">Contact</a>
+  <a href="#" id="top"><i>To Top</i></a>
 </div>
   </nav>
 </template>
@@ -76,37 +77,39 @@ nav .topnav .links ul li a {
 }
 
 .sidenav {
-  width: 160px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 10; /* Stay on top */
-  top: 110px; /* Stay at the top */
+  width: 130px;
+  position: fixed;
+  z-index: 10; 
+  top: 140px; 
   left: 0;
   background-color: var(--blue);
   overflow-x: hidden; 
+  opacity: .7;
 }
 
 $duration: 0.6s;
 $distance: 6px;
 $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-.sidenav a {
+.sidenav a { //want a way to make the text not transparent but the background opacity .6/.7//
   padding: 6px 6px 6px 12px;
   text-decoration: none;
   font-size: 16px;
-  color: #818181;
+  color: white;
   display: block;
   font-family: "Bai Jamjuree", sans-serif;
   font-weight: 200;
+  position: relative;
 
-    &:before,
+    &:before, //for some reason the underline spans the entire menu. only want the underline to affect the length of the word//
   &:after {
     content: "";
     position: absolute;
-    bottom: 6px;
+    bottom: 1px;
     left: 0;
     right: 0;
-    height: 6px;
-    background-color: var(--blue);
+    height: 2px;
+    background-color: var(--red);
   }
   &:before {
     opacity: 0;
@@ -134,10 +137,11 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }
 
-
-.sidenav a:hover {
-  color: #f1f1f1;
+#top {
+  padding-top: 40px;
+  padding-left: 70px;
 }
+
 
 
 // side nav: meetdevs = user-friends, home = home, about = question-circle, map=
