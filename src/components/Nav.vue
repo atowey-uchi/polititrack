@@ -37,6 +37,11 @@ nav {
   z-index: 5;
 }
 
+nav .logo {
+  display: flex;
+  align-content: center;
+}
+
 nav .logo h1 span {
   font-family: LoveloLineLight;
   font-size: 31px;
