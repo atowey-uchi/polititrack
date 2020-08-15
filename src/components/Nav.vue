@@ -39,8 +39,9 @@ export default {
       const viewportHeight = window.innerHeight;
       const activeClass = "active";
       const sidenav = document.querySelector(".sidenav");
+      const footerTop = document.querySelector("footer").offsetTop;
 
-      if (window.scrollY > viewportHeight) {
+      if (window.scrollY > viewportHeight && !((window.scrollY + viewportHeight) > footerTop)) {
         sidenav.classList.add(activeClass);
       } else {
         sidenav.classList.remove(activeClass);
@@ -85,6 +86,11 @@ nav .topnav .logo h1 {
   font-size: 35px;
   padding-right: 40px;
   color: white;
+}
+
+nav .topnav .links {
+  display: flex;
+  align-items: center;
 }
 
 nav .topnav .links ul li {
