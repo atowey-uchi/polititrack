@@ -70,7 +70,7 @@ ul {
   }
 }
 a {
-  font-size: 40px;
+  font-size: 35px;
   color: white;
   font-family: "Poppins";
   font-weight: 800;
@@ -115,7 +115,7 @@ a {
 }
 
 #logo {
-  padding-left: 300px;
+  padding-left: 350px;
   padding-top: 200px;
 }
 
