@@ -145,6 +145,11 @@ a {
 .developer p span {
   font-weight: 600;
   font-size: 20px;
+  color: var(--black-ish);
+}
+
+.developer a {
+  font-weight: 500;
 }
 
 .profile {

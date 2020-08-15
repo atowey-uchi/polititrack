@@ -126,7 +126,7 @@ export default {
   right: 90px;
   top: 70px;
   z-index: -1;
-  opacity: 0.15;
+  opacity: 0.3;
   // padding: 0;
 }
 
@@ -180,5 +180,9 @@ div .title h1 {
 
 .faq div.answer {
   padding-bottom: 36px;
+}
+
+.faq div.answer p {
+  color: var(--lighter-black);
 }
 </style>

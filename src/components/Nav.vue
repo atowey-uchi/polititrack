@@ -135,7 +135,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   &:after {
     content: "";
     position: absolute;
-    bottom: 1px;
+    bottom: -1px;
     left: 0;
     right: 0;
     height: 2px;

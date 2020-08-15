@@ -42,6 +42,7 @@
     --lightest-blue: #628ee9;
     --lightest-red: #ffbfbf;
     --black-ish: #1a1a1a;
+    --lighter-black: #535353;
 
 }
 
@@ -78,5 +79,10 @@ p, a {
     font-weight: 100;
     font-size: 16px;
     margin: 0;
+    text-decoration: none;
+}
+
+a {
+    color: var(--blue);
 }
 
