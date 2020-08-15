@@ -60,9 +60,11 @@ export default {
 <style lang="scss" scoped>
 .meet-devs {
   width: 80%;
+  margin: 0 auto;
   position: relative;
   height: 100vh;
   padding-bottom: 120px;
+  overflow: hidden;
 }
 
 .gradients img {
@@ -70,7 +72,7 @@ export default {
   opacity: 0.43;
   display: flex;
   position: absolute;
-  width: 180vh;
+  width: 100vw;
   top: 0;
   left: 0;
 }
@@ -84,7 +86,7 @@ export default {
 .gradients img#secondbar {
   transform: rotate(-2deg);
   top: 50%;
-  left: -2%;
+  left: 6%;
 }
 
 section .title h1 {

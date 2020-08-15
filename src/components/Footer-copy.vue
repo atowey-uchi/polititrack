@@ -1,4 +1,6 @@
 <template>
+<footer>
+
   <div id="container">
     <div id="columns">
       <div id="block"></div>
@@ -26,6 +28,7 @@
       <p>&#169; 2020. All rights reserved.</p>
     </div>
   </div>
+</footer>
 </template>
 
 <script>
