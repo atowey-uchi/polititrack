@@ -64,7 +64,6 @@ export default {
   position: relative;
   height: 100vh;
   padding-bottom: 120px;
-  overflow: hidden;
 }
 
 .gradients img {
