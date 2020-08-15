@@ -74,6 +74,7 @@ nav .topnav .logo {
 nav .logo {
   display: flex;
   align-content: center;
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
 }
 
 nav .topnav .logo h1 span {

@@ -80,6 +80,7 @@ a {
   position: relative;
   text-decoration: none;
   padding-bottom: 8px;
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 
   &:before,
   &:after {
@@ -132,6 +133,7 @@ a {
   font-size: 49px;
   padding-right: 40px;
   color: white;
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 #copyright p {

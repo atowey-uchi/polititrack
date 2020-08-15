@@ -71,27 +71,28 @@ export default {
   opacity: 0.43;
   display: flex;
   position: absolute;
-  width: 100vw;
+  width: 120vw;
   top: 0;
   left: 0;
 }
 
 .gradients img#topbar {
   transform: rotate(178deg);
-  top: 18%;
-  left: -6%;
+  top: 15%;
+  left: -26%;
 }
 
 .gradients img#secondbar {
   transform: rotate(-2deg);
-  top: 50%;
-  left: 6%;
+  top: 45%;
+  left: -18%;
 }
 
 section .title h1 {
   text-align: center;
   font-size: 48px;
   padding-top: 40px;
+      filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 section .developer {
@@ -119,7 +120,7 @@ a {
   position: relative;
   display: flex;
   justify-content: center;
-  width: 500px;
+  width: 400px;
   height: 200px;
 }
 

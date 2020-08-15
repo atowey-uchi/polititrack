@@ -140,6 +140,7 @@ div .title h1 {
   text-align: center;
   font-size: 48px;
   padding-top: 60px;
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 .title h1 span.politi {
