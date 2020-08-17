@@ -98,6 +98,9 @@ nav .topnav .links ul li {
   display: inline;
   padding: 0px 20px;
 }
+$duration: 0.6s;
+$distance: 6px;
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 nav .topnav .links ul li a {
   text-transform: capitalize;
@@ -105,7 +108,44 @@ nav .topnav .links ul li a {
   text-decoration: none;
   font-size: 16px;
   color: white;
+    position: relative;
+  width: min-content;
+   &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--blue);
+  }
+  &:before {
+    opacity: 0;
+    transform: translateY(-$distance);
+    transition: transform 0s $easeOutBack, opacity 0s;
+  }
+  &:after {
+    opacity: 0;
+    transform: translateY($distance/2);
+    transition: transform $duration $easeOutBack, opacity $duration;
+  }
+  &:hover,
+  &:focus {
+    &:before,
+    &:after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    &:before {
+      transition: transform $duration $easeOutBack, opacity $duration;
+    }
+    &:after {
+      transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
+    }
+  }
 }
+
 
 .sidenav {
   width: 130px;
