@@ -10,7 +10,11 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "d3": "^6.1.1",
+    "d3-geo": "^2.0.1",
+    "moment": "^2.27.0",
     "register-service-worker": "^1.7.1",
+    "topojson": "^3.0.2",
+    "underscore": "^1.11.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {

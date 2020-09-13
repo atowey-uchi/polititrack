@@ -92,7 +92,7 @@ section .title h1 {
   text-align: center;
   font-size: 48px;
   padding-top: 40px;
-      filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 section .developer {

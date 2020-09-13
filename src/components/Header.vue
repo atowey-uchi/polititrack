@@ -87,8 +87,8 @@ section {
 
 .gradient img {
   max-width: 100%;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
-    box-shadow:rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  box-shadow: rgba(0, 0, 0, 0.1);
 }
 
 section .text {
@@ -98,7 +98,7 @@ section .text {
 
 h1 {
   font-size: 60px;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 h2 {
@@ -120,6 +120,6 @@ h2 {
   width: 414px;
   opacity: 0.92;
   padding-bottom: 120px;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 </style>

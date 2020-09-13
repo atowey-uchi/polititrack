@@ -50,7 +50,7 @@ h1 {
   font-size: 48px;
   padding-top: 60px;
   padding-bottom: 20px;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 section.contactform {
@@ -99,7 +99,7 @@ input[type="submit"]:hover {
   padding-left: 150px;
   width: 60%;
   position: relative;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 label {

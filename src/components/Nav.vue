@@ -41,7 +41,10 @@ export default {
       const sidenav = document.querySelector(".sidenav");
       const footerTop = document.querySelector("footer").offsetTop;
 
-      if (window.scrollY > viewportHeight && !((window.scrollY + viewportHeight) > footerTop)) {
+      if (
+        window.scrollY > viewportHeight &&
+        !(window.scrollY + viewportHeight > footerTop)
+      ) {
         sidenav.classList.add(activeClass);
       } else {
         sidenav.classList.remove(activeClass);
@@ -74,7 +77,7 @@ nav .topnav .logo {
 nav .logo {
   display: flex;
   align-content: center;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
 }
 
 nav .topnav .logo h1 span {
@@ -108,9 +111,9 @@ nav .topnav .links ul li a {
   text-decoration: none;
   font-size: 16px;
   color: white;
-    position: relative;
+  position: relative;
   width: min-content;
-   &:before,
+  &:before,
   &:after {
     content: "";
     position: absolute;
@@ -145,7 +148,6 @@ nav .topnav .links ul li a {
     }
   }
 }
-
 
 .sidenav {
   width: 130px;
