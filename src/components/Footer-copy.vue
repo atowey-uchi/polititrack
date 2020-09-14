@@ -1,34 +1,33 @@
 <template>
-<footer>
-
-  <div id="container">
-    <div id="columns">
-      <div id="block"></div>
-      <div id="content">
-        <ul>
-          <li>
-            <a href="#">Map</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#developers">Team</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
+  <footer>
+    <div id="container">
+      <div id="columns">
+        <div id="block"></div>
+        <div id="content">
+          <ul>
+            <li>
+              <a href="#">Map</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#developers">Team</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div id="logo">
+          <h1><span>Politi</span>Track</h1>
+        </div>
       </div>
-      <div id="logo">
-        <h1><span>Politi</span>Track</h1>
+      <div id="copyright">
+        <p>&#169; 2020. All rights reserved.</p>
       </div>
     </div>
-    <div id="copyright">
-      <p>&#169; 2020. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 </template>
 
 <script>
@@ -80,7 +79,7 @@ a {
   position: relative;
   text-decoration: none;
   padding-bottom: 8px;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 
   &:before,
   &:after {
@@ -133,7 +132,7 @@ a {
   font-size: 49px;
   padding-right: 40px;
   color: white;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 #copyright p {

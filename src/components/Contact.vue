@@ -50,7 +50,7 @@ h1 {
   font-size: 48px;
   padding-top: 60px;
   padding-bottom: 20px;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 section.contactform {
@@ -67,7 +67,7 @@ select,
 textarea {
   width: 100%;
   padding: 20px;
-  border: 1px solid var(--black-ish);
+  border: 1px solid var(--primary-text);
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 6px;
@@ -92,18 +92,19 @@ input[type="submit"]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: var(--contact-back);
   border: 1px solid var(--black-ish);
   padding: 40px 30px;
   padding-right: 150px;
   padding-left: 150px;
   width: 60%;
   position: relative;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 label {
   font-family: "Bai Jamjuree", sans-serif;
   font-weight: 200;
+  color: var(--secondary-text);
 }
 </style>

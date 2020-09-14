@@ -123,16 +123,17 @@ export default {
 
 .gradient-swoosh {
   position: absolute;
-  right: 90px;
-  top: 70px;
+  top: 20px;
+  left: -150px;;
   z-index: -1;
   opacity: 0.3;
   // padding: 0;
+  overflow: hidden;
 }
 
 .gradient-swoosh img {
   transform: rotate(180deg);
-  width: 200vh;
+  width: 250vh;
   // -webkit-filter-mask: linear-gradient(to right, var(--blue), var(--red));
 }
 
@@ -140,7 +141,7 @@ div .title h1 {
   text-align: center;
   font-size: 48px;
   padding-top: 60px;
-    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 .title h1 span.politi {
@@ -184,6 +185,6 @@ div .title h1 {
 }
 
 .faq div.answer p {
-  color: var(--lighter-black);
+  color: var(--secondary-text);
 }
 </style>
