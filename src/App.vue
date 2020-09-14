@@ -2,6 +2,7 @@
   <div id="app">
     <Nav />
     <Header />
+    <Map />
     <About />
     <MeetDevs />
     <Contact />
@@ -12,6 +13,7 @@
 <script>
 import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
+import Map from "./components/Map.vue";
 import About from "./components/About.vue";
 import MeetDevs from "./components/MeetDevs.vue";
 import Contact from "./components/Contact.vue";
@@ -22,6 +24,7 @@ export default {
   components: {
     Header,
     Nav,
+    Map,
     About,
     MeetDevs,
     Contact,
