@@ -144,11 +144,11 @@ a {
 
 #block {
   background: linear-gradient(to right, var(--blue), var(--red));
-  filter: alpha(opacity=70);
+  filter: alpha(opacity=83);
   /* IE */
-  -moz-opacity: 0.7;
+  -moz-opacity: 0.83;
   /* Mozilla */
-  opacity: 0.7;
+  opacity: 0.83;
   /* CSS3 */
   position: absolute;
   top: 0;

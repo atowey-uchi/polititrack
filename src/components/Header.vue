@@ -14,6 +14,7 @@
       </h2>
     </section>
     <div class="graphic">
+      <img src="@/assets/images/whitehouseroad-dm3.png" id="whitehouseroad-dm" />
       <img src="@/assets/images/whitehouseroad.png" id="whitehouseroad" />
     </div>
   </section>
@@ -82,7 +83,7 @@ section {
   background: linear-gradient(to right, var(--blue), var(--red));
   transform: rotate(0deg);
   clip-path: polygon(0 0, 100% 0, 0 93%);
-  opacity: 0.74;
+  opacity: 0.83;
 }
 
 .gradient img {
@@ -115,6 +116,10 @@ h2 {
   flex-direction: column;
 }
 
+#whitehouseroad-dm {
+  display: none;
+}
+
 #whitehouseroad {
   position: relative;
   width: 414px;
@@ -122,4 +127,18 @@ h2 {
   padding-bottom: 120px;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
+
+.dark-mode #whitehouseroad-dm {
+  display: block;
+  position: relative;
+  width: 414px;
+  opacity: 0.92;
+  padding-bottom: 120px;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+}
+
+.dark-mode #whitehouseroad {
+  display: none;
+}
+
 </style>

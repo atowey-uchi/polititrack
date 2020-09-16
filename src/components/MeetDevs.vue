@@ -68,7 +68,7 @@ export default {
 
 .gradients img {
   z-index: -5;
-  opacity: 0.43;
+  opacity: .35;
   display: flex;
   position: absolute;
   width: 120vw;

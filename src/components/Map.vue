@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
   <div id="slider3"></div>
 </template>
@@ -243,4 +241,3 @@ path {
   margin-bottom: -0.6em;
 }
 </style>
->>>>>>> 3134245fd576bf07dfb7dbb311c76d1998d4c588
