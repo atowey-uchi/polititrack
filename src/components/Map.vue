@@ -1,138 +1,327 @@
 <template>
-  <div id="slider3"></div>
+  <div style="position: relative;">
+    <div class="slidercontainer">
+      <label for="date-slider">
+        {{ currentDateString }}
+      </label>
+      <input
+        type="range"
+        min="1"
+        max="100"
+        class="slider"
+        id="date-slider"
+        v-model="day"
+      />
+    </div>
+    <div id="map">
+      <svg :width="settings.width" :height="settings.height">
+        <transition-group tag="g" name="state">
+          <path
+            v-for="state in statesData"
+            class="state"
+            :id="state.id"
+            :key="state.id"
+            :d="state.d"
+            :style="state.style"
+            @mouseover="showTooltip($event)"
+            @mouseout="hideTooltip()"
+          ></path>
+        </transition-group>
+      </svg>
+    </div>
+    <div class="tooltip"></div>
+  </div>
 </template>
 
 <script>
 import * as d3 from "d3";
-import * as d3geo from "d3-geo";
-import * as topojson from "topojson";
-import * as moment from "moment";
+// import { feature, mesh } from "topojson";
+// import * as moment from "moment";
 // import * as _ from "underscore";
 // import "../lib/d3.slider";
 
 export default {
   name: "Map",
+  data() {
+    return {
+      states: {},
+      colors: [
+        "#FF0000", // Near Certain Republican
+        "#E7060E", // Strong Republican
+        "#D00B1B", // Likely Republican
+        "#B81129", // Lean Republican
+        "#A11736", // Slightly Republican
+        "#891D44", // Toss-Up
+        "#712251", // Slightly Democrat
+        "#5A285F", // Lean Democrat
+        "#422E6C", // Likely Democrat
+        "#2B337A", // Strong Democrat
+        "#133987" // Near Certain Democrat
+      ],
+      threshold_names: [
+        "Near Certain Trump",
+        "Strong Trump",
+        "Likely Trump",
+        "Lean Trump",
+        "Slightly Trump",
+        "Toss-Up",
+        "Slightly Biden",
+        "Lean Biden",
+        "Likely Biden",
+        "Strong Biden",
+        "Near Certain Biden"
+      ],
+      thresholds: [20, 32, 38, 44, 48, 52, 56, 62, 68, 80],
+      currentDate: "",
+      startDate: "June 1, 2020 00:00:00",
+      width: "",
+      height: 600,
+      chart: "",
+      colorRange: "",
+      namesRange: "",
+      projection: "",
+      path: "",
+      day: 0,
+      settings: {
+        width: 1280,
+        height: 600
+      }
+    };
+  },
+  created() {
+    this.currentDate = new Date(this.startDate);
+    this.fetchData();
+  },
   mounted() {
-    var width = 960,
-      height = 600;
+    this.width = window.innerWidth;
+    this.setupSlider();
+    this.setupChart();
+  },
+  watch: {
+    day: function() {
+      this.currentDate = new Date(this.startDate);
+      this.currentDate.setDate(
+        new Date(this.startDate).getDate() + parseInt(this.day)
+      );
+    }
+  },
+  computed: {
+    statesData: function() {
+      let that = this;
 
-    var mapPath = "/cmdoptesc/raw/4714c586f69425043ae3/us.json";
-    var projection = d3geo
-      .albersUsa()
-      .scale(1280)
-      .translate([width / 2, height / 2]);
-
-    var path = d3geo.path().projection(projection);
-
-    var svg = d3
-      .select("body")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-    d3.json(mapPath, function(error, us) {
-      if (error) return console.error(error);
-
-      svg
-        .append("path")
-        .datum(topojson.feature(us, us.objects.land))
-        .attr("d", path)
-        .attr("class", "land-boundary");
-
-      svg
-        .append("path")
-        .datum(
-          topojson.mesh(us, us.objects.counties, function(a, b) {
-            return a !== b && ((a.id / 1000) | 0) === ((b.id / 1000) | 0);
-          })
-        )
-        .attr("d", path)
-        .attr("class", "county-boundary");
-
-      svg
-        .append("path")
-        .datum(
-          topojson.mesh(us, us.objects.states, function(a, b) {
-            return a !== b;
-          })
-        )
-        .attr("d", path)
-        .attr("class", "state-boundary");
-
-      d3.tsv("../assets/rest_777.txt")
-        .row(function(d) {
+      if (this.states.length) {
+        return this.states.map(function(d) {
           return {
-            permalink: d.permalink,
-            lat: parseFloat(d.lat),
-            lng: parseFloat(d.long),
-            city: d.city,
-            created_at: moment(d.created_at, "YYYY-MM-DD HH:mm:ss").unix()
+            id: d.properties.name,
+            d: that.path(d),
+            style: {
+              fill: that.colorRange(
+                parseFloat(
+                  d.properties.projections[that.currentDateString].Biden
+                ) * 100
+              )
+            }
           };
-        })
-        .get(function(err, rows) {
-          if (err) return console.error(err);
-
-          window.site_data = rows;
         });
-    });
+      } else {
+        return [];
+      }
+    },
+    currentDateString: function() {
+      return `${this.currentDate.getMonth() +
+        1}/${this.currentDate.getDate()}/${this.currentDate
+        .getFullYear()}`;
+    }
+  },
+  methods: {
+    getTooltipData(stateName) {
+      let data = "";
+      for (let state of this.states) {
+        if (stateName === state.properties.name) {
+          const projections =
+            state.properties.projections[this.currentDateString];
+          data += `<h2>${stateName}</h2>`;
+          data += `<h4><i>${this.namesRange(parseFloat(projections.Biden) * 100)}</i></h4>`;
+          data += `<h4 class="likely">Likelihood to win state:</h4>`;
+          data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
+            parseFloat(projections.Biden) * 100
+          ).toFixed(2)}%</p>`;
+          data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
+            parseFloat(projections.Trump) * 100
+          ).toFixed(2)}%</p>`;
+          return data;
+        }
+      }
+    },
+    showTooltip(event) {
+      const tooltip = document.querySelector(".tooltip");
+      tooltip.classList.add("active");
+      tooltip.style.left =
+        event.pageX - tooltip.parentElement.offsetLeft + "px";
+      tooltip.style.top = event.pageY - tooltip.parentElement.offsetTop + "px";
+      tooltip.innerHTML = this.getTooltipData(event.target.id);
+    },
+    hideTooltip() {
+      const tooltip = document.querySelector(".tooltip");
+      tooltip.classList.remove("active");
+      tooltip.innerHTML = "";
+    },
+    fetchData() {
+      d3.csv("/projections.csv").then(data => {
+        d3.json("/us-states.json").then(us => {
+          for (let i = 0; i < data.length; i++) {
+            const state = data[i].state;
+            for (let j = 0; j < us.features.length; j++) {
+              if (state === us.features[j].properties.name) {
+                if (!us.features[j].properties.projections) {
+                  us.features[j].properties.projections = {};
+                }
+                us.features[j].properties.projections[data[i].modeldate] =
+                  data[i];
+              }
+            }
+          }
+          this.states = us.features;
+        });
+      });
+    },
+    setupChart() {
+      this.colorRange = d3
+        .scaleThreshold()
+        .domain(this.thresholds)
+        .range(this.colors);
 
-    // var displaySites = function(data) {
-    //   var sites = svg.selectAll(".site").data(data, function(d) {
-    //     return d.permalink;
-    //   });
+      this.namesRange = d3
+        .scaleThreshold()
+        .domain(this.thresholds)
+        .range(this.threshold_names);
 
-    //   sites
-    //     .enter()
-    //     .append("circle")
-    //     .attr("class", "site")
-    //     .attr("cx", function(d) {
-    //       return projection([d.lng, d.lat])[0];
-    //     })
-    //     .attr("cy", function(d) {
-    //       return projection([d.lng, d.lat])[1];
-    //     })
-    //     .attr("r", 1)
-    //     .transition()
-    //     .duration(400)
-    //     .attr("r", 5);
+      this.projection = d3
+        .geoAlbersUsa()
+        .scale(1180)
+        .translate([this.width / 2, this.height / 2]);
 
-    //   sites
-    //     .exit()
-    //     .transition()
-    //     .duration(200)
-    //     .attr("r", 1)
-    //     .remove();
-    // };
+      this.path = d3.geoPath().projection(this.projection);
+    },
+    setupSlider() {
+      const slider = document.getElementById("date-slider");
+      let today = new Date();
+      today.setHours(0, 0, 0, 0);
+      slider.setAttribute("min", 0);
+      slider.setAttribute(
+        "max",
+        this.daysBetween(new Date(this.startDate), today)
+      );
+    },
+    getNextDay(date) {
+      const endDate = new Date();
+      endDate.setHours(0, 0, 0, 0);
+      date.setDate(date.getDate() + 1);
+      if (date >= endDate) {
+        return new Date(this.startDate);
+      }
+      return date;
+    },
+    formatDateString(date) {
+      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    },
+    daysBetween(start, end) {
+      const ONE_DAY = 24 * 60 * 60 * 1000;
+      return Math.round(Math.abs((end - start) / ONE_DAY));
+    },
+    generateMap() {
+      let svg = d3.select("#map svg");
 
-    // var minDateUnix = moment("2014-07-01", "YYYY MM DD").unix();
-    // var maxDateUnix = moment("2015-07-21", "YYYY MM DD").unix();
-    // var secondsInDay = 60 * 60 * 24;
+      let paths = svg.selectAll("path").data(this.states);
 
-    // d3.select("#slider3").call(
-    //   d3
-    //     .slider()
-    //     .axis(true)
-    //     .min(minDateUnix)
-    //     .max(maxDateUnix)
-    //     .step(secondsInDay)
-    //     .on("slide", function(evt, value) {
-    //       var newData = _(window.site_data).filter(function(site) {
-    //         return site.created_at < value;
-    //       });
-    //       // console.log("New set size ", newData.length);
+      paths
+        .enter()
+        .append("path")
+        .attr("d", this.path)
+        .attr("class", "state")
+        .style("fill", d => {
+          const date = `${this.currentDate.getMonth() +
+            1}/${this.currentDate.getDate()}/${this.currentDate
+            .getFullYear()
+            .toString()
+            .substr(-2)}`;
+          return this.colorRange(
+            parseFloat(d.properties.projections[date].Biden) * 100
+          );
+        });
 
-    //       displaySites(newData);
-    //     })
-    // );
+      paths.exit().remove();
+    }
   }
 };
 </script>
 
 <style>
+.slidercontainer {
+  margin: 0 22%;
+  position: absolute;
+  width: 56%;
+  text-align: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: var(--gray);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 15px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slidercontainer label {
+  font-size: 24px;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 300;
+  color: var(--primary-text);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: var(--blue); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: var(--blue); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+}
+
+#map {
+  padding-top: 40px;
+}
+
 path {
   fill: none;
-  stroke: #333;
+  stroke: white;
   stroke-width: 0.5px;
+}
+
+.state {
+  opacity: .83;
+}
+
+.state:hover {
+  opacity: 0.6;
 }
 
 .land-boundary {
@@ -240,4 +429,59 @@ path {
   margin-left: 0;
   margin-bottom: -0.6em;
 }
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  width: max-content;
+  height: min-content;
+  padding: 8px;
+  font: 12px;
+  background: var(--primary-text);
+  opacity: 0.9;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  display: none;
+  transition: 0.1s ease-in;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
+}
+
+.tooltip h2,
+.tooltip p {
+  color: var(--background);
+  margin: 0;
+}
+
+.tooltip h2 {
+  font-size: 15px;
+}
+
+.tooltip h4 {
+  color: var(--tertiary-text);
+  margin: 0;
+  font-size: 12px;
+  font-family: "Open Sans";
+  font-weight: 400;
+}
+
+.tooltip h4.likely {
+color: var(--tertiary-text);
+padding-top: 6px;
+font-weight: 200;
+font-size: 11px;
+}
+
+.tooltip.active {
+  display: block;
+}
+
+.tooltip p #Biden, #Trump{
+  font-weight: bold;
+}
+
+.tooltip p {
+  font-size: 13px;
+}
+
 </style>

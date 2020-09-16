@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Scope+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @font-face {
@@ -20,16 +17,6 @@
     src: url(fonts/Lovelo-LineLight.woff);
 }
 
-@font-face {
-    font-family: AlfaSlabOne;
-    src: url(fonts/AlfaSlabOne-Regular.ttf);
-}
-
-@font-face {
-    font-family: LeagueSpartan;
-    src:url(fonts/league-spartan.bold.ttf);
-}
-
 :root {
     --red: #C81500;
     --red2: #ff0000;
@@ -45,14 +32,20 @@
     --lightest-red: #ffbfbf;
     --black-ish: #1a1a1a;
     --lighter-black: #535353;
+    --gray: #a9a9a9;
     --light-gray: #f2f2f2;
+<<<<<<< HEAD
     --opacity: .83;
+=======
+    --white: #FFFFFF;
+>>>>>>> aca01319abef8452840947392b57cb2e0b021ca0
 }
 
 body {
     --background: var(--white);
     --primary-text: var(--black-ish);
     --secondary-text: var(--lighter-black);
+    --tertiary-text: var(--gray);
     --nav-text: white;
     --link-text: var(--blue);
     --contact-back: var(--light-gray);
@@ -64,6 +57,7 @@ body.dark-mode {
     --background: var(--black-ish);
     --primary-text: white;
     --secondary-text: white;
+    --tertiary-text: var(--lighter-black);
     --nav-text: white;
     --link-text: var(--lighter-blue);
     --contact-back: var(--lighter-black);
@@ -109,4 +103,12 @@ p, a {
 
 a {
     color: var(--link-text);
+}
+
+.blue--text {
+    color: var(--blue);
+}
+
+.red--text {
+    color: var(--red);
 }

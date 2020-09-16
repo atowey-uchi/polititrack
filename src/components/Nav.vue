@@ -1,33 +1,33 @@
 <template>
   <nav>
     <div class="topnav">
-      <div class= "left">
-      <div class="logo">
-        <h1><span>politi</span>track</h1>
-      </div>
-      <div class="links">
-        <ul>
-          <li>
-            <a href="#">Map</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#developers">Team</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
+      <div class="left">
+        <div class="logo">
+          <h1><span>politi</span>track</h1>
+        </div>
+        <div class="links">
+          <ul>
+            <li>
+              <a href="#">Map</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#developers">Team</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="dark-mode-slider">
         <p>Dark Mode:</p>
-      <label @click="myFunction($event)" class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
+        <label @click="myFunction($event)" class="switch">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
       </div>
     </div>
     <div class="sidenav">
@@ -67,20 +67,18 @@ export default {
       } else {
         element.classList.remove("dark-mode");
       }
-  }
+    }
   },
   created() {
     window.addEventListener("scroll", this.toggleSidenav);
   },
   destroyed() {
     window.removeEventListener("scroll", this.toggleSidenav);
-  },
-
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .topnav {
   display: flex;
   padding: 30px 40px;
@@ -256,8 +254,8 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
 }
 
-.dark-mode-slider p{
-  color:var(--primary-text);
+.dark-mode-slider p {
+  color: var(--primary-text);
 }
 
 .switch {
@@ -267,7 +265,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   height: 28px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -280,9 +278,9 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   left: 0;
   right: 0;
   bottom: 0;
-  background-color:var(--light-gray);
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: var(--light-gray);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border: 1px solid var(--lighter-black);
 }
 
@@ -294,8 +292,8 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {

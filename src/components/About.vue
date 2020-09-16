@@ -119,12 +119,14 @@ export default {
   position: relative;
   padding-top: 40px;
   padding-bottom: 120px;
+  width: 1280px;
+  margin: 0 auto;
 }
 
 .gradient-swoosh {
   position: absolute;
   top: 20px;
-  left: -150px;;
+  left: -150px;
   z-index: -1;
   opacity: 0.3;
   // padding: 0;
@@ -178,6 +180,7 @@ div .title h1 {
   font-weight: 600;
   font-size: 18px;
   padding-bottom: 12px;
+  color: var(--primary-color);
 }
 
 .faq div.answer {
