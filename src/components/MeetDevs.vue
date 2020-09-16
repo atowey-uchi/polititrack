@@ -64,6 +64,7 @@ export default {
   position: relative;
   height: 100vh;
   padding-bottom: 120px;
+  width: 1280px;
 }
 
 .gradients img {
@@ -97,11 +98,7 @@ section .title h1 {
 
 section .developer {
   display: flex;
-  width: 80%;
-  --padding-horizontal: 150px;
-  --padding-vertical: 40px;
-  padding: var(--padding-vertical) var(--padding-horizontal);
-  width: calc(100% - (2 * var(--padding-horizontal)));
+  max-width: calc(1280px * 80%);
   justify-content: center;
   align-content: center;
 }

@@ -119,6 +119,8 @@ export default {
   position: relative;
   padding-top: 40px;
   padding-bottom: 120px;
+  width: 1280px;
+  margin: 0 auto;
 }
 
 .gradient-swoosh {
@@ -178,6 +180,7 @@ div .title h1 {
   font-weight: 600;
   font-size: 18px;
   padding-bottom: 12px;
+  color: var(--primary-color);
 }
 
 .faq div.answer {

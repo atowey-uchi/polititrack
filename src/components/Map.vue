@@ -71,7 +71,7 @@ export default {
         "Strong Biden",
         "Near Certain Biden"
       ],
-      thresholds: [20, 35, 40, 45, 49, 51, 56, 60, 65, 80],
+      thresholds: [20, 32, 38, 44, 48, 52, 56, 62, 68, 80],
       currentDate: "",
       startDate: "June 1, 2020 00:00:00",
       width: "",
@@ -142,10 +142,11 @@ export default {
             state.properties.projections[this.currentDateString];
           data += `<h2>${stateName}</h2>`;
           data += `<h4><i>${this.namesRange(parseFloat(projections.Biden) * 100)}</i></h4>`;
-          data += `<p><span class="blue--text">Biden:</span> ${(
+          data += `<h4 class="likely">Likelihood to win state:</h4>`;
+          data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
             parseFloat(projections.Biden) * 100
           ).toFixed(2)}%</p>`;
-          data += `<p><span class="red--text">Trump:</span> ${(
+          data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
             parseFloat(projections.Trump) * 100
           ).toFixed(2)}%</p>`;
           return data;
@@ -316,11 +317,11 @@ path {
 }
 
 .state {
-  opacity: 0.73;
+  opacity: .83;
 }
 
 .state:hover {
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .land-boundary {
@@ -434,8 +435,8 @@ path {
   text-align: left;
   width: max-content;
   height: min-content;
-  padding: 4px;
-  font: 12px sans-serif;
+  padding: 8px;
+  font: 12px;
   background: var(--primary-text);
   opacity: 0.9;
   border: 0px;
@@ -443,6 +444,7 @@ path {
   pointer-events: none;
   display: none;
   transition: 0.1s ease-in;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
 }
 
 .tooltip h2,
@@ -451,12 +453,35 @@ path {
   margin: 0;
 }
 
+.tooltip h2 {
+  font-size: 15px;
+}
+
 .tooltip h4 {
-  color: var(--lighter-black);
+  color: var(--tertiary-text);
   margin: 0;
+  font-size: 12px;
+  font-family: "Open Sans";
+  font-weight: 400;
+}
+
+.tooltip h4.likely {
+color: var(--tertiary-text);
+padding-top: 6px;
+font-weight: 200;
+font-size: 11px;
 }
 
 .tooltip.active {
   display: block;
 }
+
+.tooltip p #Biden, #Trump{
+  font-weight: bold;
+}
+
+.tooltip p {
+  font-size: 13px;
+}
+
 </style>
