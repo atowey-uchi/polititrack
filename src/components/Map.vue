@@ -46,17 +46,30 @@ export default {
     return {
       states: {},
       colors: [
-        "#FF0000",
-        "#E7060E",
-        "#D00B1B",
-        "#B81129",
-        "#A11736",
-        "#891D44",
-        "#712251",
-        "#5A285F",
-        "#422E6C",
-        "#2B337A",
-        "#133987"
+        "#FF0000", // Near Certain Republican
+        "#E7060E", // Strong Republican
+        "#D00B1B", // Likely Republican
+        "#B81129", // Lean Republican
+        "#A11736", // Slightly Republican
+        "#891D44", // Toss-Up
+        "#712251", // Slightly Democrat
+        "#5A285F", // Lean Democrat
+        "#422E6C", // Likely Democrat
+        "#2B337A", // Strong Democrat
+        "#133987" // Near Certain Democrat
+      ],
+      threshold_names: [
+        "Near Certain Trump",
+        "Strong Trump",
+        "Likely Trump",
+        "Lean Trump",
+        "Slightly Trump",
+        "Toss-Up",
+        "Slightly Biden",
+        "Lean Biden",
+        "Likely Biden",
+        "Strong Biden",
+        "Near Certain Biden"
       ],
       thresholds: [20, 35, 40, 45, 49, 51, 56, 60, 65, 80],
       currentDate: "",
@@ -65,6 +78,7 @@ export default {
       height: 600,
       chart: "",
       colorRange: "",
+      namesRange: "",
       projection: "",
       path: "",
       day: 0,
@@ -116,9 +130,7 @@ export default {
     currentDateString: function() {
       return `${this.currentDate.getMonth() +
         1}/${this.currentDate.getDate()}/${this.currentDate
-        .getFullYear()
-        .toString()
-        .substr(-2)}`;
+        .getFullYear()}`;
     }
   },
   methods: {
@@ -129,6 +141,7 @@ export default {
           const projections =
             state.properties.projections[this.currentDateString];
           data += `<h2>${stateName}</h2>`;
+          data += `<h4><i>${this.namesRange(parseFloat(projections.Biden) * 100)}</i></h4>`;
           data += `<p><span class="blue--text">Biden:</span> ${(
             parseFloat(projections.Biden) * 100
           ).toFixed(2)}%</p>`;
@@ -176,6 +189,11 @@ export default {
         .scaleThreshold()
         .domain(this.thresholds)
         .range(this.colors);
+
+      this.namesRange = d3
+        .scaleThreshold()
+        .domain(this.thresholds)
+        .range(this.threshold_names);
 
       this.projection = d3
         .geoAlbersUsa()
@@ -424,12 +442,17 @@ path {
   border-radius: 8px;
   pointer-events: none;
   display: none;
-  transition: 0.1s;
+  transition: 0.1s ease-in;
 }
 
 .tooltip h2,
 .tooltip p {
   color: var(--background);
+  margin: 0;
+}
+
+.tooltip h4 {
+  color: var(--lighter-black);
   margin: 0;
 }
 
