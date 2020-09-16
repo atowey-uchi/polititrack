@@ -34,7 +34,9 @@ export default {
   methods: {
     resizeGradient() {
       const gradient = document.querySelector(".gradient");
-      const textTop = document.getElementById("subheadline").offsetTop;
+      const textTop =
+        document.getElementById("subheadline").offsetTop +
+        document.querySelector("section .text").offsetTop;
       const width = window.innerWidth;
       const triangleWidth = width * 0.9;
       const height = window.innerHeight;
@@ -91,9 +93,11 @@ section {
   box-shadow: rgba(0, 0, 0, 0.1);
 }
 
-section .text {
-  padding-left: 70px;
-  padding-top: 300px;
+section.text {
+  position: absolute;
+  left: 70px;
+  top: 300px;
+  height: min-content;
 }
 
 h1 {
