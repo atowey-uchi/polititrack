@@ -45,6 +45,7 @@
     --lighter-black: #535353;
     --gray: #a9a9a9;
     --light-gray: #f2f2f2;
+    --white: #FFFFFF;
 }
 
 body {
@@ -107,4 +108,12 @@ p, a {
 
 a {
     color: var(--link-text);
+}
+
+.blue--text {
+    color: var(--blue);
+}
+
+.red--text {
+    color: var(--red);
 }

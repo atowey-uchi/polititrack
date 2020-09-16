@@ -145,7 +145,6 @@ a {
   overflow: hidden;
 }
 
-
 .developer p span {
   font-weight: 600;
   font-size: 20px;

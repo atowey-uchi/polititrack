@@ -124,7 +124,7 @@ export default {
 .gradient-swoosh {
   position: absolute;
   top: 20px;
-  left: -150px;;
+  left: -150px;
   z-index: -1;
   opacity: 0.3;
   // padding: 0;

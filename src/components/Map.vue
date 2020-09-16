@@ -1,10 +1,35 @@
 <template>
-  <div>
-    <h1>{{ formatDateString(currentDate) }}</h1>
+  <div style="position: relative;">
     <div class="slidercontainer">
-    <input type="range" min="1" max="100" value="50" class="slider">
+      <label for="date-slider">
+        {{ currentDateString }}
+      </label>
+      <input
+        type="range"
+        min="1"
+        max="100"
+        class="slider"
+        id="date-slider"
+        v-model="day"
+      />
     </div>
-    <div id="map"></div>
+    <div id="map">
+      <svg :width="settings.width" :height="settings.height">
+        <transition-group tag="g" name="state">
+          <path
+            v-for="state in statesData"
+            class="state"
+            :id="state.id"
+            :key="state.id"
+            :d="state.d"
+            :style="state.style"
+            @mouseover="showTooltip($event)"
+            @mouseout="hideTooltip()"
+          ></path>
+        </transition-group>
+      </svg>
+    </div>
+    <div class="tooltip"></div>
   </div>
 </template>
 
@@ -33,42 +58,100 @@ export default {
         "#2B337A",
         "#133987"
       ],
-      thresholds: [
-        22,
-        28.22,
-        34.44,
-        40.66,
-        46.88,
-        53.1,
-        59.32,
-        65.54,
-        71.76,
-        78
-      ],
+      thresholds: [20, 35, 40, 45, 49, 51, 56, 60, 65, 80],
       currentDate: "",
+      startDate: "June 1, 2020 00:00:00",
       width: "",
       height: 600,
       chart: "",
       colorRange: "",
       projection: "",
-      path: ""
+      path: "",
+      day: 0,
+      settings: {
+        width: 1280,
+        height: 600
+      }
     };
   },
   created() {
-    this.currentDate = new Date(2020, 6, 1);
+    this.currentDate = new Date(this.startDate);
     this.fetchData();
   },
   mounted() {
     this.width = window.innerWidth;
+    this.setupSlider();
     this.setupChart();
-    this.generateMap();
   },
   watch: {
-    states: function() {
-      this.generateMap();
+    day: function() {
+      this.currentDate = new Date(this.startDate);
+      this.currentDate.setDate(
+        new Date(this.startDate).getDate() + parseInt(this.day)
+      );
+    }
+  },
+  computed: {
+    statesData: function() {
+      let that = this;
+
+      if (this.states.length) {
+        return this.states.map(function(d) {
+          return {
+            id: d.properties.name,
+            d: that.path(d),
+            style: {
+              fill: that.colorRange(
+                parseFloat(
+                  d.properties.projections[that.currentDateString].Biden
+                ) * 100
+              )
+            }
+          };
+        });
+      } else {
+        return [];
+      }
+    },
+    currentDateString: function() {
+      return `${this.currentDate.getMonth() +
+        1}/${this.currentDate.getDate()}/${this.currentDate
+        .getFullYear()
+        .toString()
+        .substr(-2)}`;
     }
   },
   methods: {
+    getTooltipData(stateName) {
+      let data = "";
+      for (let state of this.states) {
+        if (stateName === state.properties.name) {
+          const projections =
+            state.properties.projections[this.currentDateString];
+          data += `<h2>${stateName}</h2>`;
+          data += `<p><span class="blue--text">Biden:</span> ${(
+            parseFloat(projections.Biden) * 100
+          ).toFixed(2)}%</p>`;
+          data += `<p><span class="red--text">Trump:</span> ${(
+            parseFloat(projections.Trump) * 100
+          ).toFixed(2)}%</p>`;
+          return data;
+        }
+      }
+    },
+    showTooltip(event) {
+      const tooltip = document.querySelector(".tooltip");
+      tooltip.classList.add("active");
+      tooltip.style.left =
+        event.pageX - tooltip.parentElement.offsetLeft + "px";
+      tooltip.style.top = event.pageY - tooltip.parentElement.offsetTop + "px";
+      tooltip.innerHTML = this.getTooltipData(event.target.id);
+    },
+    hideTooltip() {
+      const tooltip = document.querySelector(".tooltip");
+      tooltip.classList.remove("active");
+      tooltip.innerHTML = "";
+    },
     fetchData() {
       d3.csv("/projections.csv").then(data => {
         d3.json("/us-states.json").then(us => {
@@ -100,209 +183,90 @@ export default {
         .translate([this.width / 2, this.height / 2]);
 
       this.path = d3.geoPath().projection(this.projection);
-
-      d3.select("#map")
-        .append("svg")
-        .attr("width", this.width)
-        .attr("height", this.height);
-
-      d3.select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
+    },
+    setupSlider() {
+      const slider = document.getElementById("date-slider");
+      let today = new Date();
+      today.setHours(0, 0, 0, 0);
+      slider.setAttribute("min", 0);
+      slider.setAttribute(
+        "max",
+        this.daysBetween(new Date(this.startDate), today)
+      );
     },
     getNextDay(date) {
-      const endDate = new Date(2020, 9, 13);
+      const endDate = new Date();
+      endDate.setHours(0, 0, 0, 0);
       date.setDate(date.getDate() + 1);
       if (date >= endDate) {
-        return new Date(2020, 6, 1);
+        return new Date(this.startDate);
       }
       return date;
     },
     formatDateString(date) {
-      return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    },
+    daysBetween(start, end) {
+      const ONE_DAY = 24 * 60 * 60 * 1000;
+      return Math.round(Math.abs((end - start) / ONE_DAY));
     },
     generateMap() {
-      this.currentDate = this.getNextDay(this.currentDate);
-
       let svg = d3.select("#map svg");
-      let tooltip = d3.select(".tooltip");
 
-      svg
-        .selectAll("path")
-        .data(this.states)
+      let paths = svg.selectAll("path").data(this.states);
+
+      paths
         .enter()
         .append("path")
         .attr("d", this.path)
         .attr("class", "state")
         .style("fill", d => {
-          const date = `${this.currentDate.getMonth()}/${this.currentDate.getDate()}/${this.currentDate
+          const date = `${this.currentDate.getMonth() +
+            1}/${this.currentDate.getDate()}/${this.currentDate
             .getFullYear()
             .toString()
             .substr(-2)}`;
-          console.log(date);
           return this.colorRange(
             parseFloat(d.properties.projections[date].Biden) * 100
           );
-        })
-        .on("mouseover", function(d) {
-          const date = `${this.currentDate.getMonth()}/${this.currentDate.getDate()}/${this.currentDate
-            .getFullYear()
-            .toString()
-            .substr(-2)}`;
-          tooltip
-            .transition()
-            .duration(200)
-            .style("opacity", 0.9);
-          tooltip
-            .text(
-              `Biden: ${d.properties.projections[date].Biden}\nTrump: ${d.properties.projections[date].Trump}`
-            )
-            .style("left", d3.event.pageX + "px")
-            .style("top", d3.event.pageY - 28 + "px");
-        })
-        .on("mouseout", function() {
-          tooltip
-            .transition()
-            .duration(500)
-            .style("opacity", 0.0);
         });
-      // d3.json("/us.json").then(function(us) {
 
-      //   svg
-      //     .append("path")
-      //     .datum(feature(us, us.objects.land))
-      //     .attr("d", path)
-      //     .attr("class", "land-boundary");
-
-      //   svg
-      //     .append("path")
-      //     .datum(
-      //       mesh(us, us.objects.counties, function(a, b) {
-      //         return a !== b && ((a.id / 1000) | 0) === ((b.id / 1000) | 0);
-      //       })
-      //     )
-      //     .attr("d", path)
-      //     .attr("class", "county-boundary");
-
-      //   svg
-      //     .append("path")
-      //     .datum(
-      //       mesh(us, us.objects.states, function(a, b) {
-      //         return a !== b;
-      //       })
-      //     )
-      //     .attr("d", path)
-      //     .attr("class", "state-boundary");
-
-      //   svg
-      //     .selectAll("path")
-      //     .data(feature(us, us.objects.states).features)
-      //     .enter()
-      //     .append("path")
-      //     .attr("d", path)
-      //     .attr("class", "state")
-      //     .style("fill", function(d) {
-      //       if (d.id === 4) {
-      //         return "purple";
-      //       } else {
-      //         return "yellow";
-      //       }
-      //     });
-      // });
-
-      //   d3.tsv(dataPath)
-      //     .row(function(d) {
-      //       return {
-      //         permalink: d.permalink,
-      //         lat: parseFloat(d.lat),
-      //         lng: parseFloat(d.long),
-      //         city: d.city,
-      //         created_at: moment(d.created_at, "YYYY-MM-DD HH:mm:ss").unix()
-      //       };
-      //     })
-      //     .get(function(err, rows) {
-      //       if (err) return console.error(err);
-      //       window.site_data = rows;
-      //     });
-      // });
-
-      // var displaySites = function(data) {
-      //   var sites = svg.selectAll(".site").data(data, function(d) {
-      //     return d.permalink;
-      //   });
-
-      //   sites
-      //     .enter()
-      //     .append("circle")
-      //     .attr("class", "site")
-      //     .attr("cx", function(d) {
-      //       return projection([d.lng, d.lat])[0];
-      //     })
-      //     .attr("cy", function(d) {
-      //       return projection([d.lng, d.lat])[1];
-      //     })
-      //     .attr("r", 1)
-      //     .transition()
-      //     .duration(400)
-      //     .attr("r", 5);
-
-      //   sites
-      //     .exit()
-      //     .transition()
-      //     .duration(200)
-      //     .attr("r", 1)
-      //     .remove();
-      // };
-
-      // var minDateUnix = moment("2014-07-01", "YYYY MM DD").unix();
-      // var maxDateUnix = moment("2015-07-21", "YYYY MM DD").unix();
-      // var secondsInDay = 60 * 60 * 24;
-
-      // d3.select("#slider3").call(
-      //   d3
-      //     .slider()
-      //     .axis(true)
-      //     .min(minDateUnix)
-      //     .max(maxDateUnix)
-      //     .step(secondsInDay)
-      //     .on("slide", function(evt, value) {
-      //       var newData = _(site_data).filter(function(site) {
-      //         return site.created_at < value;
-      //       });
-      //       // console.log("New set size ", newData.length);
-
-      //       displaySites(newData);
-      //     })
-      // );
+      paths.exit().remove();
     }
   }
 };
 </script>
 
 <style>
-
 .slidercontainer {
   margin: 0 22%;
   position: absolute;
   width: 56%;
+  text-align: center;
 }
 
 .slider {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   appearance: none;
-width: 100%;
+  width: 100%;
   height: 10px;
   background: var(--gray);
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
   border-radius: 15px;
 }
 
 .slider:hover {
   opacity: 1;
+}
+
+.slidercontainer label {
+  font-size: 24px;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 300;
+  color: var(--primary-text);
 }
 
 .slider::-webkit-slider-thumb {
@@ -320,7 +284,7 @@ width: 100%;
   height: 20px; /* Slider handle height */
   background: var(--blue); /* Green background */
   cursor: pointer; /* Cursor on hover */
-   border-radius: 50%;
+  border-radius: 50%;
 }
 
 #map {
@@ -334,7 +298,7 @@ path {
 }
 
 .state {
-  opacity: .73;
+  opacity: 0.73;
 }
 
 .state:hover {
@@ -447,16 +411,29 @@ path {
   margin-bottom: -0.6em;
 }
 
-.tooltip {   
- 	position: absolute;           
-	text-align: center;           
-	width: 60px;                  
-	height: 28px;                 
-	padding: 2px;             
-	font: 12px sans-serif;        
-	background: white;   
-	border: 0px;      
-	border-radius: 8px;           
-	pointer-events: none;         
+.tooltip {
+  position: absolute;
+  text-align: left;
+  width: max-content;
+  height: min-content;
+  padding: 4px;
+  font: 12px sans-serif;
+  background: var(--primary-text);
+  opacity: 0.9;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  display: none;
+  transition: 0.1s;
+}
+
+.tooltip h2,
+.tooltip p {
+  color: var(--background);
+  margin: 0;
+}
+
+.tooltip.active {
+  display: block;
 }
 </style>
