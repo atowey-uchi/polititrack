@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <template>
   <div>
     <h1>{{ formatDateString(currentDate) }}</h1>
@@ -460,3 +462,4 @@ path {
 	pointer-events: none;         
 }
 </style>
+>>>>>>> 3134245fd576bf07dfb7dbb311c76d1998d4c588

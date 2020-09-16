@@ -1,6 +1,7 @@
 <template>
   <nav>
     <div class="topnav">
+      <div class= "left">
       <div class="logo">
         <h1><span>politi</span>track</h1>
       </div>
@@ -19,6 +20,14 @@
             <a href="#contact">Contact</a>
           </li>
         </ul>
+      </div>
+      </div>
+      <div class="dark-mode-slider">
+        <p>Dark Mode:</p>
+      <label @click="myFunction($event)" class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
       </div>
     </div>
     <div class="sidenav">
@@ -49,32 +58,51 @@ export default {
       } else {
         sidenav.classList.remove(activeClass);
       }
-    }
+    },
+    myFunction(event) {
+      let checkbox = event.target;
+      var element = document.body;
+      if (checkbox.checked) {
+        element.classList.add("dark-mode");
+      } else {
+        element.classList.remove("dark-mode");
+      }
+  }
   },
   created() {
     window.addEventListener("scroll", this.toggleSidenav);
   },
   destroyed() {
     window.removeEventListener("scroll", this.toggleSidenav);
-  }
+  },
+
 };
 </script>
 
 <style lang="scss" scoped>
-nav .topnav {
+
+.topnav {
   display: flex;
   padding: 30px 40px;
   position: absolute;
   top: 0;
   z-index: 5;
   padding-left: 70px;
+  width: calc(100% - 110px);
+  justify-content: space-between;
 }
 
-nav .topnav .logo {
+.left {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+.topnav .logo {
   padding-top: 10px;
 }
 
-nav .logo {
+.logo {
   display: flex;
   align-content: center;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
@@ -219,6 +247,78 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 #top {
   padding-top: 40px;
   padding-left: 70px;
+}
+
+.dark-mode-slider {
+  display: flex;
+  width: 200px;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.dark-mode-slider p{
+  color:var(--primary-text);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 28px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:var(--light-gray);
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid var(--lighter-black);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--blue);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--blue);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 // side nav: meetdevs = user-friends, home = home, about = question-circle, map=

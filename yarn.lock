@@ -2462,8 +2462,13 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
 
 commander@2, commander@^2.18.0, commander@^2.20.0:
   version "2.20.3"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+=======
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.3.tgz?cache=0&sync_timestamp=1595168168939&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
+>>>>>>> 3134245fd576bf07dfb7dbb311c76d1998d4c588
 
 commander@2.17.x:
   version "2.17.1"
@@ -3004,7 +3009,11 @@ d3-force@2:
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-2.0.0.tgz#a10bcc0f986c372b729ba447382413aabf5b0767"
   integrity sha512-Ab3S6XuE/Q+flY96HXT0jOXcM4EAClYFnRGY5zsjRGNy6qCYrQsMffs7cV5Q9xejb35zxW5hf/guKw34kvIKsA==
 
+<<<<<<< HEAD
+d3-geo@2:
+=======
 d3-geo@2, d3-geo@^2.0.1:
+>>>>>>> 3134245fd576bf07dfb7dbb311c76d1998d4c588
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-2.0.1.tgz#2437fdfed3fe3aba2812bd8f30609cac83a7ee39"
   integrity sha512-M6yzGbFRfxzNrVhxDJXzJqSLQ90q1cCyb3EWFZ1LF4eWOBYxFypw7I/NFVBNXKNqxv1bqLathhYvdJ6DC+th3A==
@@ -4711,8 +4720,8 @@ human-signals@^1.1.1:
 
 iconv-lite@0.4, iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
-  resolved "https://registry.npm.taobao.org/iconv-lite/download/iconv-lite-0.4.24.tgz?cache=0&sync_timestamp=1594184589720&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ficonv-lite%2Fdownload%2Ficonv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
-  integrity sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
+  integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
@@ -8816,6 +8825,11 @@ vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
+
+vue-svg-map@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vue-svg-map/-/vue-svg-map-1.2.0.tgz#44256a330045c73e7474af0714b5ca1c19ed270b"
+  integrity sha512-CAz4G80dnZ61+X8jAa7aeXHJBg3gNnJdTzUyVXbkZmwBLeh0hL9M47tm5Fpmd20AMsTY+GF7bbL+HvhWM3NlGw==
 
 vue-template-compiler@^2.6.11:
   version "2.6.11"

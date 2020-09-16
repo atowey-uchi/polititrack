@@ -142,12 +142,14 @@ a {
 .developer img {
   max-width: 100%;
   max-height: 100%;
+  overflow: hidden;
 }
+
 
 .developer p span {
   font-weight: 600;
   font-size: 20px;
-  color: var(--black-ish);
+  color: var(--primary-text);
 }
 
 .developer a {

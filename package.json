@@ -13,9 +13,14 @@
     "d3-geo": "^2.0.1",
     "moment": "^2.27.0",
     "register-service-worker": "^1.7.1",
+<<<<<<< HEAD
+    "vue": "^2.6.11",
+    "vue-svg-map": "^1.2.0"
+=======
     "topojson": "^3.0.2",
     "underscore": "^1.11.0",
     "vue": "^2.6.11"
+>>>>>>> 3134245fd576bf07dfb7dbb311c76d1998d4c588
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

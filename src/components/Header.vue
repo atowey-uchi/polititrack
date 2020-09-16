@@ -108,7 +108,7 @@ h1 {
 h2 {
   font-size: 28px;
   padding-top: 0px;
-  color: var(--lighter-black);
+  color: var(--secondary-text);
 }
 
 .graphic {
