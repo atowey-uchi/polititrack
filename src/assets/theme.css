@@ -19,8 +19,9 @@
 
 :root {
     --red: #ED2939;
+    --middle-purple: #7B3B6C;
     --blue: #094C9E;
-    --blue-75: rgba(19, 57, 135, 0.75);
+    --blue-75: rgba(23, 27, 34, 0.75);
     --blue-60: rgba(19, 57, 135, 0.6);
     --darker-blue: #091c43;
     --darker-red: #7f0000;

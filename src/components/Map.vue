@@ -1,9 +1,18 @@
 <template>
   <div style="position: relative;">
-    <div class="slidercontainer">
-      <label for="date-slider">
-        {{ prettyDateString }}
-      </label>
+    <div class="map-controls">
+      <div class="controls">
+        <button class="back-btn">
+          <font-awesome-icon icon="fast-backward" />
+        </button>
+        <button class="play-btn">
+          <font-awesome-icon :icon="['fas', 'play']" />
+        </button>
+        <button class="forward-btn">
+          <font-awesome-icon icon="fast-forward" />
+        </button>
+      </div>
+      <label for="date-slider">{{ prettyDateString }}</label>
       <input
         type="range"
         min="1"
@@ -25,7 +34,7 @@
             :style="state.style"
             @mouseover="showTooltip($event)"
             @mouseout="hideTooltip()"
-          ></path>
+          />
         </transition-group>
       </svg>
     </div>
@@ -37,7 +46,6 @@
 import * as d3 from "d3";
 // import { feature, mesh } from "topojson";
 // import * as moment from "moment";
-// import * as _ from "underscore";
 // import "../lib/d3.slider";
 
 export default {
@@ -276,9 +284,9 @@ export default {
 </script>
 
 <style>
-.slidercontainer {
-  margin: 0 22%;
-  position: absolute;
+.map-controls {
+  margin: 5px 22%;
+  position: relative;
   width: 56%;
   text-align: left;
 }
@@ -294,19 +302,18 @@ export default {
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
   border-radius: 15px;
+  margin-top: 20px;
 }
 
 .slider:hover {
   opacity: 1;
 }
 
-.slidercontainer label {
+.map-controls label {
   font-size: 28px;
   font-family: "Bai Jamjuree", sans-serif;
   font-weight: 400;
   color: var(--secondary-text);
-  bottom: 35px;
-  position: absolute;
   padding-left: 20px;
 }
 
@@ -332,7 +339,7 @@ export default {
   padding-top: 20px;
 }
 
-path {
+#map svg path {
   fill: none;
   stroke: whitesmoke;
   stroke-width: 0.75px;
@@ -344,112 +351,6 @@ path {
 
 .state:hover {
   opacity: 0.6;
-}
-
-.land-boundary {
-  stroke-width: 3px;
-}
-
-.county-boundary {
-  stroke: #ddd;
-}
-
-.site {
-  stroke-width: 0.5px;
-  stroke: #333;
-  fill: #9cf;
-}
-
-#slider3 {
-  margin: 20px 0 10px 20px;
-  width: 900px;
-}
-
-.d3-slider {
-  position: relative;
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 1.1em;
-  border: 1px solid var(--light-gray);
-  z-index: 2;
-}
-
-.d3-slider-horizontal {
-  height: 0.8em;
-}
-
-.d3-slider-range {
-  background: #2980b9;
-  left: 0px;
-  right: 0px;
-  height: 0.8em;
-  position: absolute;
-}
-
-.d3-slider-range-vertical {
-  background: #2980b9;
-  left: 0px;
-  right: 0px;
-  position: absolute;
-  top: 0;
-}
-
-.d3-slider-vertical {
-  width: 0.8em;
-  height: 100px;
-}
-
-.d3-slider-handle {
-  position: absolute;
-  width: 1.2em;
-  height: 1.2em;
-  border: 1px solid #d3d3d3;
-  border-radius: 4px;
-  background: #eee;
-  background: linear-gradient(to bottom, #eee 0%, #ddd 100%);
-  z-index: 3;
-}
-
-.d3-slider-handle:hover {
-  border: 1px solid #999999;
-}
-
-.d3-slider-horizontal .d3-slider-handle {
-  top: -0.3em;
-  margin-left: -0.6em;
-}
-
-.d3-slider-axis {
-  position: relative;
-  z-index: 1;
-}
-
-.d3-slider-axis-bottom {
-  top: 0.8em;
-}
-
-.d3-slider-axis-right {
-  left: 0.8em;
-}
-
-.d3-slider-axis path {
-  stroke-width: 0;
-  fill: none;
-}
-
-.d3-slider-axis line {
-  fill: none;
-  stroke: #aaa;
-  shape-rendering: crispEdges;
-}
-
-.d3-slider-axis text {
-  font-size: 11px;
-}
-
-.d3-slider-vertical .d3-slider-handle {
-  left: -0.25em;
-  margin-left: 0;
-  margin-bottom: -0.6em;
 }
 
 .tooltip {
@@ -505,5 +406,35 @@ path {
 
 .tooltip p {
   font-size: 13px;
+}
+
+.controls {
+  position: absolute;
+  top: 5px;
+  right: 0;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.controls button svg {
+  font-size: 2em;
+  color: var(--primary-text);
+  transition: color 0.3s ease;
+}
+
+.controls button.play-btn:hover svg {
+  color: var(--middle-purple);
+}
+
+.controls button.back-btn:hover svg {
+  color: var(--red);
+}
+
+.controls button.forward-btn:hover svg {
+  color: var(--blue);
 }
 </style>
