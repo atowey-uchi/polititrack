@@ -315,53 +315,6 @@ nav .topnav .links ul li a {
   color: #094c9e;
 }
 
-// $duration: 0.6s;
-// $distance: 6px;
-// $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-// .sidenav a {
-
-//   &:before,
-//   &:after {
-//     content: "";
-//     position: absolute;
-//     bottom: -1px;
-//     left: 0;
-//     right: 0;
-//     height: 2px;
-//     background-color: var(--red);
-//   }
-//   &:before {
-//     opacity: 0;
-//     transform: translateY(-$distance);
-//     transition: transform 0s $easeOutBack, opacity 0s;
-//   }
-//   &:after {
-//     opacity: 0;
-//     transform: translateY($distance/2);
-//     transition: transform $duration $easeOutBack, opacity $duration;
-//   }
-//   &:hover,
-//   &:focus {
-//     &:before,
-//     &:after {
-//       opacity: 1;
-//       transform: translateY(0);
-//     }
-//     &:before {
-//       transition: transform $duration $easeOutBack, opacity $duration;
-//     }
-//     &:after {
-//       transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
-//     }
-//   }
-// }
-
-// #top {
-//   top: 40px;
-//   padding-left: 70px;
-// }
-
 .dark-mode-slider {
   display: flex;
   justify-content: space-evenly;
