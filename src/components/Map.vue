@@ -45,7 +45,7 @@
         </transition-group>
       </svg>
     </div>
-    <div class="tooltip"></div>
+    <div class="tooltip" v-html="tooltipData"></div>
   </div>
 </template>
 
@@ -112,6 +112,7 @@ export default {
       day: 0,
       dayMax: 0,
       mapInterval: "",
+      hoveredState: "",
       settings: {
         width: 1280,
         height: 600
@@ -164,6 +165,37 @@ export default {
         return [];
       }
     },
+    tooltipData() {
+      if (this.hoveredState) {
+        let data = "";
+        for (let state of this.states) {
+          if (this.hoveredState === state.properties.name) {
+            const projections =
+              state.properties.projections[
+                this.formatDateString(
+                  this.getLastDayInData(
+                    this.currentDate,
+                    state.properties.projections
+                  )
+                )
+              ];
+            data += `<h2>${this.hoveredState}</h2>`;
+            data += `<h4><i>${this.namesRange(
+              parseFloat(projections.Biden) * 100
+            )}</i></h4>`;
+            data += `<h4 class="likely">Likelihood to win state:</h4>`;
+            data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
+              parseFloat(projections.Biden) * 100
+            ).toFixed(2)}%</p>`;
+            data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
+              parseFloat(projections.Trump) * 100
+            ).toFixed(2)}%</p>`;
+            return data;
+          }
+        }
+      }
+      return "";
+    },
     currentDateString: function() {
       return `${this.currentDate.getMonth() +
         1}/${this.currentDate.getDate()}/${this.currentDate.getFullYear()}`;
@@ -197,46 +229,18 @@ export default {
     skipToEnd() {
       this.day = this.dayMax;
     },
-    getTooltipData(stateName) {
-      let data = "";
-      for (let state of this.states) {
-        if (stateName === state.properties.name) {
-          const projections =
-            state.properties.projections[
-              this.formatDateString(
-                this.getLastDayInData(
-                  this.currentDate,
-                  state.properties.projections
-                )
-              )
-            ];
-          data += `<h2>${stateName}</h2>`;
-          data += `<h4><i>${this.namesRange(
-            parseFloat(projections.Biden) * 100
-          )}</i></h4>`;
-          data += `<h4 class="likely">Likelihood to win state:</h4>`;
-          data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
-            parseFloat(projections.Biden) * 100
-          ).toFixed(2)}%</p>`;
-          data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
-            parseFloat(projections.Trump) * 100
-          ).toFixed(2)}%</p>`;
-          return data;
-        }
-      }
-    },
     showTooltip(event) {
       const tooltip = document.querySelector(".tooltip");
       tooltip.classList.add("active");
       tooltip.style.left =
         event.pageX - tooltip.parentElement.offsetLeft + "px";
       tooltip.style.top = event.pageY - tooltip.parentElement.offsetTop + "px";
-      tooltip.innerHTML = this.getTooltipData(event.target.id);
+      this.hoveredState = event.target.id;
     },
     hideTooltip() {
       const tooltip = document.querySelector(".tooltip");
       tooltip.classList.remove("active");
-      tooltip.innerHTML = "";
+      this.hoveredState = "";
     },
     fetchData() {
       d3.csv("/projections.csv").then(data => {
