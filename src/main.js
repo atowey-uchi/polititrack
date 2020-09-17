@@ -8,11 +8,26 @@ import {
   faPlay,
   faPause,
   faFastBackward,
-  faFastForward
+  faFastForward,
+  faMap,
+  faUsers,
+  faInfoCircle,
+  faEnvelope,
+  faArrowUp
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faPlay, faPause, faFastForward, faFastBackward);
+library.add(
+  faPlay,
+  faPause,
+  faFastForward,
+  faFastBackward,
+  faMap,
+  faUsers,
+  faInfoCircle,
+  faEnvelope,
+  faArrowUp
+);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;

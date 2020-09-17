@@ -31,11 +31,48 @@
       </div>
     </div>
     <div class="sidenav">
-      <a href="#">Map</a>
-      <a href="#about">About</a>
-      <a href="#developers">Team</a>
-      <a href="#contact">Contact</a>
-      <a href="#" id="top"><i>To Top</i></a>
+      <ul>
+        <li>
+          <a href="#map">
+            <span>
+              <font-awesome-icon icon="map" />
+            </span>
+            <div class="link-name">Map</div>
+          </a>
+        </li>
+        <li>
+          <a href="#about">
+            <span>
+              <font-awesome-icon icon="info-circle" />
+            </span>
+            <div class="link-name">About</div>
+          </a>
+        </li>
+        <li>
+          <a href="#developers">
+            <span>
+              <font-awesome-icon icon="users" />
+            </span>
+            <div class="link-name">Developers</div>
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <span>
+              <font-awesome-icon icon="envelope" />
+            </span>
+            <div class="link-name">Contact Us</div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span>
+              <font-awesome-icon icon="arrow-up" />
+            </span>
+            <div class="link-name">Scroll To Top</div>
+          </a>
+        </li>
+      </ul>
     </div>
   </nav>
 </template>
@@ -177,13 +214,12 @@ nav .topnav .links ul li a {
 }
 
 .sidenav {
-  width: 130px;
   position: fixed;
   z-index: 10;
-  top: 140px;
-  left: -130px;
-  background-color: var(--blue-60);
-  overflow-x: hidden;
+  left: -150px;
+  top: 150px;
+  background: var(--primary-text);
+  opacity: 0.8;
   transition: left 0.5s ease-in;
 }
 
@@ -192,61 +228,139 @@ nav .topnav .links ul li a {
   transition: left 0.5s ease-out;
 }
 
-$duration: 0.6s;
-$distance: 6px;
-$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-.sidenav a {
-  margin: 6px 6px 6px 12px;
-  text-decoration: none;
-  font-size: 16px;
-  color: white;
-  display: block;
-  font-family: "Bai Jamjuree", sans-serif;
-  font-weight: 200;
+.sidenav li {
   position: relative;
-  width: min-content;
-
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--red);
-  }
-  &:before {
-    opacity: 0;
-    transform: translateY(-$distance);
-    transition: transform 0s $easeOutBack, opacity 0s;
-  }
-  &:after {
-    opacity: 0;
-    transform: translateY($distance/2);
-    transition: transform $duration $easeOutBack, opacity $duration;
-  }
-  &:hover,
-  &:focus {
-    &:before,
-    &:after {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    &:before {
-      transition: transform $duration $easeOutBack, opacity $duration;
-    }
-    &:after {
-      transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
-    }
-  }
 }
 
-#top {
-  top: 40px;
-  padding-left: 70px;
+.sidenav li a {
+  display: block;
 }
+
+.sidenav .link-name {
+  position: absolute;
+  top: 0;
+  left: -200px;
+  height: 100%;
+  width: max-content;
+  z-index: -1;
+  background: var(--primary-text);
+  color: var(--background);
+  font-weight: 400;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.5s ease-in;
+}
+
+.sidenav li:hover .link-name {
+  left: 100%;
+  transition: left 0.5s ease-out;
+}
+
+.sidenav span {
+  padding: 13px 10px;
+  font-size: 1.5em;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  color: var(--background);
+}
+
+.sidenav span svg {
+  transition: 0.2s ease;
+}
+
+.sidenav span:hover svg {
+  transform: scale(1.1);
+}
+
+.sidenav li:nth-child(1) span {
+  background: #ed2939;
+}
+
+.sidenav li:nth-child(2) span {
+  background: #b43252;
+}
+
+.sidenav li:nth-child(3) span {
+  background: #7b3b6c;
+}
+
+.sidenav li:nth-child(4) span {
+  background: #424385;
+}
+
+.sidenav li:nth-child(5) span {
+  background: #094c9e;
+}
+
+.sidenav li:nth-child(1) .link-name {
+  color: #ed2939;
+}
+
+.sidenav li:nth-child(2) .link-name {
+  color: #b43252;
+}
+
+.sidenav li:nth-child(3) .link-name {
+  color: #7b3b6c;
+}
+
+.sidenav li:nth-child(4) .link-name {
+  color: #424385;
+}
+
+.sidenav li:nth-child(5) .link-name {
+  color: #094c9e;
+}
+
+// $duration: 0.6s;
+// $distance: 6px;
+// $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// .sidenav a {
+
+//   &:before,
+//   &:after {
+//     content: "";
+//     position: absolute;
+//     bottom: -1px;
+//     left: 0;
+//     right: 0;
+//     height: 2px;
+//     background-color: var(--red);
+//   }
+//   &:before {
+//     opacity: 0;
+//     transform: translateY(-$distance);
+//     transition: transform 0s $easeOutBack, opacity 0s;
+//   }
+//   &:after {
+//     opacity: 0;
+//     transform: translateY($distance/2);
+//     transition: transform $duration $easeOutBack, opacity $duration;
+//   }
+//   &:hover,
+//   &:focus {
+//     &:before,
+//     &:after {
+//       opacity: 1;
+//       transform: translateY(0);
+//     }
+//     &:before {
+//       transition: transform $duration $easeOutBack, opacity $duration;
+//     }
+//     &:after {
+//       transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
+//     }
+//   }
+// }
+
+// #top {
+//   top: 40px;
+//   padding-left: 70px;
+// }
 
 .dark-mode-slider {
   display: flex;
