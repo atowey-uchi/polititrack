@@ -24,7 +24,7 @@
       </div>
       <div class="dark-mode-slider">
         <p>Dark Mode:</p>
-        <label @click="myFunction($event)" class="switch">
+        <label @click="toggleDarkMode($event)" class="switch">
           <input type="checkbox" />
           <span class="slider round"></span>
         </label>
@@ -49,9 +49,10 @@ export default {
       const activeClass = "active";
       const sidenav = document.querySelector(".sidenav");
       const footerTop = document.querySelector("footer").offsetTop;
+      const offset = 150;
 
       if (
-        window.scrollY > viewportHeight &&
+        window.scrollY > viewportHeight - offset &&
         !(window.scrollY + viewportHeight > footerTop)
       ) {
         sidenav.classList.add(activeClass);
@@ -59,7 +60,7 @@ export default {
         sidenav.classList.remove(activeClass);
       }
     },
-    myFunction(event) {
+    toggleDarkMode(event) {
       let checkbox = event.target;
       var element = document.body;
       if (checkbox.checked) {
