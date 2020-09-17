@@ -102,8 +102,6 @@ export default {
       thresholds: [12, 28, 38, 44, 48, 52, 56, 62, 72, 88],
       currentDate: "",
       startDate: "June 1, 2020 00:00:00",
-      width: "",
-      height: 600,
       chart: "",
       colorRange: "",
       namesRange: "",
@@ -124,7 +122,7 @@ export default {
     this.fetchData();
   },
   mounted() {
-    this.width = window.innerWidth;
+    this.settings.width = Math.min(this.settings.width, window.innerWidth);
     this.setupSlider();
     this.setupChart();
   },
@@ -274,8 +272,8 @@ export default {
 
       this.projection = d3
         .geoAlbersUsa()
-        .scale(1180)
-        .translate([this.width / 2, this.height / 2]);
+        .scale(this.settings.width)
+        .translate([this.settings.width / 2, this.settings.height / 2]);
 
       this.path = d3.geoPath().projection(this.projection);
     },
@@ -393,6 +391,9 @@ export default {
 }
 
 #map {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   padding-top: 20px;
 }
 
