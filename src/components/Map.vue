@@ -2,21 +2,28 @@
   <div style="position: relative;">
     <div class="map-controls">
       <div class="controls">
-        <button class="back-btn">
+        <button class="back-btn" @click="skipToStart()" :disabled="day <= 0">
           <font-awesome-icon icon="fast-backward" />
         </button>
-        <button class="play-btn">
+        <button class="play-btn" @click="play()" :disabled="day >= dayMax">
           <font-awesome-icon :icon="['fas', 'play']" />
         </button>
-        <button class="forward-btn">
+        <button class="pause-btn" @click="pause()">
+          <font-awesome-icon :icon="['fas', 'pause']" />
+        </button>
+        <button
+          class="forward-btn"
+          @click="skipToEnd()"
+          :disabled="day >= dayMax"
+        >
           <font-awesome-icon icon="fast-forward" />
         </button>
       </div>
       <label for="date-slider">{{ prettyDateString }}</label>
       <input
         type="range"
-        min="1"
-        max="100"
+        min="0"
+        :max="dayMax"
         class="slider"
         id="date-slider"
         v-model="day"
@@ -103,6 +110,8 @@ export default {
       projection: "",
       path: "",
       day: 0,
+      dayMax: 0,
+      mapInterval: "",
       settings: {
         width: 1280,
         height: 600
@@ -138,7 +147,14 @@ export default {
             style: {
               fill: that.colorRange(
                 parseFloat(
-                  d.properties.projections[that.currentDateString].Biden
+                  d.properties.projections[
+                    that.formatDateString(
+                      that.getLastDayInData(
+                        that.currentDate,
+                        d.properties.projections
+                      )
+                    )
+                  ].Biden
                 ) * 100
               )
             }
@@ -159,12 +175,41 @@ export default {
     }
   },
   methods: {
+    play() {
+      document.querySelector(".pause-btn").style.display = "inline";
+      document.querySelector(".play-btn").style.display = "none";
+      this.mapInterval = setInterval(() => {
+        if (this.day >= this.dayMax) {
+          this.pause();
+        } else {
+          this.day += 1;
+        }
+      }, 500);
+    },
+    pause() {
+      document.querySelector(".play-btn").style.display = "inline";
+      document.querySelector(".pause-btn").style.display = "none";
+      clearInterval(this.mapInterval);
+    },
+    skipToStart() {
+      this.day = 0;
+    },
+    skipToEnd() {
+      this.day = this.dayMax;
+    },
     getTooltipData(stateName) {
       let data = "";
       for (let state of this.states) {
         if (stateName === state.properties.name) {
           const projections =
-            state.properties.projections[this.currentDateString];
+            state.properties.projections[
+              this.formatDateString(
+                this.getLastDayInData(
+                  this.currentDate,
+                  state.properties.projections
+                )
+              )
+            ];
           data += `<h2>${stateName}</h2>`;
           data += `<h4><i>${this.namesRange(
             parseFloat(projections.Biden) * 100
@@ -235,10 +280,7 @@ export default {
       let today = new Date();
       today.setHours(0, 0, 0, 0);
       slider.setAttribute("min", 0);
-      slider.setAttribute(
-        "max",
-        this.daysBetween(new Date(this.startDate), today)
-      );
+      this.dayMax = this.daysBetween(new Date(this.startDate), today);
     },
     getNextDay(date) {
       const endDate = new Date();
@@ -248,6 +290,17 @@ export default {
         return new Date(this.startDate);
       }
       return date;
+    },
+    getPreviousDay(date) {
+      const dayBefore = new Date(date);
+      dayBefore.setDate(dayBefore.getDate() - 1);
+      return dayBefore;
+    },
+    getLastDayInData(date, data) {
+      if (this.formatDateString(date) in data) {
+        return date;
+      }
+      return this.getLastDayInData(this.getPreviousDay(date), data);
     },
     formatDateString(date) {
       return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -426,7 +479,8 @@ export default {
   transition: color 0.3s ease;
 }
 
-.controls button.play-btn:hover svg {
+.controls button.play-btn:hover svg,
+.controls button.pause-btn:hover svg {
   color: var(--middle-purple);
 }
 
@@ -436,5 +490,17 @@ export default {
 
 .controls button.forward-btn:hover svg {
   color: var(--blue);
+}
+
+.controls button.pause-btn {
+  display: none;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+}
+
+.controls button:disabled svg {
+  color: var(--tertiary-text) !important;
 }
 </style>
