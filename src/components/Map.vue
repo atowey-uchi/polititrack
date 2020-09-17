@@ -2,7 +2,7 @@
   <div style="position: relative;">
     <div class="slidercontainer">
       <label for="date-slider">
-        {{ currentDateString }}
+        {{ prettyDateString }}
       </label>
       <input
         type="range"
@@ -46,6 +46,20 @@ export default {
     return {
       states: {},
       colors: [
+        // "#ff0000", 
+        // "#ff3333", 
+        // "#ff6b6b", 
+        // "#ffa8a8", 
+        // "#ffd1d1", 
+        // "#ffffff", 
+        // "#cbd9eb", 
+        // "#aac1de", 
+        // "#759bc9", 
+        // "#4779b7", 
+        // "#2661aa", 
+        // "#094c9e"
+
+
         "#FF0000", // Near Certain Republican
         "#E7060E", // Strong Republican
         "#D00B1B", // Likely Republican
@@ -63,15 +77,15 @@ export default {
         "Strong Trump",
         "Likely Trump",
         "Lean Trump",
-        "Slightly Trump",
+        "Slight Lean Trump",
         "Toss-Up",
-        "Slightly Biden",
+        "Slight Lean Biden",
         "Lean Biden",
         "Likely Biden",
         "Strong Biden",
         "Near Certain Biden"
       ],
-      thresholds: [20, 32, 38, 44, 48, 52, 56, 62, 68, 80],
+      thresholds: [12, 28, 38, 44, 48, 52, 56, 62, 72, 88],
       currentDate: "",
       startDate: "June 1, 2020 00:00:00",
       width: "",
@@ -129,8 +143,10 @@ export default {
     },
     currentDateString: function() {
       return `${this.currentDate.getMonth() +
-        1}/${this.currentDate.getDate()}/${this.currentDate
-        .getFullYear()}`;
+        1}/${this.currentDate.getDate()}/${this.currentDate.getFullYear()}`;
+    },
+    prettyDateString: function () {
+        return `${this.currentDate.toLocaleString('default', { month: 'long'})} ${this.currentDate.getDate()}, ${this.currentDate.getFullYear()}`;
     }
   },
   methods: {
@@ -141,7 +157,9 @@ export default {
           const projections =
             state.properties.projections[this.currentDateString];
           data += `<h2>${stateName}</h2>`;
-          data += `<h4><i>${this.namesRange(parseFloat(projections.Biden) * 100)}</i></h4>`;
+          data += `<h4><i>${this.namesRange(
+            parseFloat(projections.Biden) * 100
+          )}</i></h4>`;
           data += `<h4 class="likely">Likelihood to win state:</h4>`;
           data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
             parseFloat(projections.Biden) * 100
@@ -261,7 +279,7 @@ export default {
   margin: 0 22%;
   position: absolute;
   width: 56%;
-  text-align: center;
+  text-align: left;
 }
 
 .slider {
@@ -282,10 +300,13 @@ export default {
 }
 
 .slidercontainer label {
-  font-size: 24px;
+  font-size: 28px;
   font-family: "Bai Jamjuree", sans-serif;
-  font-weight: 300;
-  color: var(--primary-text);
+  font-weight: 400;
+  color: var(--secondary-text);
+  bottom: 35px;
+  position: absolute;
+  padding-left: 20px;
 }
 
 .slider::-webkit-slider-thumb {
@@ -307,13 +328,13 @@ export default {
 }
 
 #map {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 path {
   fill: none;
-  stroke: white;
-  stroke-width: 0.5px;
+  stroke: whitesmoke;
+  stroke-width: .75px;
 }
 
 .state {
@@ -325,7 +346,7 @@ path {
 }
 
 .land-boundary {
-  stroke-width: 1px;
+  stroke-width: 3px;
 }
 
 .county-boundary {
@@ -347,7 +368,7 @@ path {
   position: relative;
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.1em;
-  border: 1px solid #aaaaaa;
+  border: 1px solid var(--light-gray);
   z-index: 2;
 }
 
@@ -466,22 +487,22 @@ path {
 }
 
 .tooltip h4.likely {
-color: var(--tertiary-text);
-padding-top: 6px;
-font-weight: 200;
-font-size: 11px;
+  color: var(--tertiary-text);
+  padding-top: 6px;
+  font-weight: 200;
+  font-size: 11px;
 }
 
 .tooltip.active {
   display: block;
 }
 
-.tooltip p #Biden, #Trump{
+.tooltip p #Biden,
+#Trump {
   font-weight: bold;
 }
 
 .tooltip p {
   font-size: 13px;
 }
-
 </style>

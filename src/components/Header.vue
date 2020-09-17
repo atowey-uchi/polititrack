@@ -14,7 +14,10 @@
       </h2>
     </section>
     <div class="graphic">
-      <img src="@/assets/images/whitehouseroad-dm3.png" id="whitehouseroad-dm" />
+      <img
+        src="@/assets/images/whitehouseroad-dm3.png"
+        id="whitehouseroad-dm"
+      />
       <img src="@/assets/images/whitehouseroad.png" id="whitehouseroad" />
     </div>
   </section>
@@ -144,5 +147,4 @@ h2 {
 .dark-mode #whitehouseroad {
   display: none;
 }
-
 </style>

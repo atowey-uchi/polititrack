@@ -243,14 +243,14 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #top {
-  padding-top: 40px;
+  top: 40px;
   padding-left: 70px;
 }
 
 .dark-mode-slider {
   display: flex;
-  width: 200px;
-  justify-content: space-evenly;
+justify-content: space-evenly;
+  width: 180px;
   position: relative;
 }
 
@@ -261,11 +261,11 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 .switch {
   position: relative;
   display: inline-block;
-  width: 45px;
-  height: 28px;
+  width: 60px;
+  height: 30px;
 }
 
-.switch input {
+.switch input { 
   opacity: 0;
   width: 0;
   height: 0;
@@ -278,22 +278,21 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--light-gray);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border: 1px solid var(--lighter-black);
+  background-color: var(--gray);
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px;
-  width: 18px;
+  height: 24px;
+  width: 24px;
   left: 4px;
-  bottom: 4px;
+  bottom: 2px;
   background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 input:checked + .slider {
@@ -301,24 +300,22 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--blue);
+  box-shadow: 0 0 1px var(--gray);
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
-  transform: translateX(18px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 36px;
+  height: 28px;
 }
 
 .slider.round:before {
   border-radius: 50%;
 }
-
-// side nav: meetdevs = user-friends, home = home, about = question-circle, map=
-// globe-america, contact = comment-dots
 </style>

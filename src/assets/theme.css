@@ -18,9 +18,7 @@
 }
 
 :root {
-    --red: #C81500;
-    --red2: #ff0000;
-    --blue2: #133987;
+    --red: #ED2939;
     --blue: #094C9E;
     --blue-75: rgba(19, 57, 135, 0.75);
     --blue-60: rgba(19, 57, 135, 0.6);
@@ -34,15 +32,11 @@
     --lighter-black: #535353;
     --gray: #a9a9a9;
     --light-gray: #f2f2f2;
-<<<<<<< HEAD
     --opacity: .83;
-=======
-    --white: #FFFFFF;
->>>>>>> aca01319abef8452840947392b57cb2e0b021ca0
 }
 
 body {
-    --background: var(--white);
+    --background: white;
     --primary-text: var(--black-ish);
     --secondary-text: var(--lighter-black);
     --tertiary-text: var(--gray);
