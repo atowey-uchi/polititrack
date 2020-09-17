@@ -74,6 +74,8 @@ textarea {
   margin-bottom: 16px;
   resize: vertical;
   font-family: "Open Sans", sans-serif;
+  background: linear-gradient(to right, var(--blue), var(--red));
+  color: white;
 }
 
 input[type="submit"] {
@@ -92,14 +94,15 @@ input[type="submit"]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: var(--contact-back);
-  border: 1px solid var(--black-ish);
+  // background-color: var(--contact-back);
+  background: transparent;
+  // border: 1px solid var(--black-ish);
   padding: 40px 30px;
   padding-right: 150px;
   padding-left: 150px;
   width: 60%;
   position: relative;
-  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+  // filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 label {

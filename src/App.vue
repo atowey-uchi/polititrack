@@ -6,7 +6,7 @@
     <About />
     <MeetDevs />
     <Contact />
-    <Footercopy />
+    <Footer />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import Map from "./components/Map.vue";
 import About from "./components/About.vue";
 import MeetDevs from "./components/MeetDevs.vue";
 import Contact from "./components/Contact.vue";
-import Footercopy from "./components/Footer-copy.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
@@ -28,7 +28,7 @@ export default {
     About,
     MeetDevs,
     Contact,
-    Footercopy
+    Footer
   }
 };
 </script>

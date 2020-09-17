@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "Footercopy"
+  name: "Footer"
 };
 </script>
 

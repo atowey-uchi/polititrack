@@ -249,7 +249,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 .dark-mode-slider {
   display: flex;
-justify-content: space-evenly;
+  justify-content: space-evenly;
   width: 180px;
   position: relative;
 }
@@ -265,7 +265,7 @@ justify-content: space-evenly;
   height: 30px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -279,8 +279,8 @@ justify-content: space-evenly;
   right: 0;
   bottom: 0;
   background-color: var(--gray);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -291,8 +291,8 @@ justify-content: space-evenly;
   left: 4px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {

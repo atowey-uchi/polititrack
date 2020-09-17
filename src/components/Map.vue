@@ -46,19 +46,18 @@ export default {
     return {
       states: {},
       colors: [
-        // "#ff0000", 
-        // "#ff3333", 
-        // "#ff6b6b", 
-        // "#ffa8a8", 
-        // "#ffd1d1", 
-        // "#ffffff", 
-        // "#cbd9eb", 
-        // "#aac1de", 
-        // "#759bc9", 
-        // "#4779b7", 
-        // "#2661aa", 
+        // "#ff0000",
+        // "#ff3333",
+        // "#ff6b6b",
+        // "#ffa8a8",
+        // "#ffd1d1",
+        // "#ffffff",
+        // "#cbd9eb",
+        // "#aac1de",
+        // "#759bc9",
+        // "#4779b7",
+        // "#2661aa",
         // "#094c9e"
-
 
         "#FF0000", // Near Certain Republican
         "#E7060E", // Strong Republican
@@ -145,8 +144,10 @@ export default {
       return `${this.currentDate.getMonth() +
         1}/${this.currentDate.getDate()}/${this.currentDate.getFullYear()}`;
     },
-    prettyDateString: function () {
-        return `${this.currentDate.toLocaleString('default', { month: 'long'})} ${this.currentDate.getDate()}, ${this.currentDate.getFullYear()}`;
+    prettyDateString: function() {
+      return `${this.currentDate.toLocaleString("default", {
+        month: "long"
+      })} ${this.currentDate.getDate()}, ${this.currentDate.getFullYear()}`;
     }
   },
   methods: {
@@ -334,11 +335,11 @@ export default {
 path {
   fill: none;
   stroke: whitesmoke;
-  stroke-width: .75px;
+  stroke-width: 0.75px;
 }
 
 .state {
-  opacity: .83;
+  opacity: 0.83;
 }
 
 .state:hover {
