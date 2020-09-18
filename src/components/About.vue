@@ -163,6 +163,7 @@ div .title h1 {
 
 .about-info h2 {
   font-size: 20px;
+  font-weight: 400;
 }
 
 .faq {
@@ -180,7 +181,7 @@ div .title h1 {
   font-weight: 600;
   font-size: 18px;
   padding-bottom: 12px;
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .faq div.answer {
@@ -189,5 +190,6 @@ div .title h1 {
 
 .faq div.answer p {
   color: var(--secondary-text);
+  font-weight: 300;
 }
 </style>

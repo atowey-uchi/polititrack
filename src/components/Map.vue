@@ -19,12 +19,19 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <button class="speed-btn" @click="speedSelectActive = !speedSelectActive">
-          <span :class="{ hide: speedSelectActive }">{{ selectedSpeed.name }}</span>
+        <button
+          class="speed-btn"
+          @click="speedSelectActive = !speedSelectActive"
+        >
+          <span :class="{ hide: speedSelectActive }">{{
+            selectedSpeed.name
+          }}</span>
           <div class="options" v-show="speedSelectActive">
             <ul>
               <li v-for="speed in speeds" :key="speed.value">
-                <button value="speed.value" @click="selectedSpeed = speed">{{ speed.name }}</button>
+                <button value="speed.value" @click="selectedSpeed = speed">
+                  {{ speed.name }}
+                </button>
               </li>
             </ul>
           </div>
@@ -130,6 +137,10 @@ export default {
         height: 600
       },
       speeds: [
+        {
+          name: "4.0x",
+          value: 4
+        },
         {
           name: "2.0x",
           value: 2

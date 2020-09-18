@@ -106,7 +106,8 @@ section .developer {
 .developer p,
 a {
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
+  color: var(--primary-text);
 }
 
 .developer p {
