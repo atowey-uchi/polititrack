@@ -19,12 +19,27 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <button class="speed-btn" @click="speedSelectActive = !speedSelectActive">
-          <span :class="{ hide: speedSelectActive }">{{ selectedSpeed.name }}</span>
+        <button
+          class="speed-btn"
+          @click="speedSelectActive = !speedSelectActive"
+        >
+          <span :class="{ hide: speedSelectActive }">{{
+            selectedSpeed.name
+          }}</span>
           <div class="options" v-show="speedSelectActive">
             <ul>
-              <li v-for="speed in speeds" :key="speed.value">
-                <button value="speed.value" @click="selectedSpeed = speed">{{ speed.name }}</button>
+              <li
+                v-for="(speed, index) in speeds"
+                :key="speed.value"
+                :style="{
+                  bottom: speedSelectActive
+                    ? 0
+                    : -35 * (speeds.length - 1 - index) + 'px'
+                }"
+              >
+                <button value="speed.value" @click="selectedSpeed = speed">
+                  {{ speed.name }}
+                </button>
               </li>
             </ul>
           </div>
@@ -172,8 +187,10 @@ export default {
       );
     },
     selectedSpeed: function() {
-      this.pause();
-      this.play();
+      if (this.mapInterval) {
+        this.pause();
+        this.play();
+      }
     }
   },
   computed: {
@@ -585,6 +602,8 @@ export default {
 
 .controls button.speed-btn .options ul li {
   list-style: none;
+  position: relative;
+  transition: 0.3s ease;
 }
 
 .controls button.speed-btn .options ul li button {
