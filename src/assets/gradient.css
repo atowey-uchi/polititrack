@@ -1,0 +1,165 @@
+
+section {
+    --section-gap: calc( 24px);
+    --gradient-padding: 30px;
+    --gradient-title-margin: 100px;
+    --section-angle-sin: 0.212;
+    --section-skew-Y: -15deg;
+    --transform-origin-x: calc(var(--section-gap) * 0.8)
+}
+
+@media only screen and (min-width: 950px) {
+    section {
+        --gradient-padding: 120px
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    section {
+        --section-gap: calc((100vw - 1080px + 24px * 2) / 2)
+    }
+}
+
+section .section-title-1 {
+    font-size: 80px;
+    font-weight: 800;
+    max-width: 80vw
+}
+
+@media only screen and (min-width: 450px) {
+    section .section-title-1 {
+        font-size: 84px
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    section .section-title-1 {
+        font-size: 90px
+    }
+}
+
+@media only screen and (min-width: 950px) {
+    section .section-title-1 {
+        font-size: 130px
+    }
+}
+
+.section-title-2 {
+    font-weight: 100;
+    font-size: 28px;
+    line-height: 1.2em;
+    max-width: 100%;
+    margin: 15px 0 0 5px
+}
+
+.section-gradient {
+    position: relative
+}
+
+.section-gradient .section-container .section-layout-container .section-layout {
+    padding-top: var(--gradient-padding)
+}
+
+.section-background-wrap {
+    width: calc(100vw + 24px);
+    height: calc(30% + var(--gradient-padding) + var(--gradient-title-margin) + var(--transform-origin-x) * var(--section-angle-sin));
+    position: absolute;
+    top: -10%;
+    left: 0;
+    bottom: 15px;
+    -webkit-transform: skewY(-12deg);
+    transform: skewY(-12deg);
+    -webkit-transform-origin: var(--transform-origin-x) 100%;
+    transform-origin: var(--transform-origin-x) 100%;
+    overflow: hidden
+}
+
+@media only screen and (min-width: 950px) {
+.section-background-wrap {
+        bottom: 5px
+    }
+}
+
+.section-background-wrap #gradient-canvas {
+    width: 100%;
+    height: 100%
+}
+
+.section-background-wrap .background-image {
+    width: 100%;
+    height: 200%;
+    background-size: cover;
+    -webkit-transform: skewY(12deg);
+    transform: skewY(12deg)
+}
+
+.section-gradient .section-container .section-layout-container .section-layout .gradient-area .text {
+    line-height: 1;
+    margin: var(--gradient-title-margin) 0 0 0;
+    text-transform: none;
+    min-height: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.section-gradient .section-container .section-layout-container .section-layout .gradient-area .text-above {
+    color: var(--font-color);
+    position: relative
+}
+
+.section-gradient .section-container .section-layout-container .section-layout .gradient-area .text-under {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2
+}
+
+.section-gradient .section-container .section-layout-container .section-layout .gradient-area .text-under-blended {
+    color: #3a3a3a;
+    mix-blend-mode: color-burn
+}
+
+.section-gradient .section-container .section-layout-container .section-layout .gradient-area .text-under-overlay {
+    opacity: 0.2;
+    color: #3a3a3a
+}
+
+.section-gradient .section-container .card-right {
+    display: none;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: calc(var(--gradient-title-margin))
+}
+
+@media only screen and (min-width: 600px) {
+    .section-gradient .section-container .card-right {
+        display: block
+    }
+}
+
+.section-gradient .section-container .card-right .card-svg {
+    width: 100%;
+    height: 100%;
+    -webkit-filter: drop-shadow(-10px 20px 32px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(-10px 20px 32px rgba(0, 0, 0, 0.2))
+}
+
+.section-gradient .social-info-container {
+    margin-top: 24px;
+    margin-bottom: 0
+}
+
+.section-gradient .social-info-container .social-link-wrapper {
+    margin: 5px 8px
+}
+
+.section-gradient .fb-like-container {
+    margin: 12px 0 0 5px;
+    height: 28px
+}

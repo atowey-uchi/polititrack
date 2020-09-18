@@ -1,8 +1,19 @@
 <template>
   <section>
-    <div class="gradient">
-      <!-- <img src="@/assets/images/gradientback.png"> -->
+    <div class="section-background-wrap isLoaded">
+      <canvas
+        style="--gradient-color-1:#891D44;--gradient-color-2:#133987;--gradient-color-3:#FF0000;--gradient-color-4:#891D44;"
+        id="gradient-canvas"
+        data-js-darken-top=""
+        data-transition-in=""
+        width="686"
+        height="600"
+        class="isLoaded"
+      ></canvas>
     </div>
+    <!-- <div class="gradient">
+      <img src="@/assets/images/gradientback.png">
+    </div> -->
     <section class="text">
       <h1 id="headline">
         What are our presidential <br />
@@ -24,16 +35,21 @@
 </template>
 
 <script>
+// import * as gradient from "../lib/gradient";
+
 export default {
   name: "Header",
-  created() {
-    window.addEventListener("resize", this.resizeGradient);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.resizeGradient);
-  },
+  // created() {
+  //   window.addEventListener("resize", this.resizeGradient);
+  // },
+  // destroyed() {
+  //   window.removeEventListener("resize", this.resizeGradient);
+  // },
   mounted() {
-    this.resizeGradient();
+    // this.resizeGradient();
+    let gradientScript = document.createElement("script");
+    gradientScript.setAttribute("src", "/gradient.js");
+    document.head.appendChild(gradientScript);
   },
   methods: {
     resizeGradient() {
@@ -72,6 +88,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url("../assets/gradient.css");
+
 section {
   position: relative;
   height: 100vh;
