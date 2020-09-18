@@ -163,3 +163,10 @@ section .section-title-1 {
     margin: 12px 0 0 5px;
     height: 28px
 }
+
+#gradient-canvas {
+    --gradient-color-1: #094C9E;
+    --gradient-color-2: #1d59d5;
+    --gradient-color-3: #FF0000;
+    --gradient-color-4: #ff7f7f;
+}

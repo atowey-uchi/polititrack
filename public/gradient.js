@@ -518,3 +518,4 @@ function normalizeColor(hexCode) {
   */
   var gradient = new Gradient();
       gradient.initGradient("#gradient-canvas");
+  gradient.amp = 160;

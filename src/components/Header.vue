@@ -2,7 +2,6 @@
   <section>
     <div class="section-background-wrap isLoaded">
       <canvas
-        style="--gradient-color-1:#891D44;--gradient-color-2:#133987;--gradient-color-3:#FF0000;--gradient-color-4:#891D44;"
         id="gradient-canvas"
         data-js-darken-top=""
         data-transition-in=""
