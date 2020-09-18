@@ -128,6 +128,9 @@ export default {
   },
   watch: {
     day: function() {
+      if (typeof this.day === "string") {
+        this.day = parseInt(this.day);
+      }
       this.currentDate = new Date(this.startDate);
       this.currentDate.setDate(
         new Date(this.startDate).getDate() + parseInt(this.day)
@@ -353,7 +356,7 @@ export default {
   height: 10px;
   background: var(--gray);
   outline: none;
-  opacity: 0.7;
+  opacity: 0.8;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
   border-radius: 15px;
