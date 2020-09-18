@@ -130,6 +130,7 @@ h2 {
   font-size: 28px;
   padding-top: 0px;
   color: var(--secondary-text);
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
 
 .graphic {
