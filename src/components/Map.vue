@@ -18,6 +18,20 @@
         >
           <font-awesome-icon icon="fast-forward" />
         </button>
+        <span class="spacer"></span>
+        <button class="speed-btn" @click="speedSelectActive = !speedSelectActive">
+          <span :class="{ hide: speedSelectActive }">{{ selectedSpeed.name }}</span>
+          <div class="options" v-show="speedSelectActive">
+            <ul>
+              <li v-for="speed in speeds" :key="speed.value">
+                <button value="speed.value" @click="selectedSpeed = speed">{{ speed.name }}</button>
+              </li>
+            </ul>
+          </div>
+        </button>
+        <button class="settings-btn">
+          <font-awesome-icon icon="cog" />
+        </button>
       </div>
       <label for="date-slider">{{ prettyDateString }}</label>
       <input
@@ -114,7 +128,27 @@ export default {
       settings: {
         width: 1280,
         height: 600
-      }
+      },
+      speeds: [
+        {
+          name: "2.0x",
+          value: 2
+        },
+        {
+          name: "1.5x",
+          value: 1.5
+        },
+        {
+          name: "1.0x",
+          value: 1
+        },
+        {
+          name: "0.5x",
+          value: 0.5
+        }
+      ],
+      selectedSpeed: "",
+      speedSelectActive: false
     };
   },
   created() {
@@ -123,6 +157,7 @@ export default {
   },
   mounted() {
     this.settings.width = Math.min(this.settings.width, window.innerWidth);
+    this.selectedSpeed = this.speeds[2];
     this.setupSlider();
     this.setupChart();
   },
@@ -135,6 +170,10 @@ export default {
       this.currentDate.setDate(
         new Date(this.startDate).getDate() + parseInt(this.day)
       );
+    },
+    selectedSpeed: function() {
+      this.pause();
+      this.play();
     }
   },
   computed: {
@@ -217,7 +256,7 @@ export default {
         } else {
           this.day += 1;
         }
-      }, 500);
+      }, 300 / this.selectedSpeed.value);
     },
     pause() {
       document.querySelector(".play-btn").style.display = "inline";
@@ -510,5 +549,45 @@ export default {
 
 .controls button:disabled svg {
   color: var(--tertiary-text) !important;
+}
+
+.controls button.speed-btn {
+  font-size: 1.8em;
+  position: relative;
+  min-width: 70px;
+}
+
+.controls button.speed-btn:hover {
+  color: var(--middle-purple);
+  transition: color 0.3s ease;
+}
+
+.controls button.speed-btn span.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.spacer {
+  display: inline-block;
+  width: 120px;
+}
+
+.controls button.speed-btn .options {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.controls button.speed-btn .options ul {
+  margin: 0;
+  padding: 0;
+}
+
+.controls button.speed-btn .options ul li {
+  list-style: none;
+}
+
+.controls button.speed-btn .options ul li button {
+  font-size: 1.8rem;
 }
 </style>

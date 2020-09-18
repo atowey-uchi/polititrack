@@ -13,7 +13,8 @@ import {
   faUsers,
   faInfoCircle,
   faEnvelope,
-  faArrowUp
+  faArrowUp,
+  faCog
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -26,7 +27,8 @@ library.add(
   faUsers,
   faInfoCircle,
   faEnvelope,
-  faArrowUp
+  faArrowUp,
+  faCog
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
