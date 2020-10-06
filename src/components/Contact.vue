@@ -110,4 +110,18 @@ label {
   font-weight: 200;
   color: var(--secondary-text);
 }
+
+@media screen and (max-width: 834px) {
+  .container {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  section.contactform {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
 </style>
