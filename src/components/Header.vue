@@ -1,5 +1,18 @@
 <template>
   <section>
+    <!-- <div class="gradient">
+      <img src="@/assets/images/gradientback.png">
+    </div> -->
+    <section class="text">
+      <h1 id="headline" class="banner-title">
+        What are our presidential <br />
+        candidates up to?
+      </h1>
+      <h2 id="subheadline">
+        Tracking where they are, who they're with, <br />
+        and who they're talking to
+      </h2>
+    </section>
     <div class="section-background-wrap isLoaded">
       <canvas
         id="gradient-canvas"
@@ -10,19 +23,8 @@
         class="isLoaded"
       ></canvas>
     </div>
-    <!-- <div class="gradient">
-      <img src="@/assets/images/gradientback.png">
-    </div> -->
-    <section class="text">
-      <h1 id="headline">
-        What are our presidential <br />
-        candidates up to?
-      </h1>
-      <h2 id="subheadline">
-        Tracking where they are, who they're with, <br />
-        and who they're talking to
-      </h2>
-    </section>
+    <div class="text-under text-under-overlay banner-title"><h1>What are our presidential <br /> candidates up to?</h1></div>
+    <div class="text-under text-under-blended banner-title"><h1>What are our presidential <br /> candidates up to?</h1></div>
     <div class="graphic">
       <img
         src="@/assets/images/whitehouseroad-dm3.png"
@@ -93,6 +95,8 @@ section {
   position: relative;
   height: 100vh;
   padding-bottom: 120px;
+  --text-left: 70px;
+  --text-top: 300px;
 }
 
 .gradient {
@@ -116,12 +120,13 @@ section {
 
 section.text {
   position: absolute;
-  left: 70px;
-  top: 300px;
+  left: var(--text-left);
+  top: var(--text-top);
   height: min-content;
 }
 
-h1 {
+.banner-title h1,
+h1.banner-title {
   font-size: 60px;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
@@ -131,6 +136,22 @@ h2 {
   padding-top: 0px;
   color: var(--secondary-text);
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+}
+
+.text-under {
+  position: absolute;
+  left: var(--text-left);
+  top: var(--text-top);
+}
+
+.text-under-blended {
+  mix-blend-mode: color-burn;
+  color: var(--primary-text);
+}
+
+.text-under-overlay {
+  opacity: 0.4;
+  color: var(--primary-text);
 }
 
 .graphic {
