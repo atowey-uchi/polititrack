@@ -23,8 +23,18 @@
         class="isLoaded"
       ></canvas>
     </div>
-    <div class="text-under text-under-overlay banner-title"><h1>What are our presidential <br /> candidates up to?</h1></div>
-    <div class="text-under text-under-blended banner-title"><h1>What are our presidential <br /> candidates up to?</h1></div>
+    <div class="text-under text-under-overlay banner-title">
+      <h1>
+        What are our presidential <br />
+        candidates up to?
+      </h1>
+    </div>
+    <div class="text-under text-under-blended banner-title">
+      <h1>
+        What are our presidential <br />
+        candidates up to?
+      </h1>
+    </div>
     <div class="graphic">
       <img
         src="@/assets/images/whitehouseroad-dm3.png"
