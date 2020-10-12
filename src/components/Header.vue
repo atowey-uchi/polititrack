@@ -110,7 +110,7 @@ section {
 }
 
 canvas {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .gradient {

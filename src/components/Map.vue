@@ -19,7 +19,7 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-<<<<<<< HEAD
+        <<<<<<< HEAD
         <div class="settings-controls">
           <button
             class="speed-btn"
@@ -42,7 +42,7 @@
             <font-awesome-icon icon="cog" />
           </button>
         </div>
-=======
+        =======
         <button
           class="speed-btn"
           @click="speedSelectActive = !speedSelectActive"
@@ -71,7 +71,7 @@
         <button class="settings-btn">
           <font-awesome-icon icon="cog" />
         </button>
->>>>>>> e5930e6d44d3acb3146adab6c8e4ae19369d0081
+        >>>>>>> e5930e6d44d3acb3146adab6c8e4ae19369d0081
       </div>
       <label for="date-slider">{{ prettyDateString }}</label>
       <input
