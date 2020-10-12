@@ -110,9 +110,6 @@ label {
   font-weight: 200;
   color: var(--secondary-text);
 }
-<<<<<<< HEAD
-</style>
-=======
 
 @media screen and (max-width: 834px) {
   .container {
@@ -128,4 +125,3 @@ label {
   }
 }
 </style>
->>>>>>> e5930e6d44d3acb3146adab6c8e4ae19369d0081
