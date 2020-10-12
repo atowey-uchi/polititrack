@@ -19,26 +19,28 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <button
-          class="speed-btn"
-          @click="speedSelectActive = !speedSelectActive"
-        >
-          <span :class="{ hide: speedSelectActive }">{{
-            selectedSpeed.name
-          }}</span>
-          <div class="options" v-show="speedSelectActive">
-            <ul>
-              <li v-for="speed in speeds" :key="speed.value">
-                <button value="speed.value" @click="selectedSpeed = speed">
-                  {{ speed.name }}
-                </button>
-              </li>
-            </ul>
-          </div>
-        </button>
-        <button class="settings-btn">
-          <font-awesome-icon icon="cog" />
-        </button>
+        <div class="settings-controls">
+          <button
+            class="speed-btn"
+            @click="speedSelectActive = !speedSelectActive"
+          >
+            <span :class="{ hide: speedSelectActive }">{{
+              selectedSpeed.name
+            }}</span>
+            <div class="options" v-show="speedSelectActive">
+              <ul>
+                <li v-for="speed in speeds" :key="speed.value">
+                  <button value="speed.value" @click="selectedSpeed = speed">
+                    {{ speed.name }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </button>
+          <button class="settings-btn">
+            <font-awesome-icon icon="cog" />
+          </button>
+        </div>
       </div>
       <label for="date-slider">{{ prettyDateString }}</label>
       <input
@@ -67,6 +69,17 @@
       </svg>
     </div>
     <div class="tooltip" v-html="tooltipData"></div>
+    <div class="map-legend">
+      <ul class="legend">
+        <li><span class="solidD"></span> Solid Biden</li>
+        <li><span class="likelyD"></span> Likely Biden</li>
+        <li><span class="leanD"></span> Lean Biden</li>
+        <li><span class="tossup"></span> Toss Up</li>
+        <li><span class="leanR"></span> Lean Trump</li>
+        <li><span class="likelyR"></span> Likely Trump</li>
+        <li><span class="solidR"></span> Solid Trump</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -94,33 +107,24 @@ export default {
         // "#4779b7",
         // "#2661aa",
         // "#094c9e"
-
-        "#FF0000", // Near Certain Republican
-        "#E7060E", // Strong Republican
-        "#D00B1B", // Likely Republican
-        "#B81129", // Lean Republican
-        "#A11736", // Slightly Republican
-        "#891D44", // Toss-Up
-        "#712251", // Slightly Democrat
-        "#5A285F", // Lean Democrat
-        "#422E6C", // Likely Democrat
-        "#2B337A", // Strong Democrat
-        "#133987" // Near Certain Democrat
+        // "var(--red)", // Near Certain Republican
+        // "var(--redstep2)", // Likely Republican
+        // "var(--redstep3)", // Slightly Republican
+        // "var(--middle-purple)", // Toss-Up
+        // "var(--bluestep3)", // Slightly Democrat
+        // "var(--bluestep2)", // Likely Democrat
+        // "var(--blue)" // Near Certain Democrat
       ],
       threshold_names: [
-        "Near Certain Trump",
-        "Strong Trump",
+        "Solid Trump",
         "Likely Trump",
         "Lean Trump",
-        "Slight Lean Trump",
         "Toss-Up",
-        "Slight Lean Biden",
         "Lean Biden",
         "Likely Biden",
-        "Strong Biden",
-        "Near Certain Biden"
+        "Solid Biden"
       ],
-      thresholds: [12, 28, 38, 44, 48, 52, 56, 62, 72, 88],
+      thresholds: [10, 25, 40, 60, 75, 90],
       currentDate: "",
       startDate: "June 1, 2020 00:00:00",
       chart: "",
@@ -167,6 +171,7 @@ export default {
     this.fetchData();
   },
   mounted() {
+    this.fetchColors();
     this.settings.width = Math.min(this.settings.width, window.innerWidth);
     this.selectedSpeed = this.speeds[2];
     this.setupSlider();
@@ -258,6 +263,29 @@ export default {
     }
   },
   methods: {
+    fetchColors() {
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--red")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--redstep2")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--redstep3")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--middle-purple")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--bluestep3")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--bluestep2")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--blue")
+      );
+    },
     play() {
       document.querySelector(".pause-btn").style.display = "inline";
       document.querySelector(".play-btn").style.display = "none";
@@ -412,17 +440,17 @@ export default {
   border-radius: 15px;
   margin-top: 20px;
 }
-
 .slider:hover {
   opacity: 1;
 }
 
 .map-controls label {
-  font-size: 28px;
-  font-family: "Bai Jamjuree", sans-serif;
-  font-weight: 400;
-  color: var(--secondary-text);
+  font-size: 32px;
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  color: var(--primary-text);
   padding-left: 20px;
+  width: 33.33%;
 }
 
 .slider::-webkit-slider-thumb {
@@ -447,7 +475,6 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
-  padding-top: 20px;
 }
 
 #map svg path {
@@ -457,7 +484,7 @@ export default {
 }
 
 .state {
-  opacity: 0.83;
+  opacity: 0.9;
 }
 
 .state:hover {
@@ -521,7 +548,7 @@ export default {
 
 .controls {
   position: absolute;
-  top: 5px;
+  top: 15px;
   right: 0;
 }
 
@@ -533,7 +560,7 @@ export default {
 
 .controls button svg {
   font-size: 2em;
-  color: var(--primary-text);
+  color: var(--secondary-text);
   transition: color 0.3s ease;
 }
 
@@ -563,13 +590,18 @@ export default {
 }
 
 .controls button.speed-btn {
-  font-size: 1.8em;
+  font-size: 20px;
   position: relative;
-  min-width: 70px;
+  /* min-width: 70px; */
+  color: var(--secondary-text);
+  font-family: "Open Sans";
+  font-weight: 400;
+  width: 33.33%;
+  justify-content: right;
 }
 
 .controls button.speed-btn:hover {
-  color: var(--middle-purple);
+  color: var(--primary-text);
   transition: color 0.3s ease;
 }
 
@@ -580,13 +612,14 @@ export default {
 
 .spacer {
   display: inline-block;
-  width: 120px;
+  width: 100px;
 }
 
 .controls button.speed-btn .options {
   position: absolute;
   bottom: 0;
   left: 0;
+  height: 18px;
 }
 
 .controls button.speed-btn .options ul {
@@ -599,6 +632,65 @@ export default {
 }
 
 .controls button.speed-btn .options ul li button {
-  font-size: 1.8rem;
+  font-size: 20px;
+  color: var(--secondary-text);
+  font-family: "Open Sans";
+}
+
+.controls button .settings-btn {
+  width: 33%;
+}
+
+.controls button svg {
+  font-size: 26px;
+}
+
+.settings-controls {
+  width: 66%;
+  display: flex;
+}
+
+.map-legend {
+  display: table-column;
+  position: absolute;
+}
+
+.legend {
+  list-style: none;
+}
+.legend li {
+  margin-right: 10px;
+  font-family: "Open Sans";
+  font-size: 13px;
+  color: var(--secondary-text);
+}
+.legend span {
+  border: 1px solid var(--tertiary-text);
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+}
+
+.legend .solidD {
+  background-color: var(--blue);
+}
+.legend .likelyD {
+  background-color: var(--bluestep2);
+}
+.legend .leanD {
+  background-color: var(--bluestep3);
+}
+.legend .tossup {
+  background-color: var(--middle-purple);
+}
+.legend .leanR {
+  background-color: var(--redstep3);
+}
+.legend .likelyR {
+  background-color: var(--redstep2);
+}
+.legend .solidR {
+  background-color: var(--red);
 }
 </style>

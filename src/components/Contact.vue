@@ -74,7 +74,7 @@ textarea {
   margin-bottom: 16px;
   resize: vertical;
   font-family: "Open Sans", sans-serif;
-  background: linear-gradient(to right, var(--blue), var(--red));
+  background: linear-gradient(to right, var(--blue-trans), var(--red-trans));
   color: white;
 }
 

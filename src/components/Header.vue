@@ -95,6 +95,10 @@ section {
   padding-bottom: 120px;
 }
 
+canvas {
+  opacity: .8;
+}
+
 .gradient {
   position: absolute;
   top: 0;
