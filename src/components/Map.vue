@@ -73,8 +73,6 @@
           />
         </transition-group>
       </svg>
-    </div>
-    <div class="tooltip" v-html="tooltipData"></div>
     <div class="map-legend">
       <ul class="legend">
         <li><span class="solidD"></span> Solid Biden</li>
@@ -86,6 +84,8 @@
         <li><span class="solidR"></span> Solid Trump</li>
       </ul>
     </div>
+    </div>
+    <div class="tooltip" v-html="tooltipData"></div>
   </div>
 </template>
 
@@ -219,7 +219,7 @@ export default {
                         d.properties.projections
                       )
                     )
-                  ].Biden
+                  ].winstate_chal
                 ) * 100
               )
             }
@@ -417,7 +417,7 @@ export default {
             .toString()
             .substr(-2)}`;
           return this.colorRange(
-            parseFloat(d.properties.projections[date].Biden) * 100
+            parseFloat(d.properties.projections[date].winstate_chal) * 100
           );
         });
 
@@ -660,6 +660,8 @@ export default {
 .map-legend {
   display: table-column;
   position: absolute;
+  right: 20px;
+  top: 65%;
 }
 
 .legend {
