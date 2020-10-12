@@ -8,7 +8,7 @@
         <div class="links">
           <ul>
             <li>
-              <a href="#">Map</a>
+              <a href="#map">Map</a>
             </li>
             <li>
               <a href="#about">About</a>
