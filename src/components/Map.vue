@@ -458,7 +458,6 @@ export default {
   font-weight: 600;
   color: var(--primary-text);
   padding-left: 20px;
-  width: 33.33%;
 }
 
 .slider::-webkit-slider-thumb {
@@ -558,6 +557,7 @@ export default {
   position: absolute;
   top: 15px;
   right: 0;
+  width: max-content;
 }
 
 .controls button {
@@ -600,12 +600,9 @@ export default {
 .controls button.speed-btn {
   font-size: 20px;
   position: relative;
-  /* min-width: 70px; */
   color: var(--secondary-text);
   font-family: "Open Sans";
   font-weight: 400;
-  width: 33.33%;
-  justify-content: right;
 }
 
 .controls button.speed-btn:hover {
