@@ -19,30 +19,6 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <<<<<<< HEAD
-        <div class="settings-controls">
-          <button
-            class="speed-btn"
-            @click="speedSelectActive = !speedSelectActive"
-          >
-            <span :class="{ hide: speedSelectActive }">{{
-              selectedSpeed.name
-            }}</span>
-            <div class="options" v-show="speedSelectActive">
-              <ul>
-                <li v-for="speed in speeds" :key="speed.value">
-                  <button value="speed.value" @click="selectedSpeed = speed">
-                    {{ speed.name }}
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </button>
-          <button class="settings-btn">
-            <font-awesome-icon icon="cog" />
-          </button>
-        </div>
-        =======
         <button
           class="speed-btn"
           @click="speedSelectActive = !speedSelectActive"
@@ -71,7 +47,6 @@
         <button class="settings-btn">
           <font-awesome-icon icon="cog" />
         </button>
-        >>>>>>> e5930e6d44d3acb3146adab6c8e4ae19369d0081
       </div>
       <label for="date-slider">{{ prettyDateString }}</label>
       <input
