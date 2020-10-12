@@ -8,7 +8,7 @@
         <div class="links">
           <ul>
             <li>
-              <a href="#">Map</a>
+              <a href="#map">Map</a>
             </li>
             <li>
               <a href="#about">About</a>
@@ -171,7 +171,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 nav .topnav .links ul li a {
   text-transform: capitalize;
-  font-weight: 200;
+  font-weight: 300;
   text-decoration: none;
   font-size: 16px;
   color: white;
@@ -265,6 +265,7 @@ nav .topnav .links ul li a {
   align-content: center;
   justify-content: center;
   color: var(--background);
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .sidenav span svg {
@@ -296,23 +297,23 @@ nav .topnav .links ul li a {
 }
 
 .sidenav li:nth-child(1) .link-name {
-  color: #ed2939;
+  background: #ed2939;
 }
 
 .sidenav li:nth-child(2) .link-name {
-  color: #b43252;
+  background: #b43252;
 }
 
 .sidenav li:nth-child(3) .link-name {
-  color: #7b3b6c;
+  background: #7b3b6c;
 }
 
 .sidenav li:nth-child(4) .link-name {
-  color: #424385;
+  background: #424385;
 }
 
 .sidenav li:nth-child(5) .link-name {
-  color: #094c9e;
+  background: #094c9e;
 }
 
 .dark-mode-slider {

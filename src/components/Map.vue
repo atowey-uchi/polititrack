@@ -146,6 +146,10 @@ export default {
       },
       speeds: [
         {
+          name: "4.0x",
+          value: 4
+        },
+        {
           name: "2.0x",
           value: 2
         },
