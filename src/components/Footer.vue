@@ -166,7 +166,8 @@ a {
 }
 
 @media screen and (max-width: 320px) {
-  #logo h1, #logo h1 span {
+  #logo h1,
+  #logo h1 span {
     font-size: 42px;
   }
 }

@@ -194,7 +194,8 @@ div .title h1 {
 }
 
 @media screen and (max-width: 768px) {
-  .about-info, .faq {
+  .about-info,
+  .faq {
     padding-left: 30px;
     padding-right: 30px;
   }

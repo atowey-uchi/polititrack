@@ -73,17 +73,17 @@
           />
         </transition-group>
       </svg>
-    <div class="map-legend">
-      <ul class="legend">
-        <li><span class="solidD"></span> Solid Biden</li>
-        <li><span class="likelyD"></span> Likely Biden</li>
-        <li><span class="leanD"></span> Lean Biden</li>
-        <li><span class="tossup"></span> Toss Up</li>
-        <li><span class="leanR"></span> Lean Trump</li>
-        <li><span class="likelyR"></span> Likely Trump</li>
-        <li><span class="solidR"></span> Solid Trump</li>
-      </ul>
-    </div>
+      <div class="map-legend">
+        <ul class="legend">
+          <li><span class="solidD"></span> Solid Biden</li>
+          <li><span class="likelyD"></span> Likely Biden</li>
+          <li><span class="leanD"></span> Lean Biden</li>
+          <li><span class="tossup"></span> Toss Up</li>
+          <li><span class="leanR"></span> Lean Trump</li>
+          <li><span class="likelyR"></span> Likely Trump</li>
+          <li><span class="solidR"></span> Solid Trump</li>
+        </ul>
+      </div>
     </div>
     <div class="tooltip" v-html="tooltipData"></div>
   </div>
