@@ -56,6 +56,9 @@ div.footer {
 
 #columns {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 20px;
 }
 
 ul {
@@ -63,8 +66,6 @@ ul {
   margin: 0;
   text-align: center;
   margin-top: 10%;
-  padding-top: 40px;
-  padding-left: 300px;
 
   li {
     display: flex;
@@ -117,11 +118,6 @@ a {
   }
 }
 
-#logo {
-  padding-left: 350px;
-  padding-top: 200px;
-}
-
 #logo h1 span {
   font-family: LoveloLineLight;
   font-size: 48px;
@@ -156,5 +152,22 @@ a {
   height: 130%;
   width: 100%;
   z-index: -1;
+}
+
+@media screen and (max-width: 414px) {
+  #columns {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  #logo {
+    padding-left: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #logo h1, #logo h1 span {
+    font-size: 42px;
+  }
 }
 </style>
