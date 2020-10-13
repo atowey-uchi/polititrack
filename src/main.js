@@ -14,7 +14,9 @@ import {
   faInfoCircle,
   faEnvelope,
   faArrowUp,
-  faCog
+  faCog,
+  faSun,
+  faMoon
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -28,7 +30,9 @@ library.add(
   faInfoCircle,
   faEnvelope,
   faArrowUp,
-  faCog
+  faCog,
+  faSun,
+  faMoon
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

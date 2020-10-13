@@ -73,19 +73,19 @@
           />
         </transition-group>
       </svg>
+      <div class="map-legend">
+        <ul class="legend">
+          <li><span class="solidD"></span> Solid Biden</li>
+          <li><span class="likelyD"></span> Likely Biden</li>
+          <li><span class="leanD"></span> Lean Biden</li>
+          <li><span class="tossup"></span> Toss Up</li>
+          <li><span class="leanR"></span> Lean Trump</li>
+          <li><span class="likelyR"></span> Likely Trump</li>
+          <li><span class="solidR"></span> Solid Trump</li>
+        </ul>
+      </div>
     </div>
     <div class="tooltip" v-html="tooltipData"></div>
-    <div class="map-legend">
-      <ul class="legend">
-        <li><span class="solidD"></span> Solid Biden</li>
-        <li><span class="likelyD"></span> Likely Biden</li>
-        <li><span class="leanD"></span> Lean Biden</li>
-        <li><span class="tossup"></span> Toss Up</li>
-        <li><span class="leanR"></span> Lean Trump</li>
-        <li><span class="likelyR"></span> Likely Trump</li>
-        <li><span class="solidR"></span> Solid Trump</li>
-      </ul>
-    </div>
   </div>
 </template>
 
@@ -219,7 +219,7 @@ export default {
                         d.properties.projections
                       )
                     )
-                  ].Biden
+                  ].winstate_chal
                 ) * 100
               )
             }
@@ -417,7 +417,7 @@ export default {
             .toString()
             .substr(-2)}`;
           return this.colorRange(
-            parseFloat(d.properties.projections[date].Biden) * 100
+            parseFloat(d.properties.projections[date].winstate_chal) * 100
           );
         });
 
@@ -427,7 +427,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .map-controls {
   margin: 5px 22%;
   position: relative;
@@ -458,7 +458,6 @@ export default {
   font-weight: 600;
   color: var(--primary-text);
   padding-left: 20px;
-  width: 33.33%;
 }
 
 .slider::-webkit-slider-thumb {
@@ -558,6 +557,7 @@ export default {
   position: absolute;
   top: 15px;
   right: 0;
+  width: max-content;
 }
 
 .controls button {
@@ -600,12 +600,9 @@ export default {
 .controls button.speed-btn {
   font-size: 20px;
   position: relative;
-  /* min-width: 70px; */
   color: var(--secondary-text);
   font-family: "Open Sans";
   font-weight: 400;
-  width: 33.33%;
-  justify-content: right;
 }
 
 .controls button.speed-btn:hover {
@@ -663,6 +660,8 @@ export default {
 .map-legend {
   display: table-column;
   position: absolute;
+  right: 20px;
+  top: 65%;
 }
 
 .legend {

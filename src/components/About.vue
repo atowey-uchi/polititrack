@@ -119,7 +119,7 @@ export default {
   position: relative;
   padding-top: 40px;
   padding-bottom: 120px;
-  width: 1280px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -191,5 +191,13 @@ div .title h1 {
 .faq div.answer p {
   color: var(--secondary-text);
   font-weight: 300;
+}
+
+@media screen and (max-width: 768px) {
+  .about-info,
+  .faq {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 </style>
