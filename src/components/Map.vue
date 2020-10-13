@@ -104,25 +104,6 @@ export default {
     return {
       states: {},
       colors: [
-        // "#ff0000",
-        // "#ff3333",
-        // "#ff6b6b",
-        // "#ffa8a8",
-        // "#ffd1d1",
-        // "#ffffff",
-        // "#cbd9eb",
-        // "#aac1de",
-        // "#759bc9",
-        // "#4779b7",
-        // "#2661aa",
-        // "#094c9e"
-        // "var(--red)", // Near Certain Republican
-        // "var(--redstep2)", // Likely Republican
-        // "var(--redstep3)", // Slightly Republican
-        // "var(--middle-purple)", // Toss-Up
-        // "var(--bluestep3)", // Slightly Democrat
-        // "var(--bluestep2)", // Likely Democrat
-        // "var(--blue)" // Near Certain Democrat
       ],
       threshold_names: [
         "Solid Trump",
