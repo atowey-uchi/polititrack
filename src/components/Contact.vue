@@ -22,7 +22,15 @@
             style="height:20px"
             placeholder="Enter your email"
           />
-
+          <form action="/action_page.php">
+  <label for="type">Why are you contacting us?</label>
+  <select id="type" name="type">
+    <option value="inquiry">Inquiry</option>
+    <option value="data">Submit Missing/Erroneous Data</option>
+    <option value="suggestion">Suggestion</option>
+    <option value="other">Other</option>
+  </select>
+</form>
           <label for="subject">Message</label>
           <textarea
             id="subject"
@@ -76,6 +84,7 @@ textarea {
   font-family: "Open Sans", sans-serif;
   background: linear-gradient(to right, var(--blue-trans), var(--red-trans));
   color: white;
+  font-size: 14px;
 }
 
 input[type="submit"] {
@@ -107,8 +116,22 @@ input[type="submit"]:hover {
 
 label {
   font-family: "Bai Jamjuree", sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   color: var(--secondary-text);
+  font-size: 16px;
+}
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+option {
+  font-family: "Open Sans";
 }
 
 @media screen and (max-width: 834px) {

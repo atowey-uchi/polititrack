@@ -1,9 +1,5 @@
 <template>
   <section class="meet-devs" id="developers">
-    <div class="gradients">
-      <img src="@/assets/images/brush3color.svg" id="topbar" />
-      <img src="@/assets/images/brush3color2.svg" id="secondbar" />
-    </div>
     <div class="title">
       <h1>Meet the Developers</h1>
     </div>

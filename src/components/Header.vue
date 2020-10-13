@@ -9,7 +9,7 @@
         candidates up to?
       </h1>
       <h2 id="subheadline">
-        Tracking where they are, who they're with, <br />
+        Tracking where they are, what they're doing, <br />
         and who they're talking to
       </h2>
     </section>
