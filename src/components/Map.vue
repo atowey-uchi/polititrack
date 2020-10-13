@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative;">
+  <div style="position: relative;" class="map-section">
     <div class="map-controls">
       <div class="controls">
         <button class="back-btn" @click="skipToStart()" :disabled="day <= 0">
@@ -230,14 +230,14 @@ export default {
               ];
             data += `<h2>${this.hoveredState}</h2>`;
             data += `<h4><i>${this.namesRange(
-              parseFloat(projections.Biden) * 100
+              parseFloat(projections.winstate_chal) * 100
             )}</i></h4>`;
             data += `<h4 class="likely">Likelihood to win state:</h4>`;
             data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
-              parseFloat(projections.Biden) * 100
+              parseFloat(projections.winstate_chal) * 100
             ).toFixed(2)}%</p>`;
             data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
-              parseFloat(projections.Trump) * 100
+              parseFloat(projections.winstate_inc) * 100
             ).toFixed(2)}%</p>`;
             return data;
           }
@@ -430,279 +430,281 @@ export default {
 };
 </script>
 
-<style scoped>
-.map-controls {
-  margin: 5px 22%;
-  position: relative;
-  width: 56%;
-  text-align: left;
-}
+<style lang="scss">
+.map-section {
+  .map-controls {
+    margin: 5px 22%;
+    position: relative;
+    width: 56%;
+    text-align: left;
+  }
 
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 10px;
-  background: var(--gray);
-  outline: none;
-  opacity: 0.8;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  border-radius: 15px;
-  margin-top: 20px;
-}
-.slider:hover {
-  opacity: 1;
-}
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: var(--gray);
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+  .slider:hover {
+    opacity: 1;
+  }
 
-.map-controls label {
-  font-size: 32px;
-  font-family: "Poppins", serif;
-  font-weight: 600;
-  color: var(--primary-text);
-  padding-left: 20px;
-}
+  .map-controls label {
+    font-size: 32px;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    color: var(--primary-text);
+    padding-left: 20px;
+  }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 20px; /* Set a specific slider handle width */
-  height: 20px; /* Slider handle height */
-  background: var(--blue); /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%;
-}
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: var(--blue); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
 
-.slider::-moz-range-thumb {
-  width: 20px; /* Set a specific slider handle width */
-  height: 20px; /* Slider handle height */
-  background: var(--blue); /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%;
-}
+  .slider::-moz-range-thumb {
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: var(--blue); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
 
-#map {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
+  #map {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
 
-#map svg path {
-  fill: none;
-  stroke: whitesmoke;
-  stroke-width: 0.75px;
-}
+  #map svg path {
+    fill: none;
+    stroke: whitesmoke;
+    stroke-width: 0.75px;
+  }
 
-.state {
-  opacity: 0.9;
-}
+  .state {
+    opacity: 0.9;
+  }
 
-.state:hover {
-  opacity: 0.6;
-}
+  .state:hover {
+    opacity: 0.6;
+  }
 
-.tooltip {
-  position: absolute;
-  text-align: left;
-  width: max-content;
-  height: min-content;
-  padding: 8px;
-  font: 12px;
-  background: var(--primary-text);
-  opacity: 0.9;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-  display: none;
-  transition: 0.1s ease-in;
-  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
-}
+  .tooltip {
+    position: absolute;
+    text-align: left;
+    width: max-content;
+    height: min-content;
+    padding: 8px;
+    font: 12px;
+    background: var(--primary-text);
+    opacity: 0.9;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    display: none;
+    transition: 0.1s ease-in;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
+  }
 
-.tooltip h2,
-.tooltip p {
-  color: var(--background);
-  margin: 0;
-}
+  .tooltip h2,
+  .tooltip p {
+    color: var(--background);
+    margin: 0;
+  }
 
-.tooltip h2 {
-  font-size: 15px;
-}
+  .tooltip h2 {
+    font-size: 15px;
+  }
 
-.tooltip h4 {
-  color: var(--tertiary-text);
-  margin: 0;
-  font-size: 12px;
-  font-family: "Open Sans";
-  font-weight: 400;
-}
+  .tooltip h4 {
+    color: var(--tertiary-text);
+    margin: 0;
+    font-size: 12px;
+    font-family: "Open Sans";
+    font-weight: 400;
+  }
 
-.tooltip h4.likely {
-  color: var(--tertiary-text);
-  padding-top: 6px;
-  font-weight: 200;
-  font-size: 11px;
-}
+  .tooltip h4.likely {
+    color: var(--tertiary-text);
+    padding-top: 6px;
+    font-weight: 200;
+    font-size: 11px;
+  }
 
-.tooltip.active {
-  display: block;
-}
+  .tooltip.active {
+    display: block;
+  }
 
-.tooltip p #Biden,
-#Trump {
-  font-weight: bold;
-}
+  .tooltip p #Biden,
+  #Trump {
+    font-weight: bold;
+  }
 
-.tooltip p {
-  font-size: 13px;
-}
+  .tooltip p {
+    font-size: 13px;
+  }
 
-.controls {
-  position: absolute;
-  top: 15px;
-  right: 0;
-  width: max-content;
-}
+  .controls {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    width: max-content;
+  }
 
-.controls button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+  .controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
-.controls button svg {
-  font-size: 2em;
-  color: var(--secondary-text);
-  transition: color 0.3s ease;
-}
+  .controls button svg {
+    font-size: 2em;
+    color: var(--secondary-text);
+    transition: color 0.3s ease;
+  }
 
-.controls button.play-btn:hover svg,
-.controls button.pause-btn:hover svg {
-  color: var(--middle-purple);
-}
+  .controls button.play-btn:hover svg,
+  .controls button.pause-btn:hover svg {
+    color: var(--middle-purple);
+  }
 
-.controls button.back-btn:hover svg {
-  color: var(--red);
-}
+  .controls button.back-btn:hover svg {
+    color: var(--red);
+  }
 
-.controls button.forward-btn:hover svg {
-  color: var(--blue);
-}
+  .controls button.forward-btn:hover svg {
+    color: var(--blue);
+  }
 
-.controls button.pause-btn {
-  display: none;
-}
+  .controls button.pause-btn {
+    display: none;
+  }
 
-.controls button:disabled {
-  cursor: not-allowed;
-}
+  .controls button:disabled {
+    cursor: not-allowed;
+  }
 
-.controls button:disabled svg {
-  color: var(--tertiary-text) !important;
-}
+  .controls button:disabled svg {
+    color: var(--tertiary-text) !important;
+  }
 
-.controls button.speed-btn {
-  font-size: 20px;
-  position: relative;
-  color: var(--secondary-text);
-  font-family: "Open Sans";
-  font-weight: 400;
-}
+  .controls button.speed-btn {
+    font-size: 20px;
+    position: relative;
+    color: var(--secondary-text);
+    font-family: "Open Sans";
+    font-weight: 400;
+  }
 
-.controls button.speed-btn:hover {
-  color: var(--primary-text);
-  transition: color 0.3s ease;
-}
+  .controls button.speed-btn:hover {
+    color: var(--primary-text);
+    transition: color 0.3s ease;
+  }
 
-.controls button.speed-btn span.hide {
-  visibility: hidden;
-  opacity: 0;
-}
+  .controls button.speed-btn span.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
 
-.spacer {
-  display: inline-block;
-  width: 100px;
-}
+  .spacer {
+    display: inline-block;
+    width: 100px;
+  }
 
-.controls button.speed-btn .options {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 18px;
-}
+  .controls button.speed-btn .options {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 18px;
+  }
 
-.controls button.speed-btn .options ul {
-  margin: 0;
-  padding: 0;
-}
+  .controls button.speed-btn .options ul {
+    margin: 0;
+    padding: 0;
+  }
 
-.controls button.speed-btn .options ul li {
-  list-style: none;
-  position: relative;
-  transition: 0.3s ease;
-}
+  .controls button.speed-btn .options ul li {
+    list-style: none;
+    position: relative;
+    transition: 0.3s ease;
+  }
 
-.controls button.speed-btn .options ul li button {
-  font-size: 20px;
-  color: var(--secondary-text);
-  font-family: "Open Sans";
-}
+  .controls button.speed-btn .options ul li button {
+    font-size: 20px;
+    color: var(--secondary-text);
+    font-family: "Open Sans";
+  }
 
-.controls button .settings-btn {
-  width: 33%;
-}
+  .controls button .settings-btn {
+    width: 33%;
+  }
 
-.controls button svg {
-  font-size: 26px;
-}
+  .controls button svg {
+    font-size: 26px;
+  }
 
-.settings-controls {
-  width: 66%;
-  display: flex;
-}
+  .settings-controls {
+    width: 66%;
+    display: flex;
+  }
 
-.map-legend {
-  display: table-column;
-  position: absolute;
-  right: 20px;
-  top: 65%;
-}
+  .map-legend {
+    display: table-column;
+    position: absolute;
+    right: 20px;
+    top: 65%;
+  }
 
-.legend {
-  list-style: none;
-}
-.legend li {
-  margin-right: 10px;
-  font-family: "Open Sans";
-  font-size: 13px;
-  color: var(--secondary-text);
-}
-.legend span {
-  border: 1px solid var(--tertiary-text);
-  float: left;
-  width: 12px;
-  height: 12px;
-  margin: 2px;
-}
+  .legend {
+    list-style: none;
+  }
+  .legend li {
+    margin-right: 10px;
+    font-family: "Open Sans";
+    font-size: 13px;
+    color: var(--secondary-text);
+  }
+  .legend span {
+    border: 1px solid var(--tertiary-text);
+    float: left;
+    width: 12px;
+    height: 12px;
+    margin: 2px;
+  }
 
-.legend .solidD {
-  background-color: var(--blue);
-}
-.legend .likelyD {
-  background-color: var(--bluestep2);
-}
-.legend .leanD {
-  background-color: var(--bluestep3);
-}
-.legend .tossup {
-  background-color: var(--middle-purple);
-}
-.legend .leanR {
-  background-color: var(--redstep3);
-}
-.legend .likelyR {
-  background-color: var(--redstep2);
-}
-.legend .solidR {
-  background-color: var(--red);
+  .legend .solidD {
+    background-color: var(--blue);
+  }
+  .legend .likelyD {
+    background-color: var(--bluestep2);
+  }
+  .legend .leanD {
+    background-color: var(--bluestep3);
+  }
+  .legend .tossup {
+    background-color: var(--middle-purple);
+  }
+  .legend .leanR {
+    background-color: var(--redstep3);
+  }
+  .legend .likelyR {
+    background-color: var(--redstep2);
+  }
+  .legend .solidR {
+    background-color: var(--red);
+  }
 }
 </style>
