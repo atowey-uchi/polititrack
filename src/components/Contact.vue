@@ -23,14 +23,14 @@
             placeholder="Enter your email"
           />
           <form action="/action_page.php">
-  <label for="type">Why are you contacting us?</label>
-  <select id="type" name="type">
-    <option value="inquiry">Inquiry</option>
-    <option value="data">Submit Missing/Erroneous Data</option>
-    <option value="suggestion">Suggestion</option>
-    <option value="other">Other</option>
-  </select>
-</form>
+            <label for="type">Why are you contacting us?</label>
+            <select id="type" name="type">
+              <option value="inquiry">Inquiry</option>
+              <option value="data">Submit Missing/Erroneous Data</option>
+              <option value="suggestion">Suggestion</option>
+              <option value="other">Other</option>
+            </select>
+          </form>
           <label for="subject">Message</label>
           <textarea
             id="subject"

@@ -3,7 +3,7 @@
     <div class="title">
       <h1>Meet the Developers</h1>
     </div>
-    <section class="developer">
+    <section class="developer" id="allison">
       <div class="developer-image">
         <div class="circles">
           <div class="circle">
@@ -17,14 +17,16 @@
           <img src="@/assets/images/girl.svg" />
         </div>
       </div>
+      <div class="description">
       <p>
-        <span>Allison Towey </span> is a Product Manager by day, political nerd
-        by night. She graduated from the University of Notre Dame in 2019, where
-        she majored in Political Science.
-        <a href="#">Check out her website!</a>
+        <span>Allison Towey </span> is currently a Policy Analyst in the educational technology space by day, data nerd by night.
+        She has previously worked as a Product Manager and interned in the US Senate. She graduated from the University of Notre Dame in 2019, where
+        she studied Political Science.
+        <a href="www.allisontowey.com">Check out her website!</a>
       </p>
+      </div>
     </section>
-    <section class="developer" id="seconddev">
+    <section class="developer" id="marcus">
       <div class="developer-image">
         <div class="circles">
           <div class="circle">
@@ -38,11 +40,13 @@
           <img src="@/assets/images/boy.svg" />
         </div>
       </div>
+      <div class="description">
       <p>
         <span> Marcus Schimizzi </span> is a Software Developer. He graduated
         from the University of Notre Dame in 2019 with a degree in Computer
         Science. <a href="#">Find his website here.</a>
       </p>
+      </div>
     </section>
   </section>
 </template>
@@ -61,28 +65,6 @@ export default {
   height: 100vh;
   padding-bottom: 120px;
   width: 1280px;
-}
-
-.gradients img {
-  z-index: -5;
-  opacity: 0.35;
-  display: flex;
-  position: absolute;
-  width: 120vw;
-  top: 0;
-  left: 0;
-}
-
-.gradients img#topbar {
-  transform: rotate(178deg);
-  top: 15%;
-  left: -26%;
-}
-
-.gradients img#secondbar {
-  transform: rotate(-2deg);
-  top: 45%;
-  left: -18%;
 }
 
 section .title h1 {
@@ -113,9 +95,11 @@ a {
 .developer-image {
   position: relative;
   display: flex;
-  justify-content: center;
-  width: 400px;
+  justify-content: space-evenly;
+  width: 200px;
   height: 200px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .developer .circles {
@@ -123,20 +107,37 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
 }
 
 .developer .circle {
   position: absolute;
   top: 0;
   left: 0;
+  filter: invert(15%) sepia(96%) saturate(5640%) hue-rotate(358deg) brightness(101%) contrast(85%);
+  opacity: .6;
+  }
+
+.developer .blue{
+  position: absolute;
+  top: 10px;
+  bottom: -10px;
+  left: 20px;
+  right: -20px;
+  filter: invert(9%) sepia(71%) saturate(4423%) hue-rotate(228deg) brightness(107%) contrast(98%);
+
 }
 
 .developer img {
   max-width: 100%;
   max-height: 100%;
   overflow: hidden;
+}
+
+.description {
+  width: 550px;
+  margin-right:30px;
 }
 
 .developer p span {
@@ -154,10 +155,18 @@ a {
   height: 100%;
 }
 
-.developer#seconddev {
+.developer#marcus {
   display: -webkit-flex;
   -webkit-flex-direction: row-reverse;
   display: flex;
   flex-direction: row-reverse;
+}
+
+.developer#allison .description {
+  margin-left: 60px;
+}
+
+.developer#marcus .description {
+  margin-left: 60px;
 }
 </style>
