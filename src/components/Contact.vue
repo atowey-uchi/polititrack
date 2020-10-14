@@ -11,6 +11,7 @@
           name="name"
           style="height:20px"
           placeholder="Enter your name"
+          v-model="name"
         />
 
         <label for="email">Email</label>
@@ -20,9 +21,10 @@
           name="email"
           style="height:20px"
           placeholder="Enter your email"
+          v-model="email"
         />
         <label for="type">Why are you contacting us?</label>
-        <select id="type" name="type">
+        <select id="type" name="type" v-model="inquiry">
           <option value="inquiry">Inquiry</option>
           <option value="data">Submit Missing/Erroneous Data</option>
           <option value="suggestion">Suggestion</option>
@@ -34,6 +36,7 @@
           name="subject"
           placeholder="Write us a message!"
           style="height:200px"
+          v-model="message"
         ></textarea>
 
         <button class="submit-btn" @click="submitForm()">Submit</button>
