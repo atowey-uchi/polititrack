@@ -24,7 +24,7 @@
           v-model="email"
         />
         <label for="type">Why are you contacting us?</label>
-        <select id="type" name="type" v-model="inquiry">
+        <select id="type" name="type" v-model="type">
           <option value="inquiry">Inquiry</option>
           <option value="data">Submit Missing/Erroneous Data</option>
           <option value="suggestion">Suggestion</option>
@@ -58,7 +58,7 @@ export default {
     return {
       name: "",
       email: "",
-      inquiry: "",
+      type: "inquiry",
       message: "",
       messageSent: false
     };
@@ -68,7 +68,7 @@ export default {
       let body = {
         name: this.name,
         email: this.email,
-        inquiry: this.inquiry,
+        type: this.type,
         message: this.message
       };
 
