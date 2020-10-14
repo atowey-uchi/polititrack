@@ -19,9 +19,9 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <button class="high-contrast" @click="toggleHighContrast()">
+        <!-- <button class="high-contrast" @click="toggleHighContrast()">
           Contrast
-        </button>
+        </button> -->
         <button
           class="speed-btn"
           @click="speedSelectActive = !speedSelectActive"
