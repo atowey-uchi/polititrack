@@ -111,7 +111,6 @@ export default {
   margin: 0 auto;
   position: relative;
   height: 100vh;
-  padding-bottom: 120px;
 }
 
 .title h1 {
