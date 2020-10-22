@@ -66,10 +66,12 @@
         </div>
         <div class="bio">
           <p>
-            <span>Allison Towey</span> is a Product Manager by day, political
-            nerd by night. She graduated from the University of Notre Dame in
-            2019, where she majored in Political Science.
-            <a href="#">Check out her website!</a>
+            <span>Allison Towey</span> is a policy analyst working in the
+            educational technology space. She has experience as a Product
+            Manager and intern in the US Senate. She graduated from the
+            University of Notre Dame in 2019, where she majored in Political
+            Science. <br />
+                 &#8594;     <a href="https://www.allisontowey.com">Check out her website!</a>
           </p>
         </div>
       </div>
@@ -83,8 +85,8 @@
           <p>
             <span>Marcus Schimizzi</span> is a software engineer by trade and a
             policy wonk by passion. He graduated from the University of Notre
-            Dame in 2019, where he majored in Computer Science.
-            <a href="#">Check out his website!</a>
+            Dame in 2019, where he majored in Computer Science. <br />
+                 &#8594;     <a href="#">Check out his website!</a>
           </p>
         </div>
         <div class="developer-image">
@@ -139,10 +141,24 @@ export default {
 }
 
 .developer p,
-a {
-  font-size: 18px;
-  font-weight: 400;
+{
+  font-size: 16px;
+  font-weight: 300;
   color: var(--primary-text);
+}
+
+.developer p span {
+  font-family: "Bai Jamjuree";
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--primary-text);
+}
+
+.developer a {
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+  font-family: "Bai Jamjuree";
 }
 
 .developer-content {

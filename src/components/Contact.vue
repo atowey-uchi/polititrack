@@ -83,7 +83,7 @@ textarea {
   resize: vertical;
   font-family: "Open Sans", sans-serif;
   background: linear-gradient(to right, var(--blue-trans), var(--red-trans));
-  color: white;
+  color: var(--primary-text);
   font-size: 14px;
 }
 
@@ -133,6 +133,7 @@ label {
 option {
   font-family: "Open Sans";
 }
+
 
 @media screen and (max-width: 834px) {
   .container {

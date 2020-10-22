@@ -19,9 +19,9 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <button class="high-contrast" 
-          @click="toggleHighContrast()"
-        >Contrast</button>
+        <button class="high-contrast" @click="toggleHighContrast()">
+          Contrast
+        </button>
         <button
           class="speed-btn"
           @click="speedSelectActive = !speedSelectActive"
@@ -103,8 +103,7 @@ export default {
   data() {
     return {
       states: {},
-      colors: [
-      ],
+      colors: [],
       threshold_names: [
         "Solid Trump",
         "Likely Trump",
@@ -275,27 +274,27 @@ export default {
       this.setupChart();
     },
     fetchColors() {
-        this.colors.push(
-            getComputedStyle(document.body).getPropertyValue("--red")
-        );
-        this.colors.push(
-          getComputedStyle(document.body).getPropertyValue("--redstep2")
-        );
-        this.colors.push(
-          getComputedStyle(document.body).getPropertyValue("--redstep3")
-        );
-        this.colors.push(
-          getComputedStyle(document.body).getPropertyValue("--middle-purple")
-        );
-        this.colors.push(
-          getComputedStyle(document.body).getPropertyValue("--bluestep3")
-        );
-        this.colors.push(
-          getComputedStyle(document.body).getPropertyValue("--bluestep2")
-        );
-        this.colors.push(
-          getComputedStyle(document.body).getPropertyValue("--blue")
-        );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--red")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--redstep2")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--redstep3")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--middle-purple")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--bluestep3")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--bluestep2")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--blue")
+      );
     },
     play() {
       document.querySelector(".pause-btn").style.display = "inline";

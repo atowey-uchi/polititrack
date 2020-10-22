@@ -13,8 +13,8 @@
         PolitiTrack was created in 2020 as a tool for wonks and casual political
         consumers alike. Our candidate tracking map compiles campaign events
         from the two major party candidates, their immediate family members, and
-        their vice presidential nominees. We track where, when, and who is
-        involved in these events throughout the campaign cycle so you can stay
+        their vice presidential nominees. We track where and when these events take place and who is
+        involved throughout the campaign cycle so you can stay
         informed about campaign strategies and how they evolve during the
         season.
       </h2>
@@ -28,8 +28,8 @@
         <p>
           We are tracking campaign events involving the two major party
           candidates (Donald J. Trump and Joseph R. Biden Jr.) in the 2020
-          general election. We compile date and location data, as well as any
-          audience, subject matter, and guests present data available for each
+          United States general election. We compile date and location data, as well as any data concerning the
+          audience, subject matter, and guests present available for each
           of these campaign events.
         </p>
       </div>
@@ -38,7 +38,7 @@
       </div>
       <div class="answer">
         <p>
-          We include campaign events tied to specific locations (i.e. not open
+          We include campaign events tied to specific locations (i.e. not open, national
           virtual events) attended by a) the presidential candidate, b) their
           immediate family members , c)their vice presidential candidate and
           their immediate family members.
@@ -49,12 +49,12 @@
       </div>
       <div class="answer">
         <p>
-          We define a campaign event as an in-person public event in which a
+          We define a campaign event as a public event in which a
           candidate or candidate's representives (such as a vice presidential
           nominee or immediate family member) and prospective voters are
           present. This includes events such as rallies, speeches, townhalls,
-          fundraisers, tours, visits, and parades. At this time, we do not
-          consider media interviews, social media livestreams, virtual-only
+          roundtable converssations, tours, visits, and parades. At this time, we do not
+          consider media interviews, social media livestreams, national virtual-only
           events, or official government business as campaign events for the
           purpose of this tracker.
         </p>
@@ -79,18 +79,34 @@
       <div class="answer">
         <p>
           Contact us! We are constantly looking to improve and correct our data.
-          Please send us the name and any information on the campaign event you
-          have. We will take a look and update our tracker as soon as possible
-          if necessary.
+          Please send us any information on the campaign event in question, and we will take a
+          look as soon as possible.
         </p>
       </div>
       <div class="question">
-        <p>Where do you get the data?</p>
+        <p>Where do you get the campaign stop data?</p>
       </div>
       <div class="answer">
         <p>
-          We source our information primarily from the candidates' websites,
-          campaign social media accounts, and news coverage.
+          We source our campaign information primarily from the candidates'
+          websites, campaign social media accounts, and news coverage.
+        </p>
+      </div>
+      <div class="question">
+        <p>Where do you get the "Likeliness to Win" polling data?</p>
+      </div>
+      <div class="answer">
+        <p>
+          We source this data from FiveThirtyEight. We use their "Chance of
+          Winning" data from their 2020 General Election Forecast, which is
+          shown as a percentage for each candidate. You can find their forecast
+          <a href="https://projects.fivethirtyeight.com/2020-election-forecast/"
+            >here</a
+          >.<br /><br /><i
+            >Please note that the percentages we are using in the map are each
+            candidate's likeliness to win that state, not their expected popular
+            vote result.</i
+          >
         </p>
       </div>
       <div class="question">
@@ -192,6 +208,7 @@ div .title h1 {
 .faq div.answer p {
   color: var(--secondary-text);
   font-weight: 300;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {

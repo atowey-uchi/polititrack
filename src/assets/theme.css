@@ -30,8 +30,8 @@
  --red: #EB2019;
     --blue-75: rgba(23, 27, 34, 0);
     --blue-60: rgba(19, 57, 135, 0.6);
-    --blue-trans: rgba(13, 39, 145, 0.5);
-    --red-trans: rgba(235, 32, 25, 0.5);
+    --blue-trans: rgba(13, 39, 145, 0.4);
+    --red-trans: rgba(235, 32, 25, 0.4);
     --black-ish: #1a1a1a;
     --lighter-black: #535353;
     --gray: #787878;
