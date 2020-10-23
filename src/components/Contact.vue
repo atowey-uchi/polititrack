@@ -74,7 +74,7 @@ export default {
 
       let xhr = new XMLHttpRequest();
       xhr.open("POST", "https://api.polititrack.us/contact");
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(JSON.stringify(body));
       this.messageSent = true;
     }

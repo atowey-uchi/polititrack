@@ -63,7 +63,7 @@
     </div>
     <div id="map">
       <svg :width="settings.width" :height="settings.height">
-        <transition-group tag="g" name="state">
+        <transition-group tag="g" name="state" class="states">
           <path
             v-for="state in statesData"
             class="state"
@@ -71,8 +71,24 @@
             :key="state.id"
             :d="state.d"
             :style="state.style"
+            @mouseover="showProjections($event)"
+            @mouseout="hideProjections()"
+          />
+        </transition-group>
+        <transition-group tag="g" name="stop">
+          <circle
+            v-for="stop in campaignStopsData"
+            class="stop"
+            :id="stop.id"
+            :key="stop.id"
+            :style="stop.style"
+            :r="stop.r"
+            :cx="stop.cx"
+            :cy="stop.cy"
+            :stroke="stop.stroke"
+            :stroke-width="stop.strokeWidth"
             @mouseover="showTooltip($event)"
-            @mouseout="hideTooltip()"
+            @mouseout="hideTooltip($event)"
           />
         </transition-group>
       </svg>
@@ -88,15 +104,17 @@
         </ul>
       </div>
     </div>
-    <div class="tooltip" v-html="tooltipData"></div>
+    <div
+      class="tooltip"
+      v-html="tooltipData"
+      @mouseout="hideTooltip($event)"
+    ></div>
+    <div class="projections-data" v-html="projectionsData"></div>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
-// import { feature, mesh } from "topojson";
-// import * as moment from "moment";
-// import "../lib/d3.slider";
 
 export default {
   name: "Map",
@@ -120,11 +138,13 @@ export default {
       colorRange: "",
       namesRange: "",
       projection: "",
+      campaignStops: {},
       path: "",
       day: 0,
       dayMax: 0,
       mapInterval: "",
       hoveredState: "",
+      hoveredStop: "",
       settings: {
         width: 1280,
         height: 600
@@ -159,6 +179,7 @@ export default {
   created() {
     this.currentDate = new Date(this.startDate);
     this.fetchData();
+    this.fetchCampaignData();
   },
   mounted() {
     this.fetchColors();
@@ -213,7 +234,36 @@ export default {
         return [];
       }
     },
-    tooltipData() {
+    campaignStopsData: function() {
+      let that = this;
+      if (this.campaignStops.length) {
+        return this.campaignStops
+          .filter(function(stop) {
+            return stop.date == that.formatDateString(that.currentDate);
+          })
+          .map(function(d) {
+            const coords = that.projection([d["longitude"], d["latitude"]]);
+            if (coords) {
+              return {
+                id: d.id,
+                style: {
+                  fill: d.candidate == "Biden" ? "#0000FF" : "#FF0000"
+                },
+                r: 5,
+                cx: coords[0],
+                cy: coords[1],
+                strokeWidth: 1,
+                stroke: getComputedStyle(document.body).getPropertyValue(
+                  "--primary-text"
+                )
+              };
+            }
+          });
+      } else {
+        return [];
+      }
+    },
+    projectionsData() {
       if (this.hoveredState) {
         let data = "";
         for (let state of this.states) {
@@ -238,6 +288,22 @@ export default {
             data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
               parseFloat(projections.winstate_inc) * 100
             ).toFixed(2)}%</p>`;
+            return data;
+          }
+        }
+      }
+      return "";
+    },
+    tooltipData() {
+      if (this.hoveredStop) {
+        let data = "";
+        for (let stop of this.campaignStops) {
+          if (this.hoveredStop == stop.id) {
+            data += `<h2>${stop.who}</h2>`;
+            data += `<h3>${stop.type}</h3>`;
+            data += `<h3>${stop.location}</h3>`;
+            data += `<p>${stop.description}</p>`;
+            data += `<a href="${stop.more_information}">Read More</a>`;
             return data;
           }
         }
@@ -306,6 +372,7 @@ export default {
           this.day += 1;
         }
       }, 300 / this.selectedSpeed.value);
+      console.log(this.campaignStopsData);
     },
     pause() {
       document.querySelector(".play-btn").style.display = "inline";
@@ -318,18 +385,42 @@ export default {
     skipToEnd() {
       this.day = this.dayMax;
     },
+    showProjections(event) {
+      const projections = document.querySelector(".projections-data");
+      const statesRect = document
+        .querySelector("g.states")
+        .getBoundingClientRect();
+      projections.classList.add("active");
+      projections.style.left =
+        statesRect.right - projections.getBoundingClientRect().width / 2 + "px";
+      projections.style.top = statesRect.height / 2 + "px";
+      this.hoveredState = event.target.id;
+    },
+    hideProjections() {
+      const projections = document.querySelector(".projections-data");
+      projections.classList.remove("active");
+      this.hoveredState = "";
+    },
     showTooltip(event) {
       const tooltip = document.querySelector(".tooltip");
       tooltip.classList.add("active");
       tooltip.style.left =
         event.pageX - tooltip.parentElement.offsetLeft + "px";
       tooltip.style.top = event.pageY - tooltip.parentElement.offsetTop + "px";
-      this.hoveredState = event.target.id;
+      this.hoveredStop = event.target.id;
     },
     hideTooltip() {
       const tooltip = document.querySelector(".tooltip");
+      // const tooltipRect = tooltip.getBoundingClientRect();
+      // if (
+      //   event.clientX < tooltipRect.left ||
+      //   event.clientX > tooltipRect.right ||
+      //   event.clientY < tooltipRect.top ||
+      //   event.clientY > tooltipRect.bottom
+      // ) {
       tooltip.classList.remove("active");
-      this.hoveredState = "";
+      this.hoveredStop = "";
+      // }
     },
     fetchData() {
       d3.csv("/projections.csv").then(data => {
@@ -349,6 +440,21 @@ export default {
           this.states = us.features;
         });
       });
+    },
+    fetchCampaignData() {
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          that.campaignStops = JSON.parse(this.responseText);
+          // add ids
+          for (let i = 0; i < that.campaignStops.length; i++) {
+            that.campaignStops[i].id = i;
+          }
+        }
+      };
+      xhr.open("GET", "https://api.polititrack.us/campaigns", true);
+      xhr.send();
     },
     setupChart() {
       this.colorRange = d3
@@ -485,12 +591,16 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
+    position: relative;
+    z-index: 1;
   }
 
   #map svg path {
+    position: relative;
     fill: none;
     stroke: whitesmoke;
     stroke-width: 0.75px;
+    z-index: 1;
   }
 
   .state {
@@ -501,6 +611,11 @@ export default {
     opacity: 0.6;
   }
 
+  .stop {
+    cursor: pointer;
+  }
+
+  .projections-data,
   .tooltip {
     position: absolute;
     text-align: left;
@@ -518,16 +633,26 @@ export default {
     filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
   }
 
+  .tooltip {
+    max-width: 200px;
+    z-index: 10000;
+  }
+
+  .projections-data h2,
+  .projections-data p,
   .tooltip h2,
+  .tooltip h3,
   .tooltip p {
     color: var(--background);
     margin: 0;
   }
 
+  .projections-data h2,
   .tooltip h2 {
     font-size: 15px;
   }
 
+  .projections-data h4,
   .tooltip h4 {
     color: var(--tertiary-text);
     margin: 0;
@@ -536,22 +661,24 @@ export default {
     font-weight: 400;
   }
 
-  .tooltip h4.likely {
+  .projections-data h4.likely {
     color: var(--tertiary-text);
     padding-top: 6px;
     font-weight: 200;
     font-size: 11px;
   }
 
+  .projections-data.active,
   .tooltip.active {
     display: block;
   }
 
-  .tooltip p #Biden,
+  .projections-data p #Biden,
   #Trump {
     font-weight: bold;
   }
 
+  .projections-data p,
   .tooltip p {
     font-size: 13px;
   }
