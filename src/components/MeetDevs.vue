@@ -71,7 +71,8 @@
             Manager and intern in the US Senate. She graduated from the
             University of Notre Dame in 2019, where she majored in Political
             Science. <br />
-                 &#8594;     <a href="https://www.allisontowey.com">Check out her website!</a>
+            &#8594;
+            <a href="https://www.allisontowey.com">Check out her website!</a>
           </p>
         </div>
       </div>
@@ -86,7 +87,7 @@
             <span>Marcus Schimizzi</span> is a software engineer by trade and a
             policy wonk by passion. He graduated from the University of Notre
             Dame in 2019, where he majored in Computer Science. <br />
-                 &#8594;     <a href="#">Check out his website!</a>
+            &#8594; <a href="#">Check out his website!</a>
           </p>
         </div>
         <div class="developer-image">
@@ -139,8 +140,7 @@ export default {
   transform: scale(1.5, 1.2) translateY(-50%) rotate(180deg);
 }
 
-.developer p,
-{
+.developer p {
   font-size: 16px;
   font-weight: 300;
   color: var(--primary-text);
@@ -155,7 +155,7 @@ export default {
 
 .developer a {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: bold;
   text-decoration: underline;
   font-family: "Bai Jamjuree";
 }

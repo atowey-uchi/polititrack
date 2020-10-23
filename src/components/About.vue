@@ -11,11 +11,11 @@
     <section class="about-info">
       <h2>
         PolitiTrack was created in 2020 as a tool for wonks and casual political
-        consumers alike. Our candidate tracking map compiles campaign events
+        consumers alike. Our campaign tracking map compiles campaign events
         from the two major party candidates, their immediate family members, and
-        their vice presidential nominees. We track where and when these events take place and who is
-        involved throughout the campaign cycle so you can stay
-        informed about campaign strategies and how they evolve during the
+        their vice presidential nominees. We track where and when these events
+        take place and who is involved throughout the campaign cycle so you can
+        stay informed about campaign strategies and how they evolve during the
         season.
       </h2>
     </section>
@@ -28,9 +28,9 @@
         <p>
           We are tracking campaign events involving the two major party
           candidates (Donald J. Trump and Joseph R. Biden Jr.) in the 2020
-          United States general election. We compile date and location data, as well as any data concerning the
-          audience, subject matter, and guests present available for each
-          of these campaign events.
+          United States general election. We compile date and location data, as
+          well as any pertinent data available about the audience, subject matter, and guests
+          present for each of these events.
         </p>
       </div>
       <div class="question">
@@ -38,25 +38,25 @@
       </div>
       <div class="answer">
         <p>
-          We include campaign events tied to specific locations (i.e. not open, national
-          virtual events) attended by a) the presidential candidate, b) their
-          immediate family members , c)their vice presidential candidate and
-          their immediate family members.
+          We include campaign events tied to specific locations (i.e. not open,
+          national virtual events) attended by a) the presidential candidate, b)
+          their immediate family members, c) their vice presidential candidate
+          and immediate family members.
         </p>
       </div>
       <div class="question">
-        <p>What defines a "campaign event"?</p>
+        <p>What is a "campaign event"?</p>
       </div>
       <div class="answer">
         <p>
-          We define a campaign event as a public event in which a
-          candidate or candidate's representives (such as a vice presidential
-          nominee or immediate family member) and prospective voters are
-          present. This includes events such as rallies, speeches, townhalls,
-          roundtable converssations, tours, visits, and parades. At this time, we do not
-          consider media interviews, social media livestreams, national virtual-only
-          events, or official government business as campaign events for the
-          purpose of this tracker.
+          We define a campaign event as a public event in which a candidate or
+          candidate's representives (such as a vice presidential nominee or
+          immediate family member) and prospective voters are present. This
+          includes events such as rallies, speeches, townhalls, roundtable
+          converssations, tours, visits, and parades. At this time, we do not
+          consider media interviews, social media livestreams, national
+          virtual-only events, or official government business as campaign
+          events for the purpose of this tracker.
         </p>
       </div>
 
@@ -65,7 +65,7 @@
       </div>
       <div class="answer">
         <p>
-          Our data begins June 1, 2020. We track campaign events for the general
+          Our data begins June 1, 2020 and continues through the end of the 2020 general election cycle (November 3, 2020). We track campaign events for the general
           election and do not include primary campaign events.
         </p>
       </div>
@@ -79,8 +79,8 @@
       <div class="answer">
         <p>
           Contact us! We are constantly looking to improve and correct our data.
-          Please send us any information on the campaign event in question, and we will take a
-          look as soon as possible.
+          Please send us any information on the campaign event in question, and
+          we will take a look as soon as possible.
         </p>
       </div>
       <div class="question">
@@ -88,8 +88,8 @@
       </div>
       <div class="answer">
         <p>
-          We source our campaign information primarily from the candidates'
-          websites, campaign social media accounts, and news coverage.
+          We source our campaign information primarily from the candidates' campaign
+          websites, social media accounts, and locaal and national news coverage.
         </p>
       </div>
       <div class="question">
@@ -97,7 +97,7 @@
       </div>
       <div class="answer">
         <p>
-          We source this data from FiveThirtyEight. We use their "Chance of
+          We source this data from FiveThirtyEight. We use the "Chance of
           Winning" data from their 2020 General Election Forecast, which is
           shown as a percentage for each candidate. You can find their forecast
           <a href="https://projects.fivethirtyeight.com/2020-election-forecast/"
@@ -208,6 +208,11 @@ div .title h1 {
   color: var(--secondary-text);
   font-weight: 300;
   font-size: 16px;
+}
+
+.faq a {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {

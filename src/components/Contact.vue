@@ -189,7 +189,6 @@ option {
   font-family: "Open Sans";
 }
 
-
 @media screen and (max-width: 834px) {
   .container {
     padding: 0;

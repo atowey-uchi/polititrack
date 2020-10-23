@@ -19,9 +19,6 @@
           <font-awesome-icon icon="fast-forward" />
         </button>
         <span class="spacer"></span>
-        <button class="high-contrast" @click="toggleHighContrast()">
-          Contrast
-        </button>
         <button
           class="speed-btn"
           @click="speedSelectActive = !speedSelectActive"
@@ -47,8 +44,13 @@
             </ul>
           </div>
         </button>
-        <button class="settings-btn">
+        <button class="settings-btn" @click="toggleSettings()">
           <font-awesome-icon icon="cog" />
+          <div class="settings-popover">
+          <button class="high-contrast" @click="toggleHighContrast()">
+          High Contrast Colors Mode
+        </button>
+          </div>
         </button>
       </div>
       <label for="date-slider">{{ prettyDateString }}</label>
@@ -255,6 +257,10 @@ export default {
     }
   },
   methods: {
+    toggleSettings() {
+      let popover=document.querySelector(".settings-popover");
+      popover.classList.toggle("active");
+    },
     toggleHighContrast() {
       this.highContrast = !this.highContrast;
       if (this.highContrast) {
@@ -606,6 +612,7 @@ export default {
     color: var(--secondary-text);
     font-family: "Open Sans";
     font-weight: 400;
+    padding-right: 20px;
   }
 
   .controls button.speed-btn:hover {
@@ -649,6 +656,8 @@ export default {
 
   .controls button .settings-btn {
     width: 33%;
+    position: relative;
+    padding-left: 20px;
   }
 
   .controls button svg {
@@ -658,6 +667,18 @@ export default {
   .settings-controls {
     width: 66%;
     display: flex;
+  }
+
+  .settings-popover {
+    position: absolute;
+    display: none;
+    width: 100px;
+    background: var(--primary-text);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  }
+
+  .settings-popover.active {
+    display: block;
   }
 
   .map-legend {
