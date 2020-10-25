@@ -1,117 +1,139 @@
 <template>
   <div style="position: relative;" class="map-section">
-    <div class="map-controls">
-      <div class="controls">
-        <button class="back-btn" @click="skipToStart()" :disabled="day <= 0">
-          <font-awesome-icon icon="fast-backward" />
-        </button>
-        <button class="play-btn" @click="play()" :disabled="day >= dayMax">
-          <font-awesome-icon :icon="['fas', 'play']" />
-        </button>
-        <button class="pause-btn" @click="pause()">
-          <font-awesome-icon :icon="['fas', 'pause']" />
-        </button>
-        <button
-          class="forward-btn"
-          @click="skipToEnd()"
-          :disabled="day >= dayMax"
-        >
-          <font-awesome-icon icon="fast-forward" />
-        </button>
-        <span class="spacer"></span>
-        <button
-          class="speed-btn"
-          @click="speedSelectActive = !speedSelectActive"
-        >
-          <span :class="{ hide: speedSelectActive }">{{
-            selectedSpeed.name
-          }}</span>
-          <div class="options" v-show="speedSelectActive">
-            <ul>
-              <li
-                v-for="(speed, index) in speeds"
-                :key="speed.value"
-                :style="{
-                  bottom: speedSelectActive
-                    ? 0
-                    : -35 * (speeds.length - 1 - index) + 'px'
-                }"
-              >
-                <button value="speed.value" @click="selectedSpeed = speed">
-                  {{ speed.name }}
+    <div class="how-to">
+      <p>
+        <b>&#9432;</b>
+        <i>
+          Press Play to view campaign stops over time. Drag the slider to see
+          campaign stops on a particular day.
+        </i>
+      </p>
+    </div>
+    <div class="main">
+      <div class="map-left">
+        <div class="map-controls">
+          <div class="controls">
+            <button
+              class="back-btn"
+              @click="skipToStart()"
+              :disabled="day <= 0"
+            >
+              <font-awesome-icon icon="fast-backward" />
+            </button>
+            <button class="play-btn" @click="play()" :disabled="day >= dayMax">
+              <font-awesome-icon :icon="['fas', 'play']" />
+            </button>
+            <button class="pause-btn" @click="pause()">
+              <font-awesome-icon :icon="['fas', 'pause']" />
+            </button>
+            <button
+              class="forward-btn"
+              @click="skipToEnd()"
+              :disabled="day >= dayMax"
+            >
+              <font-awesome-icon icon="fast-forward" />
+            </button>
+            <span class="spacer"></span>
+            <button
+              class="speed-btn"
+              @click="speedSelectActive = !speedSelectActive"
+            >
+              <span :class="{ hide: speedSelectActive }">{{
+                selectedSpeed.name
+              }}</span>
+              <div class="options" v-show="speedSelectActive">
+                <ul>
+                  <li
+                    v-for="(speed, index) in speeds"
+                    :key="speed.value"
+                    :style="{
+                      bottom: speedSelectActive
+                        ? 0
+                        : -35 * (speeds.length - 1 - index) + 'px'
+                    }"
+                  >
+                    <button value="speed.value" @click="selectedSpeed = speed">
+                      {{ speed.name }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </button>
+            <button class="settings-btn" @click="toggleSettings()">
+              <font-awesome-icon icon="cog" />
+              <div class="settings-popover">
+                <button class="high-contrast" @click="toggleHighContrast()">
+                  High Contrast Colors
                 </button>
-              </li>
+                <button class="candidates-only" @click="toggleCandidatesOnly()">
+                  Candidates Only
+                </button>
+              </div>
+            </button>
+          </div>
+          <label for="date-slider">{{ prettyDateString }}</label>
+          <input
+            type="range"
+            min="0"
+            :max="dayMax"
+            class="slider"
+            id="date-slider"
+            v-model="day"
+          />
+        </div>
+        <div id="map">
+          <svg :width="settings.width" :height="settings.height">
+            <transition-group tag="g" name="state" class="states">
+              <path
+                v-for="state in statesData"
+                class="state"
+                :id="state.id"
+                :key="state.id"
+                :d="state.d"
+                :style="state.style"
+                @mouseover="showProjections($event)"
+                @mouseout="hideProjections()"
+              />
+            </transition-group>
+            <transition-group tag="g" name="stop">
+              <circle
+                v-for="stop in campaignStopsData"
+                class="stop"
+                :id="stop.id"
+                :key="stop.id"
+                :style="stop.style"
+                :r="stop.r"
+                :cx="stop.cx"
+                :cy="stop.cy"
+                :stroke="stop.stroke"
+                :stroke-width="stop.strokeWidth"
+                @mouseover="showTooltip($event)"
+                @mouseout="hideTooltip($event)"
+              />
+            </transition-group>
+          </svg>
+        </div>
+        <div class="map-right">
+          <div class="map-legend">
+            <ul class="legend">
+              <li><span class="solidD"></span> Solid Biden</li>
+              <li><span class="likelyD"></span> Likely Biden</li>
+              <li><span class="leanD"></span> Lean Biden</li>
+              <li><span class="tossup"></span> Toss Up</li>
+              <li><span class="leanR"></span> Lean Trump</li>
+              <li><span class="likelyR"></span> Likely Trump</li>
+              <li><span class="solidR"></span> Solid Trump</li>
             </ul>
           </div>
-        </button>
-        <button class="settings-btn" @click="toggleSettings()">
-          <font-awesome-icon icon="cog" />
-          <div class="settings-popover">
-          <button class="high-contrast" @click="toggleHighContrast()">
-          High Contrast Colors Mode
-        </button>
-          </div>
-        </button>
+        </div>
       </div>
-      <label for="date-slider">{{ prettyDateString }}</label>
-      <input
-        type="range"
-        min="0"
-        :max="dayMax"
-        class="slider"
-        id="date-slider"
-        v-model="day"
-      />
+      <div
+        class="tooltip"
+        v-html="tooltipData"
+        @mouseout="hideTooltip($event)"
+      ></div>
+      <div class="projections-data" v-html="projectionsData"></div>
     </div>
-    <div id="map">
-      <svg :width="settings.width" :height="settings.height">
-        <transition-group tag="g" name="state" class="states">
-          <path
-            v-for="state in statesData"
-            class="state"
-            :id="state.id"
-            :key="state.id"
-            :d="state.d"
-            :style="state.style"
-            @mouseover="showProjections($event)"
-            @mouseout="hideProjections()"
-          />
-        </transition-group>
-        <transition-group tag="g" name="stop">
-          <circle
-            v-for="stop in campaignStopsData"
-            class="stop"
-            :id="stop.id"
-            :key="stop.id"
-            :style="stop.style"
-            :r="stop.r"
-            :cx="stop.cx"
-            :cy="stop.cy"
-            :stroke="stop.stroke"
-            :stroke-width="stop.strokeWidth"
-            @mouseover="showTooltip($event)"
-            @mouseout="hideTooltip($event)"
-          />
-        </transition-group>
-      </svg>
-      <div class="map-legend">
-        <ul class="legend">
-          <li><span class="solidD"></span> Solid Biden</li>
-          <li><span class="likelyD"></span> Likely Biden</li>
-          <li><span class="leanD"></span> Lean Biden</li>
-          <li><span class="tossup"></span> Toss Up</li>
-          <li><span class="leanR"></span> Lean Trump</li>
-          <li><span class="likelyR"></span> Likely Trump</li>
-          <li><span class="solidR"></span> Solid Trump</li>
-        </ul>
-      </div>
-    </div>
-    <div
-      class="tooltip"
-      v-html="tooltipData"
-      @mouseout="hideTooltip($event)"
-    ></div>
-    <div class="projections-data" v-html="projectionsData"></div>
   </div>
 </template>
 
@@ -324,7 +346,7 @@ export default {
   },
   methods: {
     toggleSettings() {
-      let popover=document.querySelector(".settings-popover");
+      let popover = document.querySelector(".settings-popover");
       popover.classList.toggle("active");
     },
     toggleHighContrast() {
@@ -542,6 +564,18 @@ export default {
 </script>
 
 <style lang="scss">
+.how-to {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 16px;
+}
+
+.how-to p {
+  margin: auto;
+  text-align: center;
+}
+
 .map-section {
   .map-controls {
     margin: 5px 22%;
@@ -614,7 +648,7 @@ export default {
   }
 
   .state:hover {
-    opacity: 0.6;
+    opacity: 0.65;
   }
 
   .stop {

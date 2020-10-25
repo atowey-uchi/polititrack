@@ -11,8 +11,8 @@
     <section class="about-info">
       <h2>
         PolitiTrack was created in 2020 as a tool for wonks and casual political
-        consumers alike. Our campaign tracking map compiles campaign events
-        from the two major party candidates, their immediate family members, and
+        consumers alike. Our campaign tracking map compiles campaign events from
+        the two major party candidates, their immediate family members, and
         their vice presidential nominees. We track where and when these events
         take place and who is involved throughout the campaign cycle so you can
         stay informed about campaign strategies and how they evolve during the
@@ -29,8 +29,8 @@
           We are tracking campaign events involving the two major party
           candidates (Donald J. Trump and Joseph R. Biden Jr.) in the 2020
           United States general election. We compile date and location data, as
-          well as any pertinent data available about the audience, subject matter, and guests
-          present for each of these events.
+          well as any pertinent data available about the audience, subject
+          matter, and guests present for each of these events.
         </p>
       </div>
       <div class="question">
@@ -41,7 +41,9 @@
           We include campaign events tied to specific locations (i.e. not open,
           national virtual events) attended by a) the presidential candidate, b)
           their immediate family members, c) their vice presidential candidate
-          and immediate family members.
+          and immediate family members. To see events attended by the
+          candidates themselves only, click the settings button and select
+          "Candidates Only".
         </p>
       </div>
       <div class="question">
@@ -59,14 +61,14 @@
           events for the purpose of this tracker.
         </p>
       </div>
-
       <div class="question">
         <p>When did you start tracking campaign events?</p>
       </div>
       <div class="answer">
         <p>
-          Our data begins June 1, 2020 and continues through the end of the 2020 general election cycle (November 3, 2020). We track campaign events for the general
-          election and do not include primary campaign events.
+          Our data begins June 1, 2020 and continues through the end of the 2020
+          general election cycle (November 3, 2020). We track campaign events
+          for the general election and do not include primary campaign events.
         </p>
       </div>
       <div class="question">
@@ -88,8 +90,20 @@
       </div>
       <div class="answer">
         <p>
-          We source our campaign information primarily from the candidates' campaign
-          websites, social media accounts, and locaal and national news coverage.
+          We source our campaign information primarily from the candidates'
+          campaign websites, social media accounts, and locaal and national news
+          coverage.
+        </p>
+      </div>
+      <div class="question">
+        <p>What do the colors on the map mean?</p>
+      </div>
+      <div class="answer">
+        <p>
+          The colors denote "Likeliness to Win" polling data. You can see what
+          each color means by looking at the key next to the map. To enable high
+          contrast colors, click the settings button and find "High Contrast
+          Colors".
         </p>
       </div>
       <div class="question">
