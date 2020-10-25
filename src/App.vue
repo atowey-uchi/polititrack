@@ -3,6 +3,7 @@
     <Nav />
     <Header />
     <Map />
+    <!-- <Insights /> -->
     <About />
     <MeetDevs />
     <Contact />
@@ -14,6 +15,7 @@
 import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import Map from "./components/Map.vue";
+// import Insights from "./components/Insights.vue";
 import About from "./components/About.vue";
 import MeetDevs from "./components/MeetDevs.vue";
 import Contact from "./components/Contact.vue";
@@ -25,6 +27,7 @@ export default {
     Header,
     Nav,
     Map,
+    // Insights,
     About,
     MeetDevs,
     Contact,

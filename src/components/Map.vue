@@ -62,8 +62,11 @@
             <button class="settings-btn" @click="toggleSettings()">
               <font-awesome-icon icon="cog" />
               <div class="settings-popover">
+                <button class="candidates-only" @click="toggleCandidatesOnly()">
+                  Show History
+                </button>
                 <button class="high-contrast" @click="toggleHighContrast()">
-                  High Contrast Colors
+                  High-Contrast Colors
                 </button>
                 <button class="candidates-only" @click="toggleCandidatesOnly()">
                   Candidates Only
@@ -116,15 +119,16 @@
         <div class="map-right">
           <div class="map-legend">
             <ul class="legend">
-              <li><span class="solidD"></span> Solid Biden</li>
+              <li><span class="solidD"></span> More Likely Biden</li>
               <li><span class="likelyD"></span> Likely Biden</li>
               <li><span class="leanD"></span> Lean Biden</li>
               <li><span class="tossup"></span> Toss Up</li>
               <li><span class="leanR"></span> Lean Trump</li>
               <li><span class="likelyR"></span> Likely Trump</li>
-              <li><span class="solidR"></span> Solid Trump</li>
+              <li><span class="solidR"></span> More Lkely Trump</li>
             </ul>
           </div>
+          <div class="stops-key"></div>
         </div>
       </div>
       <div
@@ -132,7 +136,9 @@
         v-html="tooltipData"
         @mouseout="hideTooltip($event)"
       ></div>
-      <div class="projections-data" v-html="projectionsData"></div>
+      <div class="projections-data">
+        <div v-html="projectionsData"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -197,7 +203,8 @@ export default {
       ],
       selectedSpeed: "",
       speedSelectActive: false,
-      highContrast: false
+      highContrast: false,
+      candidatesOnly: false
     };
   },
   created() {
@@ -265,13 +272,25 @@ export default {
           .filter(function(stop) {
             return stop.date == that.formatDateString(that.currentDate);
           })
+          .filter(function(stop) {
+            return (
+              !that.candidatesOnly || stop.who == "Biden" || stop.who == "Trump"
+            );
+          })
           .map(function(d) {
             const coords = that.projection([d["longitude"], d["latitude"]]);
             if (coords) {
               return {
                 id: d.id,
                 style: {
-                  fill: d.candidate == "Biden" ? "#0000FF" : "#FF0000"
+                  fill:
+                    d.candidate == "Biden"
+                      ? getComputedStyle(document.body).getPropertyValue(
+                          "--red"
+                        )
+                      : getComputedStyle(document.body).getPropertyValue(
+                          "--blue"
+                        )
                 },
                 r: 5,
                 cx: coords[0],
@@ -345,6 +364,10 @@ export default {
     }
   },
   methods: {
+    toggleCandidatesOnly() {
+      this.candidatesOnly = !this.candidatesOnly;
+    },
+
     toggleSettings() {
       let popover = document.querySelector(".settings-popover");
       popover.classList.toggle("active");
@@ -577,6 +600,10 @@ export default {
 }
 
 .map-section {
+  padding-bottom: 100px;
+}
+
+.map-section {
   .map-controls {
     margin: 5px 22%;
     position: relative;
@@ -661,7 +688,7 @@ export default {
     text-align: left;
     width: max-content;
     height: min-content;
-    padding: 8px;
+    padding: 6px;
     font: 12px;
     background: var(--primary-text);
     opacity: 0.9;
@@ -671,6 +698,17 @@ export default {
     display: none;
     transition: 0.1s ease-in;
     filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
+  }
+
+  .projections-data {
+    background: linear-gradient(to right, var(--red), var(--blue));
+  }
+
+  .projections-data div {
+    position: relative;
+    padding: 10px;
+    background: var(--primary-text);
+    border-radius: 8px;
   }
 
   .tooltip {
@@ -833,9 +871,18 @@ export default {
   .settings-popover {
     position: absolute;
     display: none;
-    width: 100px;
-    background: var(--primary-text);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    width: 150px;
+    background: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+
+  .settings-popover button {
+    font-family: "Open Sans";
+    color: var(--black-ish);
+    margin: 0 auto;
+    padding: 4px 10px;
   }
 
   .settings-popover.active {

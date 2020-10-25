@@ -41,9 +41,9 @@
           We include campaign events tied to specific locations (i.e. not open,
           national virtual events) attended by a) the presidential candidate, b)
           their immediate family members, c) their vice presidential candidate
-          and immediate family members. To see events attended by the
-          candidates themselves only, click the settings button and select
-          "Candidates Only".
+          and immediate family members. To see events attended by the candidates
+          themselves only, click the settings button and select "Candidates
+          Only".
         </p>
       </div>
       <div class="question">
