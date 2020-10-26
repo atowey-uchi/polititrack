@@ -96,17 +96,6 @@
         </p>
       </div>
       <div class="question">
-        <p>What do the colors on the map mean?</p>
-      </div>
-      <div class="answer">
-        <p>
-          The colors denote "Likeliness to Win" polling data. You can see what
-          each color means by looking at the key next to the map. To enable high
-          contrast colors, click the settings button and find "High Contrast
-          Colors".
-        </p>
-      </div>
-      <div class="question">
         <p>Where do you get the "Likeliness to Win" polling data?</p>
       </div>
       <div class="answer">
@@ -116,7 +105,9 @@
           shown as a percentage for each candidate. You can find their forecast
           <a href="https://projects.fivethirtyeight.com/2020-election-forecast/"
             >here</a
-          >.<br /><br /><i
+          >. To enable high
+          contrast colors, click the settings button and find "High Contrast
+          Colors".<br /><br /><i
             >Please note that the percentages we are using in the map are each
             candidate's likeliness to win that state, not their expected popular
             vote result.</i
