@@ -4,8 +4,8 @@
       <p>
         <b>&#9432;</b>
         <i>
-          Press Play to view campaign stops over time. Drag the slider to see
-          campaign stops on a particular day.
+          Press Play to view campaign events over time or drag the slider to see
+          campaign stops on a particular day. <br /> To see information about each event, hover over the location on the map.
         </i>
       </p>
     </div>
@@ -182,23 +182,23 @@ export default {
       speeds: [
         {
           name: "4.0x",
-          value: 4
-        },
-        {
-          name: "2.0x",
           value: 2
         },
         {
-          name: "1.5x",
-          value: 1.5
-        },
-        {
-          name: "1.0x",
+          name: "2.0x",
           value: 1
         },
         {
+          name: "1.0x",
+          value: .5
+        },
+        {
           name: "0.5x",
-          value: 0.5
+          value: 0.25
+        },
+        {
+          name: "0.25x",
+          value: 0.125
         }
       ],
       selectedSpeed: "",
@@ -292,10 +292,10 @@ export default {
                           "--blue"
                         )
                 },
-                r: 5,
+                r: 5.5,
                 cx: coords[0],
                 cy: coords[1],
-                strokeWidth: 1,
+                strokeWidth: 2,
                 stroke: getComputedStyle(document.body).getPropertyValue(
                   "--primary-text"
                 )
@@ -597,6 +597,8 @@ export default {
 .how-to p {
   margin: auto;
   text-align: center;
+  width: 55%;
+  color: var(--secondary-text);
 }
 
 .map-section {
@@ -688,7 +690,7 @@ export default {
     text-align: left;
     width: max-content;
     height: min-content;
-    padding: 6px;
+    padding: 4px;
     font: 12px;
     background: var(--primary-text);
     opacity: 0.9;
@@ -707,7 +709,7 @@ export default {
   .projections-data div {
     position: relative;
     padding: 10px;
-    background: var(--primary-text);
+    background: var(--light-gray);
     border-radius: 8px;
   }
 
@@ -721,7 +723,7 @@ export default {
   .tooltip h2,
   .tooltip h3,
   .tooltip p {
-    color: var(--background);
+    color: var(--black-ish);
     margin: 0;
   }
 
@@ -732,7 +734,7 @@ export default {
 
   .projections-data h4,
   .tooltip h4 {
-    color: var(--tertiary-text);
+    color: var(--black-ish);
     margin: 0;
     font-size: 12px;
     font-family: "Open Sans";
@@ -740,7 +742,7 @@ export default {
   }
 
   .projections-data h4.likely {
-    color: var(--tertiary-text);
+    color: var(--lighter-black);
     padding-top: 6px;
     font-weight: 200;
     font-size: 11px;
@@ -812,11 +814,13 @@ export default {
     font-family: "Open Sans";
     font-weight: 400;
     padding-right: 20px;
+    z-index: 1000;
   }
 
   .controls button.speed-btn:hover {
     color: var(--primary-text);
     transition: color 0.3s ease;
+    z-index: 10000;
   }
 
   .controls button.speed-btn span.hide {
@@ -834,29 +838,34 @@ export default {
     bottom: 0;
     left: 0;
     height: 18px;
+    z-index: 10000;
   }
 
   .controls button.speed-btn .options ul {
     margin: 0;
     padding: 0;
+    z-index: 10000;
   }
 
   .controls button.speed-btn .options ul li {
     list-style: none;
     position: relative;
     transition: 0.3s ease;
+    z-index: 10000;
   }
 
   .controls button.speed-btn .options ul li button {
     font-size: 20px;
     color: var(--secondary-text);
     font-family: "Open Sans";
+    z-index: 10000;
   }
 
   .controls button .settings-btn {
     width: 33%;
     position: relative;
     padding-left: 20px;
+    z-index: 10000;
   }
 
   .controls button svg {
@@ -876,6 +885,7 @@ export default {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
     border-radius: 3px;
     margin-top: 4px;
+    z-index: 10000;
   }
 
   .settings-popover button {
@@ -883,10 +893,12 @@ export default {
     color: var(--black-ish);
     margin: 0 auto;
     padding: 4px 10px;
+    z-index: 10000;
   }
 
   .settings-popover.active {
     display: block;
+    z-index: 10000;
   }
 
   .map-legend {
