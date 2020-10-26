@@ -5,7 +5,9 @@
         <b>&#9432;</b>
         <i>
           Press Play to view campaign events over time or drag the slider to see
-          campaign stops on a particular day. <br /> To see information about each event, hover over the location on the map.
+          campaign stops on a particular day. <br />
+          To see information about each event, hover over the location on the
+          map.
         </i>
       </p>
     </div>
@@ -190,7 +192,7 @@ export default {
         },
         {
           name: "1.0x",
-          value: .5
+          value: 0.5
         },
         {
           name: "0.5x",
@@ -457,7 +459,7 @@ export default {
       tooltip.classList.add("active");
       tooltip.style.left =
         event.pageX - tooltip.parentElement.offsetLeft + "px";
-      tooltip.style.top = event.pageY - tooltip.parentElement.offsetTop + "px";
+      tooltip.style.top = event.clientY + "px";
       this.hoveredStop = event.target.id;
     },
     hideTooltip() {
@@ -657,6 +659,7 @@ export default {
   }
 
   #map {
+    position: relative;
     display: flex;
     justify-content: center;
     align-content: center;
