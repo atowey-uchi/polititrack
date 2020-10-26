@@ -3,11 +3,11 @@
     <div class="how-to">
       <p>
         <b>&#9432;</b>
-        <i>
-          Press Play to view campaign events over time or drag the slider to see
-          campaign stops on a particular day. <br />
-          To see information about each event, hover over the location on the
-          map.
+        <i> Press Play </i>( &#9658; )
+        <i
+          >to view campaign events over time or drag the slider to see campaign
+          stops on a particular day. To see information about each event, hover
+          over the location on the map.
         </i>
       </p>
     </div>
@@ -129,8 +129,17 @@
               <li><span class="likelyR"></span> Likely Trump</li>
               <li><span class="solidR"></span> More Lkely Trump</li>
             </ul>
+            <div class="stops-key">
+              <div class="dot" id="biden">
+                <span></span>
+                <p>Biden Campaign Event</p>
+              </div>
+              <div class="dot" id="trump">
+                <span></span>
+                <p>Trump Campaign Event</p>
+              </div>
+            </div>
           </div>
-          <div class="stops-key"></div>
         </div>
       </div>
       <div
@@ -199,7 +208,7 @@ export default {
           value: 0.25
         },
         {
-          name: "0.25x",
+          name: "0.2x",
           value: 0.125
         }
       ],
@@ -813,7 +822,7 @@ export default {
   .controls button.speed-btn {
     font-size: 20px;
     position: relative;
-    color: var(--secondary-text);
+    color: var(--primary-text);
     font-family: "Open Sans";
     font-weight: 400;
     padding-right: 20px;
@@ -840,7 +849,7 @@ export default {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 18px;
+    height: 20px;
     z-index: 10000;
   }
 
@@ -848,6 +857,9 @@ export default {
     margin: 0;
     padding: 0;
     z-index: 10000;
+    background: var(--light-gray);
+    display: inline-block;
+    text-align: left;
   }
 
   .controls button.speed-btn .options ul li {
@@ -855,13 +867,15 @@ export default {
     position: relative;
     transition: 0.3s ease;
     z-index: 10000;
+    display: inline-block;
+    text-align: left;
   }
 
   .controls button.speed-btn .options ul li button {
-    font-size: 20px;
-    color: var(--secondary-text);
+    color: var(--black-ish);
     font-family: "Open Sans";
     z-index: 10000;
+    font-size: 14px;
   }
 
   .controls button .settings-btn {
@@ -884,7 +898,7 @@ export default {
     position: absolute;
     display: none;
     width: 150px;
-    background: white;
+    background: var(--light-gray);
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
     border-radius: 3px;
     margin-top: 4px;
@@ -900,8 +914,9 @@ export default {
   }
 
   .settings-popover.active {
-    display: block;
     z-index: 10000;
+    display: inline-block;
+    text-align: left;
   }
 
   .map-legend {
@@ -948,6 +963,28 @@ export default {
   }
   .legend .solidR {
     background-color: var(--red);
+  }
+}
+
+.stops-key #biden span {
+  background: var(--blue);
+  height: 11px;
+  width: 11px;
+  border-radius: 50%;
+  display: block;
+  border: white 2px solid;
+}
+
+.stops-key #trump span {
+  background: var(--red);
+  height: 11px;
+  width: 11px;
+  border-radius: 50%;
+  display: block;
+  border: white 2px solid;
+
+  .stops-key .dot {
+    display: flex;
   }
 }
 </style>
