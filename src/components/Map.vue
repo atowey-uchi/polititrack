@@ -297,10 +297,10 @@ export default {
                   fill:
                     d.candidate == "Biden"
                       ? getComputedStyle(document.body).getPropertyValue(
-                          "--red"
+                          "--blue"
                         )
                       : getComputedStyle(document.body).getPropertyValue(
-                          "--blue"
+                          "--red"
                         )
                 },
                 r: 5.5,
