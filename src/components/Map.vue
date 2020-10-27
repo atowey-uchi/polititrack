@@ -6,7 +6,7 @@
         <i> Press Play </i>( &#9658; )
         <i
           >to view campaign events over time or drag the slider to see campaign
-          stops on a particular day. To see information about each event, hover
+          events on a particular day. To see information about each event, hover
           over the location on the map.
         </i>
       </p>
@@ -118,8 +118,10 @@
             </transition-group>
           </svg>
         </div>
-        <div class="map-right">
-          <div class="map-legend">
+      </div>
+      <div class="map-right">
+        <div class="keys">
+          <div class="polling-key">
             <ul class="legend">
               <li><span class="solidD"></span> More Likely Biden</li>
               <li><span class="likelyD"></span> Likely Biden</li>
@@ -129,24 +131,22 @@
               <li><span class="likelyR"></span> Likely Trump</li>
               <li><span class="solidR"></span> More Lkely Trump</li>
             </ul>
-            <div class="stops-key">
-              <div class="dot" id="biden">
-                <span></span>
-                <p>Biden Campaign Event</p>
-              </div>
-              <div class="dot" id="trump">
-                <span></span>
-                <p>Trump Campaign Event</p>
-              </div>
+          </div>
+          <div class="stops-key">
+            <div class="dot-and-text" id="biden">
+              <span></span>
+              <p>Biden Campaign Event</p>
+            </div>
+            <div class="dot-and-text" id="trump">
+              <span></span>
+              <p>Trump Campaign Event</p>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="tooltip"
-        v-html="tooltipData"
-        @mouseout="hideTooltip($event)"
-      ></div>
+      <div>
+        class="tooltip" v-html="tooltipData" @mouseout="hideTooltip($event)" >
+      </div>
       <div class="projections-data">
         <div v-html="projectionsData"></div>
       </div>
@@ -187,8 +187,8 @@ export default {
       hoveredState: "",
       hoveredStop: "",
       settings: {
-        width: 1280,
-        height: 600
+        width: 1088,
+        height: 510
       },
       speeds: [
         {
@@ -578,7 +578,7 @@ export default {
       paths
         .enter()
         .append("path")
-        .attr("d", this.path)
+        .attr("d", this.path.interpolate("cardinal"))
         .attr("class", "state")
         .style("fill", d => {
           const date = `${this.currentDate.getMonth() +
@@ -616,11 +616,19 @@ export default {
   padding-bottom: 100px;
 }
 
+.main {
+  display: flex;
+}
+
+.map-left {
+  width: 100%;
+}
+
 .map-section {
   .map-controls {
     margin: 5px 22%;
     position: relative;
-    width: 56%;
+    width: 58%;
     text-align: left;
   }
 
@@ -679,8 +687,8 @@ export default {
   #map svg path {
     position: relative;
     fill: none;
-    stroke: whitesmoke;
-    stroke-width: 0.75px;
+    stroke: rgba(235, 235, 235, 0.7);
+    stroke-width: 1px;
     z-index: 1;
   }
 
@@ -700,10 +708,10 @@ export default {
   .tooltip {
     position: absolute;
     text-align: left;
-    width: max-content;
-    height: min-content;
-    padding: 4px;
-    font: 12px;
+    width: 170px;
+    height: 130px;
+    padding: 5px;
+    font: 14px;
     background: var(--primary-text);
     opacity: 0.9;
     border: 0px;
@@ -720,13 +728,16 @@ export default {
 
   .projections-data div {
     position: relative;
-    padding: 10px;
-    background: var(--light-gray);
+    padding: 5px;
+    background: white;
     border-radius: 8px;
+    width: 160px;
+    height: 120px;
+    opacity: 0.9;
   }
 
   .tooltip {
-    max-width: 200px;
+    max-width: 130px;
     z-index: 10000;
   }
 
@@ -737,25 +748,29 @@ export default {
   .tooltip p {
     color: var(--black-ish);
     margin: 0;
+    padding-left: 15px;
   }
 
   .projections-data h2,
   .tooltip h2 {
-    font-size: 15px;
+    font-size: 17px;
+    padding-top: 10px;
+    font-weight: 400;
   }
 
   .projections-data h4,
   .tooltip h4 {
     color: var(--black-ish);
     margin: 0;
-    font-size: 12px;
+    font-size: 14px;
     font-family: "Open Sans";
     font-weight: 400;
+    padding-left: 15px;
   }
 
   .projections-data h4.likely {
     color: var(--lighter-black);
-    padding-top: 6px;
+    padding-top: 10px;
     font-weight: 200;
     font-size: 11px;
   }
@@ -827,6 +842,7 @@ export default {
     font-weight: 400;
     padding-right: 20px;
     z-index: 1000;
+    border-radius: 5px;
   }
 
   .controls button.speed-btn:hover {
@@ -851,6 +867,7 @@ export default {
     left: 0;
     height: 20px;
     z-index: 10000;
+    border-radius: 5px;
   }
 
   .controls button.speed-btn .options ul {
@@ -860,6 +877,7 @@ export default {
     background: var(--light-gray);
     display: inline-block;
     text-align: left;
+    border-radius: 5px;
   }
 
   .controls button.speed-btn .options ul li {
@@ -869,6 +887,12 @@ export default {
     z-index: 10000;
     display: inline-block;
     text-align: left;
+    width: 100%;
+  }
+
+  .controls button.speed-btn .options ul li:hover {
+    background: var(--gray);
+    border-radius: 5px;
   }
 
   .controls button.speed-btn .options ul li button {
@@ -900,7 +924,7 @@ export default {
     width: 150px;
     background: var(--light-gray);
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
-    border-radius: 3px;
+    border-radius: 5px;
     margin-top: 4px;
     z-index: 10000;
   }
@@ -911,6 +935,12 @@ export default {
     margin: 0 auto;
     padding: 4px 10px;
     z-index: 10000;
+    width: 150px;
+  }
+
+  .settings-popover button:hover {
+    background: var(--gray);
+    border-radius: 5px;
   }
 
   .settings-popover.active {
@@ -919,7 +949,7 @@ export default {
     text-align: left;
   }
 
-  .map-legend {
+  .polling-key {
     display: table-column;
     position: absolute;
     right: 20px;
@@ -966,10 +996,16 @@ export default {
   }
 }
 
+.map-right {
+  display: block;
+  position: relative;
+  width: 15%;
+}
+
 .stops-key #biden span {
   background: var(--blue);
-  height: 11px;
-  width: 11px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
   display: block;
   border: white 2px solid;
@@ -977,13 +1013,13 @@ export default {
 
 .stops-key #trump span {
   background: var(--red);
-  height: 11px;
-  width: 11px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
   display: block;
   border: white 2px solid;
 
-  .stops-key .dot {
+  .stops-key .dot-and-text {
     display: flex;
   }
 }
