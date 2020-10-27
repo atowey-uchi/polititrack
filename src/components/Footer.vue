@@ -157,4 +157,19 @@ a {
   width: 100%;
   z-index: -1;
 }
+
+@media all and (max-width: 414px) {
+  #columns {
+    flex-direction: column-reverse;
+  }
+
+  #logo {
+    padding: 20px;
+  }
+
+  ul {
+    padding-top: 0;
+    padding-left: 0;
+  }
+}
 </style>
