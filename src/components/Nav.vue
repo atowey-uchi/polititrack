@@ -23,11 +23,12 @@
         </div>
       </div>
       <div class="dark-mode-slider">
-        <p>Dark Mode:</p>
+        <font-awesome-icon :icon="['fas', 'sun']" />
         <label @click="toggleDarkMode($event)" class="switch">
-          <input type="checkbox" />
+          <input type="checkbox" checked />
           <span class="slider round"></span>
         </label>
+        <font-awesome-icon :icon="['fas', 'moon']" />
       </div>
     </div>
     <div class="sidenav">
@@ -112,6 +113,10 @@ export default {
   },
   destroyed() {
     window.removeEventListener("scroll", this.toggleSidenav);
+  },
+  mounted() {
+    // turn on dark mode by default
+    document.body.classList.add("dark-mode");
   }
 };
 </script>
@@ -319,12 +324,14 @@ nav .topnav .links ul li a {
 .dark-mode-slider {
   display: flex;
   justify-content: space-evenly;
-  width: 180px;
+  align-items: center;
+  width: 160px;
   position: relative;
 }
 
-.dark-mode-slider p {
+.dark-mode-slider svg {
   color: var(--primary-text);
+  font-size: 1.4rem;
 }
 
 .switch {

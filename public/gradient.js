@@ -397,7 +397,7 @@ function normalizeColor(hexCode) {
                         value: this.amp
                     }),
                     noiseSpeed: new this.minigl.Uniform({
-                        value: 10
+                        value: 30
                     }),
                     noiseFlow: new this.minigl.Uniform({
                         value: 3
@@ -479,7 +479,7 @@ function normalizeColor(hexCode) {
         if (this.computedCanvasStyle && -1 !== this.computedCanvasStyle.getPropertyValue("--gradient-color-1").indexOf("#")) this.init(), this.addIsLoadedClass();
         else {
             if (this.cssVarRetries += 1, this.cssVarRetries > this.maxCssVarRetries) {
-                return this.sectionColors = [16711680, 16711680, 16711935, 65280, 255],void this.init();
+                return this.sectionColors = [16711680, 16711680, 16711935, 765280, 765280],void this.init();
             }
             requestAnimationFrame(() => this.waitForCssVars())
         }
@@ -518,4 +518,4 @@ function normalizeColor(hexCode) {
   */
   var gradient = new Gradient();
       gradient.initGradient("#gradient-canvas");
-  gradient.amp = 160;
+  gradient.amp = 360;

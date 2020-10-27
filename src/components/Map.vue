@@ -1,172 +1,230 @@
 <template>
-  <div style="position: relative;">
-    <div class="map-controls">
-      <div class="controls">
-        <button class="back-btn" @click="skipToStart()" :disabled="day <= 0">
-          <font-awesome-icon icon="fast-backward" />
-        </button>
-        <button class="play-btn" @click="play()" :disabled="day >= dayMax">
-          <font-awesome-icon :icon="['fas', 'play']" />
-        </button>
-        <button class="pause-btn" @click="pause()">
-          <font-awesome-icon :icon="['fas', 'pause']" />
-        </button>
-        <button
-          class="forward-btn"
-          @click="skipToEnd()"
-          :disabled="day >= dayMax"
-        >
-          <font-awesome-icon icon="fast-forward" />
-        </button>
-        <span class="spacer"></span>
-        <button
-          class="speed-btn"
-          @click="speedSelectActive = !speedSelectActive"
-        >
-          <span :class="{ hide: speedSelectActive }">{{
-            selectedSpeed.name
-          }}</span>
-          <div class="options" v-show="speedSelectActive">
-            <ul>
-              <li v-for="speed in speeds" :key="speed.value">
-                <button value="speed.value" @click="selectedSpeed = speed">
-                  {{ speed.name }}
+  <div style="position: relative;" class="map-section">
+    <div class="how-to">
+      <p>
+        <b>&#9432;</b>
+        <i> Press Play </i>( &#9658; )
+        <i
+          >to view campaign events over time or drag the slider to see campaign
+          events on a particular day. To see information about each event, hover
+          over the location on the map.
+        </i>
+      </p>
+    </div>
+    <div class="main">
+      <div class="map-left">
+        <div class="map-controls">
+          <div class="controls">
+            <button
+              class="back-btn"
+              @click="skipToStart()"
+              :disabled="day <= 0"
+            >
+              <font-awesome-icon icon="fast-backward" />
+            </button>
+            <button class="play-btn" @click="play()" :disabled="day >= dayMax">
+              <font-awesome-icon :icon="['fas', 'play']" />
+            </button>
+            <button class="pause-btn" @click="pause()">
+              <font-awesome-icon :icon="['fas', 'pause']" />
+            </button>
+            <button
+              class="forward-btn"
+              @click="skipToEnd()"
+              :disabled="day >= dayMax"
+            >
+              <font-awesome-icon icon="fast-forward" />
+            </button>
+            <span class="spacer"></span>
+            <button
+              class="speed-btn"
+              @click="speedSelectActive = !speedSelectActive"
+            >
+              <span :class="{ hide: speedSelectActive }">{{
+                selectedSpeed.name
+              }}</span>
+              <div class="options" v-show="speedSelectActive">
+                <ul>
+                  <li
+                    v-for="(speed, index) in speeds"
+                    :key="speed.value"
+                    :style="{
+                      bottom: speedSelectActive
+                        ? 0
+                        : -35 * (speeds.length - 1 - index) + 'px'
+                    }"
+                  >
+                    <button value="speed.value" @click="selectedSpeed = speed">
+                      {{ speed.name }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </button>
+            <button class="settings-btn" @click="toggleSettings()">
+              <font-awesome-icon icon="cog" />
+              <div class="settings-popover">
+                <button class="candidates-only" @click="toggleCandidatesOnly()">
+                  Show History
                 </button>
-              </li>
+                <button class="high-contrast" @click="toggleHighContrast()">
+                  High-Contrast Colors
+                </button>
+                <button class="candidates-only" @click="toggleCandidatesOnly()">
+                  Candidates Only
+                </button>
+              </div>
+            </button>
+          </div>
+          <label for="date-slider">{{ prettyDateString }}</label>
+          <input
+            type="range"
+            min="0"
+            :max="dayMax"
+            class="slider"
+            id="date-slider"
+            v-model="day"
+          />
+        </div>
+        <div id="map">
+          <svg :width="settings.width" :height="settings.height">
+            <transition-group tag="g" name="state" class="states">
+              <path
+                v-for="state in statesData"
+                class="state"
+                :id="state.id"
+                :key="state.id"
+                :d="state.d"
+                :style="state.style"
+                @mouseover="showProjections($event)"
+                @mouseout="hideProjections()"
+              />
+            </transition-group>
+            <transition-group tag="g" name="stop">
+              <circle
+                v-for="stop in campaignStopsData"
+                class="stop"
+                :id="stop.id"
+                :key="stop.id"
+                :style="stop.style"
+                :r="stop.r"
+                :cx="stop.cx"
+                :cy="stop.cy"
+                :stroke="stop.stroke"
+                :stroke-width="stop.strokeWidth"
+                @mouseover="showTooltip($event)"
+                @mouseout="hideTooltip($event)"
+              />
+            </transition-group>
+          </svg>
+        </div>
+      </div>
+      <div class="map-right">
+        <div class="keys">
+          <div class="polling-key">
+            <ul class="legend">
+              <li><span class="solidD"></span> More Likely Biden</li>
+              <li><span class="likelyD"></span> Likely Biden</li>
+              <li><span class="leanD"></span> Lean Biden</li>
+              <li><span class="tossup"></span> Toss Up</li>
+              <li><span class="leanR"></span> Lean Trump</li>
+              <li><span class="likelyR"></span> Likely Trump</li>
+              <li><span class="solidR"></span> More Lkely Trump</li>
             </ul>
           </div>
-        </button>
-        <button class="settings-btn">
-          <font-awesome-icon icon="cog" />
-        </button>
+          <div class="stops-key">
+            <div class="dot-and-text" id="biden">
+              <span></span>
+              <p>Biden Campaign Event</p>
+            </div>
+            <div class="dot-and-text" id="trump">
+              <span></span>
+              <p>Trump Campaign Event</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <label for="date-slider">{{ prettyDateString }}</label>
-      <input
-        type="range"
-        min="0"
-        :max="dayMax"
-        class="slider"
-        id="date-slider"
-        v-model="day"
-      />
+      <div>
+        class="tooltip" v-html="tooltipData" @mouseout="hideTooltip($event)" >
+      </div>
+      <div class="projections-data">
+        <div v-html="projectionsData"></div>
+      </div>
     </div>
-    <div id="map">
-      <svg :width="settings.width" :height="settings.height">
-        <transition-group tag="g" name="state">
-          <path
-            v-for="state in statesData"
-            class="state"
-            :id="state.id"
-            :key="state.id"
-            :d="state.d"
-            :style="state.style"
-            @mouseover="showTooltip($event)"
-            @mouseout="hideTooltip()"
-          />
-        </transition-group>
-      </svg>
-    </div>
-    <div class="tooltip" v-html="tooltipData"></div>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
-// import { feature, mesh } from "topojson";
-// import * as moment from "moment";
-// import "../lib/d3.slider";
 
 export default {
   name: "Map",
   data() {
     return {
       states: {},
-      colors: [
-        // "#ff0000",
-        // "#ff3333",
-        // "#ff6b6b",
-        // "#ffa8a8",
-        // "#ffd1d1",
-        // "#ffffff",
-        // "#cbd9eb",
-        // "#aac1de",
-        // "#759bc9",
-        // "#4779b7",
-        // "#2661aa",
-        // "#094c9e"
-
-        "#FF0000", // Near Certain Republican
-        "#E7060E", // Strong Republican
-        "#D00B1B", // Likely Republican
-        "#B81129", // Lean Republican
-        "#A11736", // Slightly Republican
-        "#891D44", // Toss-Up
-        "#712251", // Slightly Democrat
-        "#5A285F", // Lean Democrat
-        "#422E6C", // Likely Democrat
-        "#2B337A", // Strong Democrat
-        "#133987" // Near Certain Democrat
-      ],
+      colors: [],
       threshold_names: [
-        "Near Certain Trump",
-        "Strong Trump",
+        "Solid Trump",
         "Likely Trump",
         "Lean Trump",
-        "Slight Lean Trump",
         "Toss-Up",
-        "Slight Lean Biden",
         "Lean Biden",
         "Likely Biden",
-        "Strong Biden",
-        "Near Certain Biden"
+        "Solid Biden"
       ],
-      thresholds: [12, 28, 38, 44, 48, 52, 56, 62, 72, 88],
+      thresholds: [10, 25, 40, 60, 75, 90],
       currentDate: "",
       startDate: "June 1, 2020 00:00:00",
       chart: "",
       colorRange: "",
       namesRange: "",
       projection: "",
+      campaignStops: {},
       path: "",
       day: 0,
       dayMax: 0,
       mapInterval: "",
       hoveredState: "",
+      hoveredStop: "",
       settings: {
-        width: 1280,
-        height: 600
+        width: 1088,
+        height: 510
       },
       speeds: [
         {
           name: "4.0x",
-          value: 4
-        },
-        {
-          name: "2.0x",
           value: 2
         },
         {
-          name: "1.5x",
-          value: 1.5
-        },
-        {
-          name: "1.0x",
+          name: "2.0x",
           value: 1
         },
         {
-          name: "0.5x",
+          name: "1.0x",
           value: 0.5
+        },
+        {
+          name: "0.5x",
+          value: 0.25
+        },
+        {
+          name: "0.2x",
+          value: 0.125
         }
       ],
       selectedSpeed: "",
-      speedSelectActive: false
+      speedSelectActive: false,
+      highContrast: false,
+      candidatesOnly: false
     };
   },
   created() {
     this.currentDate = new Date(this.startDate);
     this.fetchData();
+    this.fetchCampaignData();
   },
   mounted() {
+    this.fetchColors();
     this.settings.width = Math.min(this.settings.width, window.innerWidth);
     this.selectedSpeed = this.speeds[2];
     this.setupSlider();
@@ -183,8 +241,10 @@ export default {
       );
     },
     selectedSpeed: function() {
-      this.pause();
-      this.play();
+      if (this.mapInterval) {
+        this.pause();
+        this.play();
+      }
     }
   },
   computed: {
@@ -206,7 +266,7 @@ export default {
                         d.properties.projections
                       )
                     )
-                  ].Biden
+                  ].winstate_chal
                 ) * 100
               )
             }
@@ -216,7 +276,48 @@ export default {
         return [];
       }
     },
-    tooltipData() {
+    campaignStopsData: function() {
+      let that = this;
+      if (this.campaignStops.length) {
+        return this.campaignStops
+          .filter(function(stop) {
+            return stop.date == that.formatDateString(that.currentDate);
+          })
+          .filter(function(stop) {
+            return (
+              !that.candidatesOnly || stop.who == "Biden" || stop.who == "Trump"
+            );
+          })
+          .map(function(d) {
+            const coords = that.projection([d["longitude"], d["latitude"]]);
+            if (coords) {
+              return {
+                id: d.id,
+                style: {
+                  fill:
+                    d.candidate == "Biden"
+                      ? getComputedStyle(document.body).getPropertyValue(
+                          "--blue"
+                        )
+                      : getComputedStyle(document.body).getPropertyValue(
+                          "--red"
+                        )
+                },
+                r: 5.5,
+                cx: coords[0],
+                cy: coords[1],
+                strokeWidth: 2,
+                stroke: getComputedStyle(document.body).getPropertyValue(
+                  "--primary-text"
+                )
+              };
+            }
+          });
+      } else {
+        return [];
+      }
+    },
+    projectionsData() {
       if (this.hoveredState) {
         let data = "";
         for (let state of this.states) {
@@ -232,15 +333,31 @@ export default {
               ];
             data += `<h2>${this.hoveredState}</h2>`;
             data += `<h4><i>${this.namesRange(
-              parseFloat(projections.Biden) * 100
+              parseFloat(projections.winstate_chal) * 100
             )}</i></h4>`;
             data += `<h4 class="likely">Likelihood to win state:</h4>`;
             data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
-              parseFloat(projections.Biden) * 100
+              parseFloat(projections.winstate_chal) * 100
             ).toFixed(2)}%</p>`;
             data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
-              parseFloat(projections.Trump) * 100
+              parseFloat(projections.winstate_inc) * 100
             ).toFixed(2)}%</p>`;
+            return data;
+          }
+        }
+      }
+      return "";
+    },
+    tooltipData() {
+      if (this.hoveredStop) {
+        let data = "";
+        for (let stop of this.campaignStops) {
+          if (this.hoveredStop == stop.id) {
+            data += `<h2>${stop.who}</h2>`;
+            data += `<h3>${stop.type}</h3>`;
+            data += `<h3>${stop.location}</h3>`;
+            data += `<p>${stop.description}</p>`;
+            data += `<a href="${stop.more_information}">Read More</a>`;
             return data;
           }
         }
@@ -258,6 +375,55 @@ export default {
     }
   },
   methods: {
+    toggleCandidatesOnly() {
+      this.candidatesOnly = !this.candidatesOnly;
+    },
+
+    toggleSettings() {
+      let popover = document.querySelector(".settings-popover");
+      popover.classList.toggle("active");
+    },
+    toggleHighContrast() {
+      this.highContrast = !this.highContrast;
+      if (this.highContrast) {
+        this.colors = [
+          "#EB2019",
+          "#ff7c62",
+          "#ffbfae",
+          "#ededed",
+          "#bab1db",
+          "#7268b6",
+          "#0d2791"
+        ];
+      } else {
+        this.colors = [];
+        this.fetchColors();
+      }
+      this.setupChart();
+    },
+    fetchColors() {
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--red")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--redstep2")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--redstep3")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--middle-purple")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--bluestep3")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--bluestep2")
+      );
+      this.colors.push(
+        getComputedStyle(document.body).getPropertyValue("--blue")
+      );
+    },
     play() {
       document.querySelector(".pause-btn").style.display = "inline";
       document.querySelector(".play-btn").style.display = "none";
@@ -268,6 +434,7 @@ export default {
           this.day += 1;
         }
       }, 300 / this.selectedSpeed.value);
+      console.log(this.campaignStopsData);
     },
     pause() {
       document.querySelector(".play-btn").style.display = "inline";
@@ -280,18 +447,42 @@ export default {
     skipToEnd() {
       this.day = this.dayMax;
     },
+    showProjections(event) {
+      const projections = document.querySelector(".projections-data");
+      const statesRect = document
+        .querySelector("g.states")
+        .getBoundingClientRect();
+      projections.classList.add("active");
+      projections.style.left =
+        statesRect.right - projections.getBoundingClientRect().width / 2 + "px";
+      projections.style.top = statesRect.height / 2 + "px";
+      this.hoveredState = event.target.id;
+    },
+    hideProjections() {
+      const projections = document.querySelector(".projections-data");
+      projections.classList.remove("active");
+      this.hoveredState = "";
+    },
     showTooltip(event) {
       const tooltip = document.querySelector(".tooltip");
       tooltip.classList.add("active");
       tooltip.style.left =
         event.pageX - tooltip.parentElement.offsetLeft + "px";
-      tooltip.style.top = event.pageY - tooltip.parentElement.offsetTop + "px";
-      this.hoveredState = event.target.id;
+      tooltip.style.top = event.clientY + "px";
+      this.hoveredStop = event.target.id;
     },
     hideTooltip() {
       const tooltip = document.querySelector(".tooltip");
+      // const tooltipRect = tooltip.getBoundingClientRect();
+      // if (
+      //   event.clientX < tooltipRect.left ||
+      //   event.clientX > tooltipRect.right ||
+      //   event.clientY < tooltipRect.top ||
+      //   event.clientY > tooltipRect.bottom
+      // ) {
       tooltip.classList.remove("active");
-      this.hoveredState = "";
+      this.hoveredStop = "";
+      // }
     },
     fetchData() {
       d3.csv("/projections.csv").then(data => {
@@ -311,6 +502,21 @@ export default {
           this.states = us.features;
         });
       });
+    },
+    fetchCampaignData() {
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          that.campaignStops = JSON.parse(this.responseText);
+          // add ids
+          for (let i = 0; i < that.campaignStops.length; i++) {
+            that.campaignStops[i].id = i;
+          }
+        }
+      };
+      xhr.open("GET", "https://api.polititrack.us/campaigns", true);
+      xhr.send();
     },
     setupChart() {
       this.colorRange = d3
@@ -372,7 +578,7 @@ export default {
       paths
         .enter()
         .append("path")
-        .attr("d", this.path)
+        .attr("d", this.path.interpolate("cardinal"))
         .attr("class", "state")
         .style("fill", d => {
           const date = `${this.currentDate.getMonth() +
@@ -381,7 +587,7 @@ export default {
             .toString()
             .substr(-2)}`;
           return this.colorRange(
-            parseFloat(d.properties.projections[date].Biden) * 100
+            parseFloat(d.properties.projections[date].winstate_chal) * 100
           );
         });
 
@@ -391,214 +597,430 @@ export default {
 };
 </script>
 
-<style>
-.map-controls {
-  margin: 5px 22%;
+<style lang="scss">
+.how-to {
   position: relative;
-  width: 56%;
-  text-align: left;
-}
-
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
   width: 100%;
-  height: 10px;
-  background: var(--gray);
-  outline: none;
-  opacity: 0.8;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  border-radius: 15px;
-  margin-top: 20px;
+  margin: 0 auto;
+  padding-bottom: 16px;
 }
 
-.slider:hover {
-  opacity: 1;
-}
-
-.map-controls label {
-  font-size: 28px;
-  font-family: "Bai Jamjuree", sans-serif;
-  font-weight: 400;
+.how-to p {
+  margin: auto;
+  text-align: center;
+  width: 55%;
   color: var(--secondary-text);
-  padding-left: 20px;
 }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 20px; /* Set a specific slider handle width */
-  height: 20px; /* Slider handle height */
-  background: var(--blue); /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%;
+.map-section {
+  padding-bottom: 100px;
 }
 
-.slider::-moz-range-thumb {
-  width: 20px; /* Set a specific slider handle width */
-  height: 20px; /* Slider handle height */
-  background: var(--blue); /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%;
-}
-
-#map {
+.main {
   display: flex;
-  justify-content: center;
-  align-content: center;
-  padding-top: 20px;
 }
 
-#map svg path {
-  fill: none;
-  stroke: whitesmoke;
-  stroke-width: 0.75px;
+.map-left {
+  width: 100%;
 }
 
-.state {
-  opacity: 0.83;
+.map-section {
+  .map-controls {
+    margin: 5px 22%;
+    position: relative;
+    width: 58%;
+    text-align: left;
+  }
+
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: var(--gray);
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .map-controls label {
+    font-size: 32px;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    color: var(--primary-text);
+    padding-left: 20px;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: var(--blue); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: var(--blue); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
+
+  #map {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  #map svg path {
+    position: relative;
+    fill: none;
+    stroke: rgba(235, 235, 235, 0.7);
+    stroke-width: 1px;
+    z-index: 1;
+  }
+
+  .state {
+    opacity: 0.9;
+  }
+
+  .state:hover {
+    opacity: 0.65;
+  }
+
+  .stop {
+    cursor: pointer;
+  }
+
+  .projections-data,
+  .tooltip {
+    position: absolute;
+    text-align: left;
+    width: 170px;
+    height: 130px;
+    padding: 5px;
+    font: 14px;
+    background: var(--primary-text);
+    opacity: 0.9;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    display: none;
+    transition: 0.1s ease-in;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
+  }
+
+  .projections-data {
+    background: linear-gradient(to right, var(--red), var(--blue));
+  }
+
+  .projections-data div {
+    position: relative;
+    padding: 5px;
+    background: white;
+    border-radius: 8px;
+    width: 160px;
+    height: 120px;
+    opacity: 0.9;
+  }
+
+  .tooltip {
+    max-width: 130px;
+    z-index: 10000;
+  }
+
+  .projections-data h2,
+  .projections-data p,
+  .tooltip h2,
+  .tooltip h3,
+  .tooltip p {
+    color: var(--black-ish);
+    margin: 0;
+    padding-left: 15px;
+  }
+
+  .projections-data h2,
+  .tooltip h2 {
+    font-size: 17px;
+    padding-top: 10px;
+    font-weight: 400;
+  }
+
+  .projections-data h4,
+  .tooltip h4 {
+    color: var(--black-ish);
+    margin: 0;
+    font-size: 14px;
+    font-family: "Open Sans";
+    font-weight: 400;
+    padding-left: 15px;
+  }
+
+  .projections-data h4.likely {
+    color: var(--lighter-black);
+    padding-top: 10px;
+    font-weight: 200;
+    font-size: 11px;
+  }
+
+  .projections-data.active,
+  .tooltip.active {
+    display: block;
+  }
+
+  .projections-data p #Biden,
+  #Trump {
+    font-weight: bold;
+  }
+
+  .projections-data p,
+  .tooltip p {
+    font-size: 13px;
+  }
+
+  .controls {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    width: max-content;
+  }
+
+  .controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .controls button svg {
+    font-size: 2em;
+    color: var(--secondary-text);
+    transition: color 0.3s ease;
+  }
+
+  .controls button.play-btn:hover svg,
+  .controls button.pause-btn:hover svg {
+    color: var(--middle-purple);
+  }
+
+  .controls button.back-btn:hover svg {
+    color: var(--red);
+  }
+
+  .controls button.forward-btn:hover svg {
+    color: var(--blue);
+  }
+
+  .controls button.pause-btn {
+    display: none;
+  }
+
+  .controls button:disabled {
+    cursor: not-allowed;
+  }
+
+  .controls button:disabled svg {
+    color: var(--tertiary-text) !important;
+  }
+
+  .controls button.speed-btn {
+    font-size: 20px;
+    position: relative;
+    color: var(--primary-text);
+    font-family: "Open Sans";
+    font-weight: 400;
+    padding-right: 20px;
+    z-index: 1000;
+    border-radius: 5px;
+  }
+
+  .controls button.speed-btn:hover {
+    color: var(--primary-text);
+    transition: color 0.3s ease;
+    z-index: 10000;
+  }
+
+  .controls button.speed-btn span.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .spacer {
+    display: inline-block;
+    width: 100px;
+  }
+
+  .controls button.speed-btn .options {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    z-index: 10000;
+    border-radius: 5px;
+  }
+
+  .controls button.speed-btn .options ul {
+    margin: 0;
+    padding: 0;
+    z-index: 10000;
+    background: var(--light-gray);
+    display: inline-block;
+    text-align: left;
+    border-radius: 5px;
+  }
+
+  .controls button.speed-btn .options ul li {
+    list-style: none;
+    position: relative;
+    transition: 0.3s ease;
+    z-index: 10000;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+  }
+
+  .controls button.speed-btn .options ul li:hover {
+    background: var(--gray);
+    border-radius: 5px;
+  }
+
+  .controls button.speed-btn .options ul li button {
+    color: var(--black-ish);
+    font-family: "Open Sans";
+    z-index: 10000;
+    font-size: 14px;
+  }
+
+  .controls button .settings-btn {
+    width: 33%;
+    position: relative;
+    padding-left: 20px;
+    z-index: 10000;
+  }
+
+  .controls button svg {
+    font-size: 26px;
+  }
+
+  .settings-controls {
+    width: 66%;
+    display: flex;
+  }
+
+  .settings-popover {
+    position: absolute;
+    display: none;
+    width: 150px;
+    background: var(--light-gray);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    margin-top: 4px;
+    z-index: 10000;
+  }
+
+  .settings-popover button {
+    font-family: "Open Sans";
+    color: var(--black-ish);
+    margin: 0 auto;
+    padding: 4px 10px;
+    z-index: 10000;
+    width: 150px;
+  }
+
+  .settings-popover button:hover {
+    background: var(--gray);
+    border-radius: 5px;
+  }
+
+  .settings-popover.active {
+    z-index: 10000;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .polling-key {
+    display: table-column;
+    position: absolute;
+    right: 20px;
+    top: 65%;
+  }
+
+  .legend {
+    list-style: none;
+  }
+  .legend li {
+    margin-right: 10px;
+    font-family: "Open Sans";
+    font-size: 13px;
+    color: var(--secondary-text);
+  }
+  .legend span {
+    border: 1px solid var(--tertiary-text);
+    float: left;
+    width: 12px;
+    height: 12px;
+    margin: 2px;
+  }
+
+  .legend .solidD {
+    background-color: var(--blue);
+  }
+  .legend .likelyD {
+    background-color: var(--bluestep2);
+  }
+  .legend .leanD {
+    background-color: var(--bluestep3);
+  }
+  .legend .tossup {
+    background-color: var(--middle-purple);
+  }
+  .legend .leanR {
+    background-color: var(--redstep3);
+  }
+  .legend .likelyR {
+    background-color: var(--redstep2);
+  }
+  .legend .solidR {
+    background-color: var(--red);
+  }
 }
 
-.state:hover {
-  opacity: 0.6;
-}
-
-.tooltip {
-  position: absolute;
-  text-align: left;
-  width: max-content;
-  height: min-content;
-  padding: 8px;
-  font: 12px;
-  background: var(--primary-text);
-  opacity: 0.9;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-  display: none;
-  transition: 0.1s ease-in;
-  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
-}
-
-.tooltip h2,
-.tooltip p {
-  color: var(--background);
-  margin: 0;
-}
-
-.tooltip h2 {
-  font-size: 15px;
-}
-
-.tooltip h4 {
-  color: var(--tertiary-text);
-  margin: 0;
-  font-size: 12px;
-  font-family: "Open Sans";
-  font-weight: 400;
-}
-
-.tooltip h4.likely {
-  color: var(--tertiary-text);
-  padding-top: 6px;
-  font-weight: 200;
-  font-size: 11px;
-}
-
-.tooltip.active {
+.map-right {
   display: block;
-}
-
-.tooltip p #Biden,
-#Trump {
-  font-weight: bold;
-}
-
-.tooltip p {
-  font-size: 13px;
-}
-
-.controls {
-  position: absolute;
-  top: 5px;
-  right: 0;
-}
-
-.controls button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.controls button svg {
-  font-size: 2em;
-  color: var(--primary-text);
-  transition: color 0.3s ease;
-}
-
-.controls button.play-btn:hover svg,
-.controls button.pause-btn:hover svg {
-  color: var(--middle-purple);
-}
-
-.controls button.back-btn:hover svg {
-  color: var(--red);
-}
-
-.controls button.forward-btn:hover svg {
-  color: var(--blue);
-}
-
-.controls button.pause-btn {
-  display: none;
-}
-
-.controls button:disabled {
-  cursor: not-allowed;
-}
-
-.controls button:disabled svg {
-  color: var(--tertiary-text) !important;
-}
-
-.controls button.speed-btn {
-  font-size: 1.8em;
   position: relative;
-  min-width: 70px;
+  width: 15%;
 }
 
-.controls button.speed-btn:hover {
-  color: var(--middle-purple);
-  transition: color 0.3s ease;
+.stops-key #biden span {
+  background: var(--blue);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: block;
+  border: white 2px solid;
 }
 
-.controls button.speed-btn span.hide {
-  visibility: hidden;
-  opacity: 0;
-}
+.stops-key #trump span {
+  background: var(--red);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: block;
+  border: white 2px solid;
 
-.spacer {
-  display: inline-block;
-  width: 120px;
-}
-
-.controls button.speed-btn .options {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.controls button.speed-btn .options ul {
-  margin: 0;
-  padding: 0;
-}
-
-.controls button.speed-btn .options ul li {
-  list-style: none;
-}
-
-.controls button.speed-btn .options ul li button {
-  font-size: 1.8rem;
+  .stops-key .dot-and-text {
+    display: flex;
+  }
 }
 </style>

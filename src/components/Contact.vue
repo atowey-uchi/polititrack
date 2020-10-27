@@ -2,45 +2,83 @@
   <section class="contact" id="contact">
     <h1>Contact Us!</h1>
 
-    <section class="contactform">
+    <section class="contactform" v-if="!messageSent">
       <div class="container">
-        <form action="action_page.php">
-          <label for="fname">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            style="height:20px"
-            placeholder="Enter your name"
-          />
+        <label for="fname">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          style="height:20px"
+          placeholder="Enter your name"
+          v-model="name"
+        />
 
-          <label for="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            style="height:20px"
-            placeholder="Enter your email"
-          />
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          style="height:20px"
+          placeholder="Enter your email"
+          v-model="email"
+        />
+        <label for="type">Why are you contacting us?</label>
+        <select id="type" name="type" v-model="type">
+          <option value="inquiry">Inquiry</option>
+          <option value="data">Submit Missing/Erroneous Data</option>
+          <option value="suggestion">Suggestion</option>
+          <option value="other">Other</option>
+        </select>
+        <label for="subject">Message</label>
+        <textarea
+          id="subject"
+          name="subject"
+          placeholder="Write us a message!"
+          style="height:200px"
+          v-model="message"
+        ></textarea>
 
-          <label for="subject">Message</label>
-          <textarea
-            id="subject"
-            name="subject"
-            placeholder="Write us a message!"
-            style="height:200px"
-          ></textarea>
-
-          <input type="submit" value="Submit" />
-        </form>
+        <button class="submit-btn" @click="submitForm()">Submit</button>
       </div>
     </section>
+    <div v-else class="sent-message">
+      <h3>Thanks for the feedback!</h3>
+      <button @click="messageSent = !messageSent">
+        More feedback to give?
+      </button>
+    </div>
   </section>
 </template>
 
 <script>
 export default {
-  name: "Contact"
+  name: "Contact",
+  data() {
+    return {
+      name: "",
+      email: "",
+      type: "inquiry",
+      message: "",
+      messageSent: false
+    };
+  },
+  methods: {
+    submitForm() {
+      let body = {
+        name: this.name,
+        email: this.email,
+        type: this.type,
+        message: this.message
+      };
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://api.polititrack.us/contact");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify(body));
+      this.messageSent = true;
+    }
+  }
 };
 </script>
 
@@ -51,6 +89,31 @@ h1 {
   padding-top: 60px;
   padding-bottom: 20px;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+}
+
+.sent-message {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  padding-bottom: 50px;
+}
+
+.sent-message button {
+  background: linear-gradient(to right, var(--blue-trans), var(--red-trans));
+  padding: 20px;
+  border: 1px solid var(--primary-text);
+  border-radius: 4px;
+  color: white;
+  font-family: "Bai Jamjuree", sans-serif;
+  transition: all 0.5s linear;
+  cursor: pointer;
+}
+
+.sent-message button:hover {
+  background: linear-gradient(to left, var(--blue-trans), var(--red-trans));
 }
 
 section.contactform {
@@ -74,11 +137,12 @@ textarea {
   margin-bottom: 16px;
   resize: vertical;
   font-family: "Open Sans", sans-serif;
-  background: linear-gradient(to right, var(--blue), var(--red));
-  color: white;
+  background: linear-gradient(to right, var(--blue-trans), var(--red-trans));
+  color: var(--primary-text);
+  font-size: 14px;
 }
 
-input[type="submit"] {
+.submit-btn {
   background-color: var(--blue);
   color: white;
   padding: 12px 20px;
@@ -88,7 +152,7 @@ input[type="submit"] {
   font-family: "Bai Jamjuree";
 }
 
-input[type="submit"]:hover {
+.submit-btn:hover {
   background-color: var(--darker-blue);
 }
 
@@ -107,8 +171,22 @@ input[type="submit"]:hover {
 
 label {
   font-family: "Bai Jamjuree", sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   color: var(--secondary-text);
+  font-size: 16px;
+}
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+option {
+  font-family: "Open Sans";
 }
 
 @media screen and (max-width: 834px) {

@@ -9,7 +9,7 @@
         candidates up to?
       </h1>
       <h2 id="subheadline">
-        Tracking where they are, who they're with, <br />
+        Tracking where they are, what they're doing, <br />
         and who they're talking to
       </h2>
     </section>
@@ -109,6 +109,10 @@ section {
   --text-top: 300px;
 }
 
+canvas {
+  opacity: 0.8;
+}
+
 .gradient {
   position: absolute;
   top: 0;
@@ -195,5 +199,90 @@ h2 {
 
 .dark-mode #whitehouseroad {
   display: none;
+}
+
+@media screen and (max-width: 1280px) {
+  #whitehouseroad {
+    width: 350px;
+  }
+  .graphic {
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  #whitehouseroad {
+    width: 300px;
+  }
+  .graphic {
+    right: 3%;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-height: 1300px) {
+  #whitehouseroad {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner-title h1,
+  h1.banner-title {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  section {
+    --text-left: 20px;
+    --text-top: 100px;
+  }
+
+  .banner-title h1,
+  h1.banner-title {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  #whitehouseroad {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  section {
+    --text-top: 130px;
+  }
+
+  .banner-title h1,
+  h1.banner-title {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  #whitehouseroad {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  section {
+    --text-left: 10px;
+    --text-top: 115px;
+  }
+
+  #whitehouseroad {
+    width: 180px;
+  }
 }
 </style>
