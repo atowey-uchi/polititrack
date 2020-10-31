@@ -143,13 +143,15 @@
             </div>
           </div>
         </div>
+        <div class="projections-data">
+          <div v-html="projectionsData"></div>
+        </div>
       </div>
-      <div>
-        class="tooltip" v-html="tooltipData" @mouseout="hideTooltip($event)" >
-      </div>
-      <div class="projections-data">
-        <div v-html="projectionsData"></div>
-      </div>
+      <div
+        class="tooltip"
+        v-html="tooltipData"
+        @mouseout="hideTooltip($event)"
+      ></div>
     </div>
   </div>
 </template>
@@ -279,7 +281,7 @@ export default {
     campaignStopsData: function() {
       let that = this;
       if (this.campaignStops.length) {
-        return this.campaignStops
+        let stops = this.campaignStops
           .filter(function(stop) {
             return stop.date == that.formatDateString(that.currentDate);
           })
@@ -306,6 +308,8 @@ export default {
                 r: 5.5,
                 cx: coords[0],
                 cy: coords[1],
+                x: coords[0],
+                y: coords[1],
                 strokeWidth: 2,
                 stroke: getComputedStyle(document.body).getPropertyValue(
                   "--primary-text"
@@ -313,6 +317,24 @@ export default {
               };
             }
           });
+        d3.forceSimulation(stops)
+          .force(
+            "collision",
+            d3
+              .forceCollide()
+              .radius(function(d) {
+                return d.r;
+              })
+              .strength(0.01)
+              .iterations(1)
+          )
+          .on("tick", function() {
+            for (let stop of stops) {
+              stop.cx = stop.x;
+              stop.cy = stop.y;
+            }
+          });
+        return stops;
       } else {
         return [];
       }
@@ -346,7 +368,7 @@ export default {
           }
         }
       }
-      return "";
+      return "<h4>Hover over a state to view projections.</h4>";
     },
     tooltipData() {
       if (this.hoveredStop) {
@@ -621,7 +643,7 @@ export default {
 }
 
 .map-left {
-  width: 100%;
+  width: 80%;
 }
 
 .map-section {
@@ -704,7 +726,6 @@ export default {
     cursor: pointer;
   }
 
-  .projections-data,
   .tooltip {
     position: absolute;
     text-align: left;
@@ -724,6 +745,12 @@ export default {
 
   .projections-data {
     background: linear-gradient(to right, var(--red), var(--blue));
+    text-align: left;
+    padding: 5px;
+    transition: 0.1s ease-in;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
+    border-radius: 8px;
+    border: 0px;
   }
 
   .projections-data div {
@@ -731,9 +758,12 @@ export default {
     padding: 5px;
     background: white;
     border-radius: 8px;
-    width: 160px;
+    width: calc(100% - 10px);
     height: 120px;
     opacity: 0.9;
+    // display: flex;
+    // align-content: center;
+    // justify-content: center;
   }
 
   .tooltip {
@@ -950,10 +980,6 @@ export default {
   }
 
   .polling-key {
-    display: table-column;
-    position: absolute;
-    right: 20px;
-    top: 65%;
   }
 
   .legend {
@@ -997,9 +1023,12 @@ export default {
 }
 
 .map-right {
-  display: block;
-  position: relative;
-  width: 15%;
+  padding: 15px;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
 }
 
 .stops-key #biden span {
