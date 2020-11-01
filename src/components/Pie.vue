@@ -1,6 +1,5 @@
 <template>
   <div class="pie-chart">
-    <!-- Add 2 buttons -->
     <button
       @click="
         trumpOnly = false;
@@ -38,7 +37,6 @@
       Trump
     </button>
 
-    <!-- Create a div where the graph will take place -->
     <div id="pie">
       <svg :width="width" :height="height">
         <transition-group
@@ -57,7 +55,28 @@
             :style="slice.style"
             :title="slice.title"
             :aria-label="slice.title"
+            :name="slice.name"
+            @mouseover="showDetails($event)"
           ></path>
+        </transition-group>
+        <transition-group
+          tag="g"
+          name="details"
+          class="details"
+          v-if="hoveredState"
+          :transform="transform"
+        >
+          <path
+            v-if="state"
+            :id="state.id"
+            :d="state.d"
+            :style="state.style"
+            :key="state.id"
+            :transform="state.transform"
+          ></path>
+          <text :key="hoveredState + '-title'" text-anchor="middle" >
+            {{ hoveredState }}
+          </text>
         </transition-group>
       </svg>
     </div>
@@ -74,24 +93,19 @@ export default {
       width: 450,
       height: 450,
       margin: 40,
-      transform: "",
-      colorRange: [],
+      detailsTransform: "",
       totals: [],
       colors: [],
       trumpOnly: false,
       bidenOnly: false,
       radius: 0,
-      data: []
+      data: [],
+      states: {},
+      hoveredState: ""
     };
   },
   methods: {
     setupChart() {
-      this.colorRange = d3
-        .scaleOrdinal()
-        .domain(["a", "b", "c", "d", "e", "f"])
-        .range(this.colors);
-
-      this.transform = `translate(${this.width / 2}, ${this.height / 2})`;
       this.radius = Math.min(this.width, this.height) / 2 - this.margin;
       this.data = this.data1;
     },
@@ -136,19 +150,69 @@ export default {
           for (let i = 0; i < that.totals.length; i++) {
             that.totals[i].id = i;
           }
-          console.log(that.totals);
+          that.updateSize();
         }
       };
       xhr.open("GET", "https://api.polititrack.us/campaigns/totals", true);
       xhr.send();
+    },
+    fetchStates() {
+      d3.json("/us-states.json").then(us => {
+        let states = {};
+        for (let state of us.features) {
+          states[state.properties.name] = state;
+        }
+        this.states = states;
+      });
+    },
+    updateSize() {
+      let pie = document.querySelector(".pie-chart");
+      if (!pie) return;
+      this.width = pie.parentElement.getBoundingClientRect().width;
+      this.height = this.width;
+    },
+    stateTransform(d) {
+      let bounds = this.path.bounds(d),
+        dx = bounds[1][0] - bounds[0][0],
+        dy = bounds[1][1] - bounds[0][1],
+        x = (bounds[0][0] + bounds[1][0]) / 2,
+        y = (bounds[0][1] + bounds[1][1]) / 2,
+        scale = 0.25 / Math.max(dx / this.width, dy / this.height),
+        translate = [-scale * x, -scale * y];
+      return `translate(${translate})scale(${scale})`;
+    },
+    showDetails(event) {
+      this.hoveredState = event.target.getAttribute("name");
     }
   },
   created() {
     this.fetchColors();
     this.setupChart();
     this.fetchTotalsData();
+    this.fetchStates();
+  },
+  mounted() {
+    this.updateSize();
+    window.addEventListener("resize", () => {
+      this.updateSize();
+    });
   },
   computed: {
+    transform() {
+      return `translate(${this.width / 2}, ${this.height / 2})`;
+    },
+    colorRange() {
+      return d3
+        .scaleOrdinal()
+        .domain(this.stateList)
+        .range(this.colors);
+    },
+    stateList() {
+      return this.totals
+        .filter(total => total["State"] != "Total")
+        .map(total => total["State"])
+        .sort();
+    },
     slices() {
       if (this.totals && this.colors) {
         let data = d3
@@ -172,17 +236,40 @@ export default {
               .outerRadius(this.radius)
               .startAngle(d.startAngle)
               .endAngle(d.endAngle)(),
-            fill: this.colorRange(d.data.Total),
+            fill: this.colorRange(d.data.State),
             stroke: "white",
             style: {
-              strokeWidth: "2px",
-              opacity: 1
+              strokeWidth: "2px"
             },
-            title: d.data.State
+            title: d.data.State,
+            name: d.data.State
           };
         });
       }
       return [];
+    },
+    projection() {
+      return d3.geoAlbersUsa().scale(this.width);
+    },
+    path() {
+      return d3.geoPath().projection(this.projection);
+    },
+    state() {
+      if (this.states && this.hoveredState) {
+        let stateData = this.states[this.hoveredState];
+        return {
+          id: stateData?.properties.name,
+          d: this.path(stateData),
+          style: {
+            fill: this.colorRange(stateData.properties.name)
+          },
+          transform: this.stateTransform(stateData)
+        };
+      }
+      return {};
+    },
+    textPosition() {
+      return {};
     }
   }
 };
@@ -193,8 +280,12 @@ export default {
   max-width: 100%;
 }
 
-#pie path {
-  transition: all 1s ease;
+#pie .slices path {
+  transition: d 1s ease;
+}
+
+#pie .slices path:hover {
+  opacity: 0.75;
 }
 
 .all-btn.active {
