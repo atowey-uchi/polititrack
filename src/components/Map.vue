@@ -833,10 +833,11 @@ export default {
   }
 
   .projections-data h4.likely {
-    color: var(--lighter-black);
+    color: var(--secondary-text);
     padding-top: 10px;
     font-weight: 200;
-    font-size: 11px;
+    font-size: 14px;
+    margin: 0;
   }
 
   .projections-data.active,
@@ -1028,7 +1029,9 @@ export default {
   .keys h3 {
     margin: 0 auto;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 18px;
   }
 
   .polling-key {
@@ -1044,7 +1047,6 @@ export default {
     list-style: none;
     width: 90%;
     margin: 0 auto;
-    margin-top: 5px;
   }
 
   .legend ul {
@@ -1116,11 +1118,14 @@ export default {
 
 .stops-key .dot-and-text {
   display: flex;
+  margin: 0 auto;
+  width: max-content;
+  justify-items: left;
 }
 
 .stops-key div.dot-and-text p {
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   font-family: "Open Sans";
 }
 </style>
