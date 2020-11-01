@@ -1106,14 +1106,15 @@ export default {
   border-radius: 50%;
   display: block;
   border: white 2px solid;
+}
 
-  .stops-key .dot-and-text {
-    display: flex;
-  }
+.stops-key .dot-and-text {
+  display: flex;
+}
 
-  .stops-key div.dot-and-text p {
-    font-size: 13px;
-    font-family: "Open Sans";
-  }
+.stops-key div.dot-and-text p {
+  font-size: 13px;
+  font-weight: 300;
+  font-family: "Open Sans";
 }
 </style>
