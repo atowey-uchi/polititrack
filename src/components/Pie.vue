@@ -21,7 +21,6 @@
       :class="{
         active: bidenOnly
       }"
-
       class="biden-only-btn"
     >
       Biden
@@ -34,7 +33,6 @@
       :class="{
         active: trumpOnly
       }"
-
       class="trump-only-btn"
     >
       Trump
@@ -191,6 +189,10 @@ export default {
 </script>
 
 <style>
+#pie {
+  max-width: 100%;
+}
+
 #pie path {
   transition: all 1s ease;
 }
@@ -207,4 +209,5 @@ export default {
   background: var(--blue);
 }
 </style>
-// colors: #0D2791 #f58d32 #eb2019 #ffd247 #8fe367 #1c9323 #249dce #6D1886 #d054a4
+// colors: #0D2791 #f58d32 #eb2019 #ffd247 #8fe367 #1c9323 #249dce #6D1886
+#d054a4

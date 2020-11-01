@@ -9,98 +9,97 @@
       </h1>
     </div>
     <div class="panels">
-    <div class= "left-panel">
-      <div class="where">
-    <table>
-      <tr class="header">
-        <th></th>
-        <th>Biden</th>
-        <th>Trump</th>
-        <th class="total" id="total-column-label"><i>Total</i></th>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total top">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr>
-        <td class="state">Minnesota</td>
-        <td class="biden">11</td>
-        <td class="trump">10</td>
-        <td class="total">21</td>
-      </tr>
-      <tr class="totals-row">
-        <td id="total-row-label"><i>Total</i></td>
-        <td class="biden">13</td>
-        <td class="trump">15</td>
-        <td class="total">200</td>
-        </tr>
-    </table>
-      <Pie></Pie>
-      </div>
+      <div class="left-panel">
+        <div class="where">
+          <table>
+            <tr class="header">
+              <th></th>
+              <th>Biden</th>
+              <th>Trump</th>
+              <th class="total" id="total-column-label"><i>Total</i></th>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total top">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr>
+              <td class="state">Minnesota</td>
+              <td class="biden">11</td>
+              <td class="trump">10</td>
+              <td class="total">21</td>
+            </tr>
+            <tr class="totals-row">
+              <td id="total-row-label"><i>Total</i></td>
+              <td class="biden">13</td>
+              <td class="trump">15</td>
+              <td class="total">200</td>
+            </tr>
+          </table>
+
+          <Pie></Pie>
+        </div>
       </div>
       <div class="right-panel">
-      <div class="right-top">
-        </div>
-<div class="right-bottom">
-  </div>
-        </div>
-        </div>
+        <div class="right-top"></div>
+        <div class="right-bottom"></div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -158,18 +157,19 @@ section {
 }
 
 .left-panel {
+  position: relative;
   width: 39vw;
-    background: var(--gray-50);
-    border-radius: 5px;
-    height: min-content;
+  background: var(--gray-50);
+  border-radius: 5px;
+  height: min-content;
 }
 
-.right-top{
+.right-top {
   width: 39vw;
   height: 60vh;
   background: var(--gray-50);
   border-radius: 5px;
-margin-left: 2vw;
+  margin-left: 2vw;
 }
 
 .right-bottom {
@@ -218,12 +218,12 @@ td.total {
 }
 
 .totals-row .biden {
-    background: var(--gray-75);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+  background: var(--gray-75);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 .totals-row .trump {
-    background: var(--gray-75);
+  background: var(--gray-75);
 }
 
 .totals-row .total {
@@ -254,14 +254,13 @@ tr.totals-row td#total-row-label {
 }
 
 td.state {
-font-size: 16px;
+  font-size: 16px;
   text-align: left;
 }
 
-table tr.header th{
+table tr.header th {
   font-weight: 600;
   font-size: 16px;
   text-align: center;
 }
-
 </style>
