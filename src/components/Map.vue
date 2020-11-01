@@ -648,11 +648,11 @@ export default {
   color: var(--secondary-text);
 }
 
-  .main {
-    display: flex;
-    width: 1280px;
-    margin: 0 auto;
-  }
+.main {
+  display: flex;
+  width: 1280px;
+  margin: 0 auto;
+}
 
 .map-section {
   padding-bottom: 100px;
@@ -762,7 +762,6 @@ export default {
     filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
   }
 
-
   .tooltip {
     width: 250px;
     height: max-content;
@@ -805,7 +804,6 @@ export default {
     padding-bottom: 10px;
   }
 
-
   .tooltip p {
     font-size: 13px;
   }
@@ -827,7 +825,6 @@ export default {
     height: 180px;
     opacity: 0.9;
   }
-
 
   .projections-data h2,
   .projections-data p {
@@ -851,7 +848,6 @@ export default {
   #Trump {
     font-weight: bold;
   }
-
 
   .controls {
     position: absolute;
@@ -1018,21 +1014,21 @@ export default {
   }
 
   .map-right {
-  width: 380px;
-  margin: 0 auto;
-  padding-top: 20vh;
-}
+    width: 380px;
+    margin: 0 auto;
+    padding-top: 20vh;
+  }
 
   .keys {
     width: 100%;
     height: 200px;
-display: flex;
+    display: flex;
   }
 
   .polling-key {
     width: 180px;
     height: 180px;
-        background: var(--panel-back);
+    background: var(--panel-back);
     border-radius: 5px;
     margin-right: 20px;
     margin-left: 0;
@@ -1045,9 +1041,9 @@ display: flex;
     margin-top: 10%;
   }
 
-.legend ul {
-  display: table-column-group;
-}
+  .legend ul {
+    display: table-column-group;
+  }
 
   .legend li {
     margin-right: 10px;
@@ -1089,11 +1085,10 @@ display: flex;
 
 .stops-key {
   width: 180px;
-      background: var(--panel-back);
-    border-radius: 5px;
-    height: 180px;
+  background: var(--panel-back);
+  border-radius: 5px;
+  height: 180px;
 }
-
 
 .stops-key #biden span {
   background: var(--blue);
@@ -1116,10 +1111,9 @@ display: flex;
     display: flex;
   }
 
-.stops-key div.dot-and-text p {
-font-size: 13px;
-font-family: "Open Sans";
-}
-
+  .stops-key div.dot-and-text p {
+    font-size: 13px;
+    font-family: "Open Sans";
+  }
 }
 </style>

@@ -11,7 +11,7 @@
             <li>
               <a href="#insights">Insights</a>
             </li>
-            <li>
+            <li></li>
             <li>
               <a href="#about">About</a>
             </li>
