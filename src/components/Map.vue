@@ -134,17 +134,19 @@
       <div class="map-right">
         <div class="keys">
           <div class="polling-key">
+            <h3>Polling Data</h3>
             <ul class="legend">
-              <li><span class="solidD"></span> More Likely Biden</li>
-              <li><span class="likelyD"></span> Likely Biden</li>
-              <li><span class="leanD"></span> Lean Biden</li>
-              <li><span class="tossup"></span> Toss Up</li>
-              <li><span class="leanR"></span> Lean Trump</li>
-              <li><span class="likelyR"></span> Likely Trump</li>
-              <li><span class="solidR"></span> More Lkely Trump</li>
+              <li><span class="solidD"></span> Solid Biden</li>
+              <li><span class="likelyD"></span>Likely Biden</li>
+              <li><span class="leanD"></span>Lean Biden</li>
+              <li><span class="tossup"></span>Toss Up</li>
+              <li><span class="leanR"></span>Lean Trump</li>
+              <li><span class="likelyR"></span>Likely Trump</li>
+              <li><span class="solidR"></span>Solid Trump</li>
             </ul>
           </div>
           <div class="stops-key">
+            <h3>Campaign Events</h3>
             <div class="dot-and-text" id="biden">
               <span></span>
               <p>Biden Campaign Event</p>
@@ -201,7 +203,7 @@ export default {
       hoveredState: "",
       hoveredStop: "",
       settings: {
-        width: 1088,
+        width: 950,
         height: 510
       },
       speeds: [
@@ -646,30 +648,32 @@ export default {
   color: var(--secondary-text);
 }
 
+  .main {
+    display: flex;
+    width: 1280px;
+    margin: 0 auto;
+  }
+
 .map-section {
   padding-bottom: 100px;
 }
 
-.main {
-  display: flex;
-}
-
 .map-left {
-  width: 80%;
+  width: 900px;
 }
 
 .map-section {
   .map-controls {
-    margin: 5px 22%;
+    margin: 0 auto;
     position: relative;
-    width: 58%;
+    width: 700px;
     text-align: left;
   }
 
   .slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 700px;
     height: 10px;
     background: var(--gray);
     outline: none;
@@ -677,6 +681,7 @@ export default {
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
     border-radius: 15px;
+    margin: 0 auto;
     margin-top: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -757,28 +762,6 @@ export default {
     filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
   }
 
-  .projections-data {
-    background: linear-gradient(to right, var(--red), var(--blue));
-    text-align: left;
-    padding: 5px;
-    transition: 0.1s ease-in;
-    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
-    border-radius: 8px;
-    border: 0px;
-  }
-
-  .projections-data div {
-    position: relative;
-    padding: 5px;
-    background: white;
-    border-radius: 8px;
-    width: calc(100% - 10px);
-    height: 120px;
-    opacity: 0.9;
-    // display: flex;
-    // align-content: center;
-    // justify-content: center;
-  }
 
   .tooltip {
     width: 250px;
@@ -787,12 +770,6 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .projections-data h2,
-  .projections-data p {
-    color: var(--black-ish);
-    margin: 0;
   }
 
   .tooltip h2,
@@ -806,21 +783,18 @@ export default {
     padding-right: 10px;
   }
 
-  .projections-data h2,
   .tooltip h2 {
     font-size: 18px;
     font-weight: 500;
     font-family: "Poppins";
   }
 
-  .projections-data h3,
   .tooltip h3 {
     font-size: 18px;
     font-weight: 300;
     font-family: "Bai Jamjuree";
   }
 
-  .projections-data h4,
   .tooltip h4 {
     color: var(--black-ish);
     margin: 0;
@@ -829,6 +803,36 @@ export default {
     font-weight: 300;
     font-style: italic;
     padding-bottom: 10px;
+  }
+
+
+  .tooltip p {
+    font-size: 13px;
+  }
+
+  .tooltip a {
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .projections-data div {
+    position: relative;
+    padding: 5px;
+    background: var(--panel-back);
+    border-radius: 5px;
+    width: 380px;
+    height: 180px;
+    opacity: 0.9;
+  }
+
+
+  .projections-data h2,
+  .projections-data p {
+    color: var(--primary-text);
+    margin: 0;
   }
 
   .projections-data h4.likely {
@@ -848,19 +852,6 @@ export default {
     font-weight: bold;
   }
 
-  .projections-data p,
-  .tooltip p {
-    font-size: 13px;
-  }
-
-  .projections-data a,
-  .tooltip a {
-    color: var(--blue);
-    font-size: 13px;
-    font-weight: 500;
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
 
   .controls {
     position: absolute;
@@ -1026,17 +1017,44 @@ export default {
     text-align: left;
   }
 
+  .map-right {
+  width: 380px;
+  margin: 0 auto;
+  padding-top: 20vh;
+}
+
+  .keys {
+    width: 100%;
+    height: 200px;
+display: flex;
+  }
+
   .polling-key {
+    width: 180px;
+    height: 180px;
+        background: var(--panel-back);
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-left: 0;
   }
 
   .legend {
     list-style: none;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10%;
   }
+
+.legend ul {
+  display: table-column-group;
+}
+
   .legend li {
     margin-right: 10px;
     font-family: "Open Sans";
     font-size: 13px;
     color: var(--secondary-text);
+    display: inline-block;
   }
   .legend span {
     border: 1px solid var(--tertiary-text);
@@ -1069,14 +1087,13 @@ export default {
   }
 }
 
-.map-right {
-  padding: 15px;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: space-between;
+.stops-key {
+  width: 180px;
+      background: var(--panel-back);
+    border-radius: 5px;
+    height: 180px;
 }
+
 
 .stops-key #biden span {
   background: var(--blue);
@@ -1098,5 +1115,11 @@ export default {
   .stops-key .dot-and-text {
     display: flex;
   }
+
+.stops-key div.dot-and-text p {
+font-size: 13px;
+font-family: "Open Sans";
+}
+
 }
 </style>

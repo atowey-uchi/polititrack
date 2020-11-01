@@ -12,7 +12,7 @@
             </li>
             <li>
               <a href="#insights">Insights</a>
-              </li>
+            </li>
             <li>
               <a href="#about">About</a>
             </li>
@@ -44,6 +44,14 @@
             <div class="link-name">Map</div>
           </a>
         </li>
+        <!-- <li>
+          <a href="#insights">
+            <span>
+              <font-awesome-icon icon="chart-line" />
+            </span>
+            <div class="link-name">Insights</div>
+          </a>
+        </li> -->
         <li>
           <a href="#about">
             <span>

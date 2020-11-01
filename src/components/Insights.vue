@@ -11,97 +11,104 @@
     <div class="panels">
       <div class="left-panel">
         <div class="where">
-          <table>
-            <tr class="header">
-              <th></th>
-              <th>Biden</th>
-              <th>Trump</th>
-              <th class="total" id="total-column-label"><i>Total</i></th>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total top">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr>
-              <td class="state">Minnesota</td>
-              <td class="biden">11</td>
-              <td class="trump">10</td>
-              <td class="total">21</td>
-            </tr>
-            <tr class="totals-row">
-              <td id="total-row-label"><i>Total</i></td>
-              <td class="biden">13</td>
-              <td class="trump">15</td>
-              <td class="total">200</td>
-            </tr>
-          </table>
-
+          <div class="table">
+            <h2>Campaign Events by State</h2>
+            <table>
+              <tr class="header">
+                <th></th>
+                <th>Biden</th>
+                <th>Trump</th>
+                <th class="total" id="total-column-label"><i>Total</i></th>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total top">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr>
+                <td class="state">Minnesota</td>
+                <td class="biden">11</td>
+                <td class="trump">10</td>
+                <td class="total">21</td>
+              </tr>
+              <tr class="totals-row">
+                <td id="total-row-label"><i>Total</i></td>
+                <td class="biden">13</td>
+                <td class="trump">15</td>
+                <td class="total">200</td>
+              </tr>
+            </table>
+          </div>
           <Pie></Pie>
         </div>
       </div>
       <div class="right-panel">
-        <div class="right-top"></div>
-        <div class="right-bottom"></div>
+        <div class="right-top">
+          <p>Line Graph of Stops over Time</p>
+        </div>
+        <div class="right-bottom">
+          <p>Bubble chart for Number of stops per person</p>
+        </div>
       </div>
     </div>
     <div class="bottom">
-      </div>
+      <p>Sunburst charts for state/person</p>
+    </div>
   </section>
 </template>
 
@@ -122,7 +129,7 @@ export default {
   position: relative;
   padding-top: 40px;
   padding-bottom: 120px;
-  max-width: 1280px;
+  width: 1100px;
   margin: 0 auto;
 }
 
@@ -160,46 +167,54 @@ section {
 
 .left-panel {
   position: relative;
-  width: 39vw;
+  width: 535px;
   background: var(--panel-back);
   border-radius: 5px;
-  height: 110vh;
+  height: 1000px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .right-top {
-  width: 39vw;
-  height: 60vh;
+  width: 535px;
+  height: 485px;
   background: var(--panel-back);
   border-radius: 5px;
-  margin-left: 2vw;
+  margin-left: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .right-bottom {
-  width: 39vw;
-  height: 46vh;
+  width: 535px;
+  height: 485px;
   background: var(--panel-back);
   border-radius: 5px;
-  margin-left: 2vw;
-  margin-top: 2vw;
+  margin-left: 30px;
+  margin-top: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .bottom {
-  width: 80vw;
-  height: 30vh;
+  width: 1100px;
+  height: 500px;
   background: var(--panel-back);
-  margin-top: 2vw;
+  margin-top: 30px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h2 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
 }
 
 table {
   color: var(--primary-text);
   font-family: "Open Sans";
   font-weight: 500;
-  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 60px;
   border-radius: 5px;
   border-spacing: 0;
   width: 80%;

@@ -69,7 +69,7 @@
             <span>Allison Towey</span> is a policy analyst working in the
             educational technology space. She has experience as a Product
             Manager and intern in the US Senate. She graduated from the
-            University of Notre Dame in 2019, where she majored in Political
+            University of Notre Dame in 2019, majoring in Political
             Science. <br />
             &#8594;
             <a href="https://www.allisontowey.com">Check out her website!</a>

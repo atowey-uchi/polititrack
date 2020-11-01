@@ -9,6 +9,10 @@
               <a href="#">Map</a>
             </li>
             <li>
+              <a href="#insights">Insights</a>
+            </li>
+            <li>
+            <li>
               <a href="#about">About</a>
             </li>
             <li>
