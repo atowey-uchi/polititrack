@@ -47,6 +47,7 @@
                 <ul>
                   <li
                     v-for="(speed, index) in speeds"
+                    :class="{ active: selectedSpeed === speed }"
                     :key="speed.value"
                     :style="{
                       bottom: speedSelectActive
@@ -64,13 +65,24 @@
             <button class="settings-btn" @click="toggleSettings()">
               <font-awesome-icon icon="cog" />
               <div class="settings-popover">
-                <button class="candidates-only" @click="toggleCandidatesOnly()">
+                <button
+                  class="btn candidates-only"
+                  @click="toggleCandidatesOnly()"
+                >
                   Show History
                 </button>
-                <button class="high-contrast" @click="toggleHighContrast()">
+                <button
+                  class="btn high-contrast"
+                  :class="{ active: highContrast }"
+                  @click="toggleHighContrast()"
+                >
                   High-Contrast Colors
                 </button>
-                <button class="candidates-only" @click="toggleCandidatesOnly()">
+                <button
+                  class="btn candidates-only"
+                  :class="{ active: candidatesOnly }"
+                  @click="toggleCandidatesOnly()"
+                >
                   Candidates Only
                 </button>
               </div>
@@ -375,9 +387,9 @@ export default {
         let data = "";
         for (let stop of this.campaignStops) {
           if (this.hoveredStop == stop.id) {
-            data += `<h2>${stop.who}</h2>`;
-            data += `<h3>${stop.type}</h3>`;
-            data += `<h3>${stop.location}</h3>`;
+            data += `<h2>${stop.location}</h2>`;
+            data += `<h3>${stop.who}</h3>`;
+            data += `<h4>${stop.type}</h4>`;
             data += `<p>${stop.description}</p>`;
             data += `<a href="${stop.more_information}">Read More</a>`;
             return data;
@@ -767,35 +779,53 @@ export default {
   }
 
   .tooltip {
-    max-width: 130px;
+    width: 250px;
+    height: max-content;
     z-index: 10000;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .projections-data h2,
-  .projections-data p,
-  .tooltip h2,
-  .tooltip h3,
-  .tooltip p {
+  .projections-data p {
     color: var(--black-ish);
     margin: 0;
-    padding-left: 15px;
+  }
+
+  .tooltip h2,
+  .tooltip h3,
+  .tooltip h4,
+  .tooltip p,
+  .tooltip a {
+    color: var(--black-ish);
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .projections-data h2,
   .tooltip h2 {
-    font-size: 17px;
-    padding-top: 10px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Poppins";
+  }
+
+  .projections-data h3,
+  .tooltip h3 {
+    font-size: 18px;
+    font-weight: 300;
+    font-family: "Bai Jamjuree";
   }
 
   .projections-data h4,
   .tooltip h4 {
     color: var(--black-ish);
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
     font-family: "Open Sans";
-    font-weight: 400;
-    padding-left: 15px;
+    font-weight: 300;
+    font-style: italic;
+    padding-bottom: 10px;
   }
 
   .projections-data h4.likely {
@@ -818,6 +848,15 @@ export default {
   .projections-data p,
   .tooltip p {
     font-size: 13px;
+  }
+
+  .projections-data a,
+  .tooltip a {
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 
   .controls {
@@ -897,7 +936,6 @@ export default {
     left: 0;
     height: 20px;
     z-index: 10000;
-    border-radius: 5px;
   }
 
   .controls button.speed-btn .options ul {
@@ -921,8 +959,7 @@ export default {
   }
 
   .controls button.speed-btn .options ul li:hover {
-    background: var(--gray);
-    border-radius: 5px;
+    background: var(--blue-60);
   }
 
   .controls button.speed-btn .options ul li button {
@@ -930,6 +967,10 @@ export default {
     font-family: "Open Sans";
     z-index: 10000;
     font-size: 14px;
+  }
+
+  .controls button.speed-btn .options .active {
+    background: var(--blue-75);
   }
 
   .controls button .settings-btn {
@@ -968,9 +1009,12 @@ export default {
     width: 150px;
   }
 
+  .settings-popover .btn.active {
+    background: var(--blue-75);
+  }
+
   .settings-popover button:hover {
-    background: var(--gray);
-    border-radius: 5px;
+    background: var(--blue-60);
   }
 
   .settings-popover.active {

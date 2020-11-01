@@ -170,7 +170,7 @@ export default {
             id: i,
             d: d3
               .arc()
-              .innerRadius(this.radius * 0.8)
+              .innerRadius(this.radius * 0.7)
               .outerRadius(this.radius)
               .startAngle(d.startAngle)
               .endAngle(d.endAngle)(),
@@ -207,3 +207,4 @@ export default {
   background: var(--blue);
 }
 </style>
+// colors: #0D2791 #f58d32 #eb2019 #ffd247 #8fe367 #1c9323 #249dce #6D1886 #d054a4
