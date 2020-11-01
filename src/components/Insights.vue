@@ -8,7 +8,94 @@
         Campaign Insights
       </h1>
     </div>
-    <div class="stops-date"></div>
+    <div class="panels">
+    <div class= "left-panel">
+      <div class="where">
+    <table>
+      <tr class="header">
+        <th></th>
+        <th>Biden</th>
+        <th>Trump</th>
+        <th class="total" id="total-column-label"><i>Total</i></th>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total top">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr>
+        <td class="state">Minnesota</td>
+        <td class="biden">11</td>
+        <td class="trump">10</td>
+        <td class="total">21</td>
+      </tr>
+      <tr class="totals-row">
+        <td id="total-row-label"><i>Total</i></td>
+        <td class="biden">13</td>
+        <td class="trump">15</td>
+        <td class="total">200</td>
+        </tr>
+    </table>
+      </div>
+      </div>
+      <div class="right-top-panel">
+        </div>
+        </div>
   </section>
 </template>
 
@@ -16,87 +103,6 @@
 export default {
   name: "Insights"
 };
-// set the dimensions and margins of the graph
-var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-  width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3
-  .select("stops-date")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("./public/3-day-data.csv", function(data) {
-  // group the data: I want to draw one line per group
-  var sumstat = d3
-    .nest() // nest function allows to group the calculation per level of a factor
-    .key(function(d) {
-      return d.date;
-    })
-    .entries(data);
-
-  // Add X axis --> it is a date format
-  var x = d3
-    .scaleLinear()
-    .domain(
-      d3.extent(data, function(d) {
-        return d.date;
-      })
-    )
-    .range([0, width]);
-  svg
-    .append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(10));
-
-  // Add Y axis
-  var y = d3
-    .scaleLinear()
-    .domain([
-      0,
-      d3.max(data, function(d) {
-        return +d.trump;
-      })
-    ])
-    .range([height, 0]);
-  svg.append("g").call(d3.axisLeft(y));
-
-  // color palette
-  var res = sumstat.map(function(d) {
-    return d.key;
-  }); // list of group names
-  var color = d3
-    .scaleOrdinal()
-    .domain(res)
-    .range(["#e41a1c", "#377eb8"]);
-
-  // Draw the line
-  svg
-    .selectAll(".line")
-    .data(sumstat)
-    .enter()
-    .append("path")
-    .attr("fill", "none")
-    .attr("stroke", function(d) {
-      return color(d.key);
-    })
-    .attr("stroke-width", 1.5)
-    .attr("d", function(d) {
-      return d3
-        .line()
-        .x(function(d) {
-          return x(d.year);
-        })
-        .y(function(d) {
-          return y(+d.trump);
-        })(d.values);
-    });
-});
 </script>
 
 <style scoped lang="scss">
@@ -132,4 +138,111 @@ div .title h1 {
   padding-top: 60px;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
 }
+
+section {
+  width: 80vw;
+}
+
+.panels {
+  display: flex;
+}
+
+.left-panel {
+  width: 39vw;
+    background: var(--gray-50);
+    border-radius: 5px;
+    height: min-content;
+}
+
+.right-top-panel{
+  width: 39vw;
+  height: 60vh;
+  background: var(--gray-50);
+  border-radius: 5px;
+margin-left: 2vw;
+}
+
+table {
+  color: var(--primary-text);
+  font-family: "Open Sans";
+  font-weight: 500;
+  padding: 20px;
+  border-radius: 5px;
+  border-spacing: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+table .state {
+  font-weight: 300;
+}
+
+td {
+  padding-right: 18px;
+  padding-left: 18px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+td.biden {
+  text-shadow: 4px 4px 20px var(--blue);
+}
+
+td.trump {
+  text-shadow: 2px 2px 20px var(--red);
+}
+
+td.total {
+  font-size: 18px;
+  background: var(--gray-75);
+  text-align: center;
+}
+
+.totals-row .biden {
+    background: var(--gray-75);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.totals-row .trump {
+    background: var(--gray-75);
+}
+
+.totals-row .total {
+  background: var(--gray);
+  border-bottom-right-radius: 5px;
+}
+
+.total.top {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+tr.totals-row td {
+  font-size: 18px;
+  border: none;
+  outline: none;
+}
+
+tr.totals-row td#total-row-label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#total-column-label {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+td.state {
+font-size: 16px;
+  text-align: left;
+}
+
+table tr.header th{
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
 </style>

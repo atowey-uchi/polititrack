@@ -47,6 +47,7 @@
                 <ul>
                   <li
                     v-for="(speed, index) in speeds"
+                    :class="{ active: selectedSpeed === speed }"
                     :key="speed.value"
                     :style="{
                       bottom: speedSelectActive
@@ -70,7 +71,11 @@
                 >
                   Show History
                 </button>
-                <button class="btn high-contrast" :class="{ active: highContrast}" @click="toggleHighContrast()">
+                <button
+                  class="btn high-contrast"
+                  :class="{ active: highContrast }"
+                  @click="toggleHighContrast()"
+                >
                   High-Contrast Colors
                 </button>
                 <button
@@ -150,15 +155,15 @@
             </div>
           </div>
         </div>
+        <div class="projections-data">
+          <div v-html="projectionsData"></div>
+        </div>
       </div>
       <div
         class="tooltip"
         v-html="tooltipData"
         @mouseout="hideTooltip($event)"
       ></div>
-      <div class="projections-data">
-        <div v-html="projectionsData"></div>
-      </div>
     </div>
   </div>
 </template>
@@ -288,7 +293,7 @@ export default {
     campaignStopsData: function() {
       let that = this;
       if (this.campaignStops.length) {
-        return this.campaignStops
+        let stops = this.campaignStops
           .filter(function(stop) {
             return stop.date == that.formatDateString(that.currentDate);
           })
@@ -315,6 +320,8 @@ export default {
                 r: 5.5,
                 cx: coords[0],
                 cy: coords[1],
+                x: coords[0],
+                y: coords[1],
                 strokeWidth: 2,
                 stroke: getComputedStyle(document.body).getPropertyValue(
                   "--primary-text"
@@ -322,6 +329,24 @@ export default {
               };
             }
           });
+        d3.forceSimulation(stops)
+          .force(
+            "collision",
+            d3
+              .forceCollide()
+              .radius(function(d) {
+                return d.r;
+              })
+              .strength(0.01)
+              .iterations(1)
+          )
+          .on("tick", function() {
+            for (let stop of stops) {
+              stop.cx = stop.x;
+              stop.cy = stop.y;
+            }
+          });
+        return stops;
       } else {
         return [];
       }
@@ -355,7 +380,7 @@ export default {
           }
         }
       }
-      return "";
+      return "<h4>Hover over a state to view projections.</h4>";
     },
     tooltipData() {
       if (this.hoveredStop) {
@@ -630,7 +655,7 @@ export default {
 }
 
 .map-left {
-  width: 100%;
+  width: 80%;
 }
 
 .map-section {
@@ -713,7 +738,6 @@ export default {
     cursor: pointer;
   }
 
-  .projections-data,
   .tooltip {
     position: absolute;
     text-align: left;
@@ -733,6 +757,12 @@ export default {
 
   .projections-data {
     background: linear-gradient(to right, var(--red), var(--blue));
+    text-align: left;
+    padding: 5px;
+    transition: 0.1s ease-in;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
+    border-radius: 8px;
+    border: 0px;
   }
 
   .projections-data div {
@@ -740,9 +770,12 @@ export default {
     padding: 5px;
     background: white;
     border-radius: 8px;
-    width: 160px;
+    width: calc(100% - 10px);
     height: 120px;
     opacity: 0.9;
+    // display: flex;
+    // align-content: center;
+    // justify-content: center;
   }
 
   .tooltip {
@@ -903,7 +936,6 @@ export default {
     left: 0;
     height: 20px;
     z-index: 10000;
-    border-radius: 5px;
   }
 
   .controls button.speed-btn .options ul {
@@ -928,7 +960,6 @@ export default {
 
   .controls button.speed-btn .options ul li:hover {
     background: var(--blue-60);
-    border-radius: 5px;
   }
 
   .controls button.speed-btn .options ul li button {
@@ -936,6 +967,10 @@ export default {
     font-family: "Open Sans";
     z-index: 10000;
     font-size: 14px;
+  }
+
+  .controls button.speed-btn .options .active {
+    background: var(--blue-75);
   }
 
   .controls button .settings-btn {
@@ -974,13 +1009,12 @@ export default {
     width: 150px;
   }
 
-  .settings-popover .btn:active {
+  .settings-popover .btn.active {
     background: var(--blue-75);
   }
 
   .settings-popover button:hover {
     background: var(--blue-60);
-    border-radius: 5px;
   }
 
   .settings-popover.active {
@@ -990,10 +1024,6 @@ export default {
   }
 
   .polling-key {
-    display: table-column;
-    position: absolute;
-    right: 20px;
-    top: 65%;
   }
 
   .legend {
@@ -1037,9 +1067,12 @@ export default {
 }
 
 .map-right {
-  display: block;
-  position: relative;
-  width: 15%;
+  padding: 15px;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
 }
 
 .stops-key #biden span {

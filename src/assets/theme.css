@@ -28,13 +28,16 @@
  --redstep3: #971A61;
  --redstep2: #C11d3d;
  --red: #EB2019;
-    --blue-75: rgba(23, 27, 34, 0);
-    --blue-60: rgba(19, 57, 135, 0.6);
+    --blue-75: rgba(19, 57, 135, 0.75);
+    --blue-60: rgba(19, 57, 135, 0.5);
     --blue-trans: rgba(13, 39, 145, 0.4);
     --red-trans: rgba(235, 32, 25, 0.4);
     --black-ish: #1a1a1a;
     --lighter-black: #535353;
     --gray: #787878;
+    --gray-50: rgba(105, 105, 105, 0.4);
+    --gray-75:  rgba(105, 105, 105, 0.75);
+    --gray-85:  rgba(105, 105, 105, 0.9);
     --light-gray: #ebebebe2;
     --opacity: .83;
 }
