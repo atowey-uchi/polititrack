@@ -94,7 +94,11 @@
       <Pie></Pie>
       </div>
       </div>
-      <div class="right-top-panel">
+      <div class="right-panel">
+      <div class="right-top">
+        </div>
+<div class="right-bottom">
+  </div>
         </div>
         </div>
   </section>
@@ -160,12 +164,21 @@ section {
     height: min-content;
 }
 
-.right-top-panel{
+.right-top{
   width: 39vw;
   height: 60vh;
   background: var(--gray-50);
   border-radius: 5px;
 margin-left: 2vw;
+}
+
+.right-bottom {
+  width: 39vw;
+  height: 30vh;
+  background: var(--gray-50);
+  border-radius: 5px;
+  margin-left: 2vw;
+  margin-top: 2vw;
 }
 
 table {
