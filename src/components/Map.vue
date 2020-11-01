@@ -678,6 +678,7 @@ export default {
     transition: opacity 0.2s;
     border-radius: 15px;
     margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .slider:hover {
     opacity: 1;
@@ -716,7 +717,8 @@ export default {
     align-content: center;
     position: relative;
     z-index: 1;
-  }
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
+     }
 
   #map svg path {
     position: relative;
@@ -784,6 +786,7 @@ export default {
     z-index: 10000;
     padding-top: 10px;
     padding-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .projections-data h2,

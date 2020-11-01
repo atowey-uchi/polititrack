@@ -52,6 +52,7 @@ body {
     --contact-back: var(--light-gray);
     overflow-x: hidden;
     max-width: 100%;
+    --panel-back: rgba(255, 255, 255, 0.6);
 }
 
 body.dark-mode {
@@ -62,6 +63,7 @@ body.dark-mode {
     --nav-text: white;
     --link-text: var(--lighter-blue);
     --contact-back: var(--lighter-black);
+    --panel-back: var(--gray-50);
 }
 
 
