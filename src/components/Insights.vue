@@ -100,8 +100,6 @@
         <div class="right-bottom"></div>
       </div>
     </div>
-      <div class="bottom">
-        </div>
   </section>
 </template>
 
@@ -159,6 +157,7 @@ section {
 }
 
 .left-panel {
+  position: relative;
   width: 39vw;
   background: var(--panel-back);
   border-radius: 5px;

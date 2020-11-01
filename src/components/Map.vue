@@ -718,7 +718,7 @@ export default {
     position: relative;
     z-index: 1;
     filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
-     }
+  }
 
   #map svg path {
     position: relative;
