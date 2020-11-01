@@ -5,7 +5,7 @@
     </div>
     <div class="title">
       <h1>
-        Campaign Insights
+        Insights
       </h1>
     </div>
     <div class="panels">
@@ -100,6 +100,8 @@
         <div class="right-bottom"></div>
       </div>
     </div>
+    <div class="bottom">
+      </div>
   </section>
 </template>
 

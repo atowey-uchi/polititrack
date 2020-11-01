@@ -197,6 +197,22 @@ export default {
   transition: all 1s ease;
 }
 
+button {
+  background: var(--gray-75);
+  color: var(--primary-text);
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 13px;
+  font-weight: 300;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+}
+
 .all-btn.active {
   background: var(--middle-purple);
 }

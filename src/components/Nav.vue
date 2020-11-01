@@ -11,6 +11,9 @@
               <a href="#map">Map</a>
             </li>
             <li>
+              <a href="#insights">Insights</a>
+              </li>
+            <li>
               <a href="#about">About</a>
             </li>
             <li>
