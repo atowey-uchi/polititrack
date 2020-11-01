@@ -91,6 +91,7 @@
         <td class="total">200</td>
         </tr>
     </table>
+      <Pie></Pie>
       </div>
       </div>
       <div class="right-top-panel">
@@ -100,8 +101,13 @@
 </template>
 
 <script>
+import Pie from "@/components/Pie.vue";
+
 export default {
-  name: "Insights"
+  name: "Insights",
+  components: {
+    Pie
+  }
 };
 </script>
 
