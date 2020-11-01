@@ -149,11 +149,11 @@
             <h3>Campaign Events</h3>
             <div class="dot-and-text" id="biden">
               <span></span>
-              <p>Biden Campaign Event</p>
+              <p>Biden Event</p>
             </div>
             <div class="dot-and-text" id="trump">
               <span></span>
-              <p>Trump Campaign Event</p>
+              <p>Trump Event</p>
             </div>
           </div>
         </div>
@@ -1025,6 +1025,12 @@ export default {
     display: flex;
   }
 
+  .keys h3 {
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 5px;
+  }
+
   .polling-key {
     width: 180px;
     height: 180px;
@@ -1038,7 +1044,7 @@ export default {
     list-style: none;
     width: 90%;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 5px;
   }
 
   .legend ul {
