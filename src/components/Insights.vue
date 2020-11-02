@@ -5,7 +5,7 @@
     </div>
     <div class="title">
       <h1>
-        Campaign Insights
+        Insights
       </h1>
     </div>
     <div class="panels">
@@ -16,9 +16,16 @@
         </div>
       </div>
       <div class="right-panel">
-        <div class="right-top"></div>
-        <div class="right-bottom"></div>
+        <div class="right-top">
+          <p>Line Graph of Stops over Time</p>
+        </div>
+        <div class="right-bottom">
+          <p>Bubble chart for Number of stops per person</p>
+        </div>
       </div>
+    </div>
+    <div class="bottom">
+      <p>Sunburst charts for state/person</p>
     </div>
   </section>
 </template>
@@ -42,7 +49,7 @@ export default {
   position: relative;
   padding-top: 40px;
   padding-bottom: 120px;
-  max-width: 1280px;
+  width: 1100px;
   margin: 0 auto;
 }
 
@@ -80,26 +87,44 @@ section {
 
 .left-panel {
   position: relative;
-  width: 39vw;
-  background: var(--gray-50);
+  width: 535px;
+  background: var(--panel-back);
   border-radius: 5px;
-  height: min-content;
+  height: 1000px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .right-top {
-  width: 39vw;
-  height: 60vh;
-  background: var(--gray-50);
+  width: 535px;
+  height: 485px;
+  background: var(--panel-back);
   border-radius: 5px;
-  margin-left: 2vw;
+  margin-left: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .right-bottom {
-  width: 39vw;
-  height: 30vh;
-  background: var(--gray-50);
+  width: 535px;
+  height: 485px;
+  background: var(--panel-back);
   border-radius: 5px;
-  margin-left: 2vw;
-  margin-top: 2vw;
+  margin-left: 30px;
+  margin-top: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bottom {
+  width: 1100px;
+  height: 500px;
+  background: var(--panel-back);
+  margin-top: 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h2 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
 }
 </style>

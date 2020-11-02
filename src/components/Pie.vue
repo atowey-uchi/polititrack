@@ -1,42 +1,44 @@
 <template>
   <div class="pie-chart">
-    <button
-      @click="
-        trumpOnly = false;
-        bidenOnly = false;
-      "
-      :class="{
-        active: !trumpOnly && !bidenOnly
-      }"
-      class="all-btn"
-    >
-      All
-    </button>
-    <button
-      @click="
-        trumpOnly = false;
-        bidenOnly = true;
-      "
-      :class="{
-        active: bidenOnly
-      }"
-      class="biden-only-btn"
-    >
-      Biden
-    </button>
-    <button
-      @click="
-        bidenOnly = false;
-        trumpOnly = true;
-      "
-      :class="{
-        active: trumpOnly
-      }"
-      class="trump-only-btn"
-    >
-      Trump
-    </button>
-
+    <div class="buttons">
+      <button
+        @click="
+          trumpOnly = false;
+          bidenOnly = false;
+        "
+        :class="{
+          active: !trumpOnly && !bidenOnly
+        }"
+        class="all-btn"
+      >
+        All
+      </button>
+      <button
+        @click="
+          trumpOnly = false;
+          bidenOnly = true;
+        "
+        :class="{
+          active: bidenOnly
+        }"
+        class="biden-only-btn"
+      >
+        Biden
+      </button>
+      <button
+        @click="
+          bidenOnly = false;
+          trumpOnly = true;
+        "
+        :class="{
+          active: trumpOnly
+        }"
+        class="trump-only-btn"
+      >
+        Trump
+      </button>
+    </div>
+    <!-- Create a div where the graph will take place -->
     <div id="pie">
       <svg :width="width" :height="height">
         <transition-group
@@ -276,6 +278,9 @@ export default {
 </script>
 
 <style>
+.pie-chart {
+}
+
 #pie {
   max-width: 100%;
 }
@@ -286,6 +291,28 @@ export default {
 
 #pie .slices path:hover {
   opacity: 0.75;
+}
+
+.buttons {
+  width: max-content;
+  text-align: center;
+  margin: 0 auto;
+}
+
+button {
+  background: var(--gray-75);
+  color: var(--primary-text);
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 4px 4px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
 }
 
 .all-btn.active {
