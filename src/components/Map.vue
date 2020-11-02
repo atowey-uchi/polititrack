@@ -158,7 +158,24 @@
           </div>
         </div>
         <div class="projections-data">
-          <div v-html="projectionsData"></div>
+          <div v-if="hoveredState">
+            <h2>{{ hoveredState }}</h2>
+            <h4>
+              <i>{{ projectionsData.chances }}</i>
+            </h4>
+            <h4 class="likely">Likelihood to win state:</h4>
+            <p>
+              <span class="blue--text" id="Biden">Biden: </span
+              >{{ projectionsData.biden }}%
+            </p>
+            <p>
+              <span class="red--text" id="Trump">Trump: </span
+              >{{ projectionsData.trump }}%
+            </p>
+          </div>
+          <div v-else>
+            <h4>Hover over a state to view projections.</h4>
+          </div>
         </div>
       </div>
       <div
@@ -355,7 +372,6 @@ export default {
     },
     projectionsData() {
       if (this.hoveredState) {
-        let data = "";
         for (let state of this.states) {
           if (this.hoveredState === state.properties.name) {
             const projections =
@@ -367,22 +383,17 @@ export default {
                   )
                 )
               ];
-            data += `<h2>${this.hoveredState}</h2>`;
-            data += `<h4><i>${this.namesRange(
-              parseFloat(projections.winstate_chal) * 100
-            )}</i></h4>`;
-            data += `<h4 class="likely">Likelihood to win state:</h4>`;
-            data += `<p><span class="blue--text" id="Biden">Biden:</span> ${(
-              parseFloat(projections.winstate_chal) * 100
-            ).toFixed(2)}%</p>`;
-            data += `<p><span class="red--text" id="Trump">Trump:</span> ${(
-              parseFloat(projections.winstate_inc) * 100
-            ).toFixed(2)}%</p>`;
-            return data;
+            return {
+              chances: this.namesRange(
+                parseFloat(projections.winstate_chal) * 100
+              ),
+              biden: (parseFloat(projections.winstate_chal) * 100).toFixed(2),
+              trump: (parseFloat(projections.winstate_inc) * 100).toFixed(2)
+            };
           }
         }
       }
-      return "<h4>Hover over a state to view projections.</h4>";
+      return {};
     },
     tooltipData() {
       if (this.hoveredStop) {
@@ -509,16 +520,8 @@ export default {
     },
     hideTooltip() {
       const tooltip = document.querySelector(".tooltip");
-      // const tooltipRect = tooltip.getBoundingClientRect();
-      // if (
-      //   event.clientX < tooltipRect.left ||
-      //   event.clientX > tooltipRect.right ||
-      //   event.clientY < tooltipRect.top ||
-      //   event.clientY > tooltipRect.bottom
-      // ) {
       tooltip.classList.remove("active");
       this.hoveredStop = "";
-      // }
     },
     fetchData() {
       d3.csv("/projections.csv").then(data => {
