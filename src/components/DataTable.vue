@@ -80,6 +80,7 @@ table {
   border-spacing: 0;
   width: 80%;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 table .state {
