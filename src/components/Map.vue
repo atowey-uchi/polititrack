@@ -1030,7 +1030,7 @@ export default {
   }
 
   .keys h3 {
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
     padding-top: 6px;
     padding-bottom: 6px;
@@ -1044,6 +1044,9 @@ export default {
     border-radius: 5px;
     margin-right: 20px;
     margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .legend {
@@ -1061,14 +1064,15 @@ export default {
     font-family: "Open Sans";
     font-size: 13px;
     color: var(--secondary-text);
-    display: inline-block;
+    display: flex;
+    align-items: center;
   }
   .legend span {
     border: 1px solid var(--tertiary-text);
     float: left;
     width: 12px;
     height: 12px;
-    margin: 2px;
+    margin-right: 5px;
   }
 
   .legend .solidD {
@@ -1099,6 +1103,9 @@ export default {
   background: var(--panel-back);
   border-radius: 5px;
   height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stops-key #biden span {
@@ -1121,14 +1128,15 @@ export default {
 
 .stops-key .dot-and-text {
   display: flex;
-  margin: 0 auto;
-  width: max-content;
-  justify-items: left;
+  max-width: 90%;
+  width: inherit;
+  align-items: center;
 }
 
 .stops-key div.dot-and-text p {
   font-size: 13px;
   font-weight: 400;
   font-family: "Open Sans";
+  margin-left: 5px;
 }
 </style>

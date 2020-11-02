@@ -76,7 +76,7 @@
             :key="state.id"
             :transform="state.transform"
           ></path>
-          <text :key="hoveredState + '-title'" text-anchor="middle" >
+          <text :key="hoveredState + '-title'" text-anchor="middle">
             {{ hoveredState }}
           </text>
         </transition-group>
