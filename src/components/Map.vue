@@ -158,22 +158,22 @@
           </div>
         </div>
         <div class="projections-data">
-          <div v-if="hoveredState">
-            <h2>{{ hoveredState }}</h2>
-            <h4>
+          <div class="predictions-text" v-if="hoveredState">
+            <h2 class="hovered-state">{{ hoveredState }}</h2>
+            <h4 class="chance-label">
               <i>{{ projectionsData.chances }}</i>
             </h4>
             <h4 class="likely">Likelihood to win state:</h4>
-            <p>
+            <p class="prediction">
               <span class="blue--text" id="Biden">Biden: </span
               >{{ projectionsData.biden }}%
             </p>
-            <p>
+            <p class="prediction">
               <span class="red--text" id="Trump">Trump: </span
               >{{ projectionsData.trump }}%
             </p>
           </div>
-          <div v-else>
+          <div class="not-active" v-else>
             <h4>Hover over a state to view projections.</h4>
           </div>
         </div>
@@ -835,13 +835,35 @@ export default {
     margin: 0;
   }
 
+  .projections-data .not-active h4 {
+font-style: italic;
+margin: 0 auto;
+text-align: center;
+padding-top: 60px;
+  }
+
   .projections-data h4.likely {
     color: var(--secondary-text);
-    padding-top: 10px;
     font-weight: 200;
     font-size: 14px;
     margin: 0;
+
   }
+
+  .projections-data h4.chance-label {
+    padding-top: 0;
+    padding-bottom: 20px;
+    margin: 0;
+
+  }
+
+  .projections-data .hovered-state {
+    padding-top: 10px;
+
+  }
+
+.projections-data .predictions-text {
+}
 
   .projections-data.active,
   .tooltip.active {
