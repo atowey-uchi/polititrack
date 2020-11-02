@@ -850,7 +850,7 @@ export default {
 
   .projections-data p #Biden,
   #Trump {
-    font-weight: bold;
+    font-weight: 400;
   }
 
   .controls {

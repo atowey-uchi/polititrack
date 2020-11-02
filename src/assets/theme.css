@@ -109,9 +109,11 @@ a {
 }
 
 .blue--text {
-    color: var(--blue);
+    color: var(--primary-text);
+text-shadow: 4px 4px 20px var(--blue);
 }
 
 .red--text {
-    color: var(--red);
+    color: var(--primary-text);
+    text-shadow: 2px 2px 20px var(--red);
 }
