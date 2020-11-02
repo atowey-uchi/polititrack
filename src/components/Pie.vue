@@ -94,23 +94,18 @@ export default {
     return {
       width: 350,
       height: 350,
-      margin: 10,
+      margin: 30,
       detailsTransform: "",
       totals: [],
       colors: [],
       trumpOnly: false,
       bidenOnly: false,
-      radius: 0,
       data: [],
       states: {},
       hoveredState: ""
     };
   },
   methods: {
-    setupChart() {
-      this.radius = Math.min(this.width, this.height) / 2 - this.margin;
-      this.data = this.data1;
-    },
     fetchColors() {
       this.colors.push(
         getComputedStyle(document.body).getPropertyValue("--red")
@@ -170,7 +165,7 @@ export default {
     updateSize() {
       let pie = document.querySelector(".pie-chart");
       if (!pie) return;
-      this.width = pie.parentElement.getBoundingClientRect().width;
+      this.width = pie.parentElement.getBoundingClientRect().width * 0.8;
       this.height = this.width;
     },
     stateTransform(d) {
@@ -189,7 +184,6 @@ export default {
   },
   created() {
     this.fetchColors();
-    this.setupChart();
     this.fetchTotalsData();
     this.fetchStates();
   },
@@ -200,6 +194,9 @@ export default {
     });
   },
   computed: {
+    radius() {
+      return Math.min(this.width, this.height) / 2 - this.margin;
+    },
     transform() {
       return `translate(${this.width / 2}, ${this.height / 2})`;
     },
@@ -278,11 +275,11 @@ export default {
 </script>
 
 <style>
-.pie-chart {
-}
-
 #pie {
   max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 #pie .slices path {
