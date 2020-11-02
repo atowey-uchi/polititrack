@@ -90,7 +90,7 @@ td {
   padding-right: 18px;
   padding-left: 18px;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 td.biden {
@@ -102,7 +102,7 @@ td.trump {
 }
 
 td.total {
-  font-size: 18px;
+  font-size: 16px;
   background: var(--gray-75);
   text-align: center;
 }
@@ -127,13 +127,13 @@ td.total {
 }
 
 tr.totals-row td {
-  font-size: 18px;
+  font-size: 16px;
   border: none;
   outline: none;
 }
 
 tr.totals-row td#total-row-label {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -142,19 +142,19 @@ tr.state-row:hover {
 }
 
 #total-column-label {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-align: center;
 }
 
 td.state {
-  font-size: 16px;
+  font-size: 14px;
   text-align: left;
 }
 
 table tr.header th {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
 }
 </style>

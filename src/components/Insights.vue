@@ -90,13 +90,13 @@ section {
   width: 535px;
   background: var(--panel-back);
   border-radius: 5px;
-  height: 1000px;
+  height: 1100px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .right-top {
   width: 535px;
-  height: 485px;
+  height: 535px;
   background: var(--panel-back);
   border-radius: 5px;
   margin-left: 30px;
@@ -105,7 +105,7 @@ section {
 
 .right-bottom {
   width: 535px;
-  height: 485px;
+  height: 535px;
   background: var(--panel-back);
   border-radius: 5px;
   margin-left: 30px;

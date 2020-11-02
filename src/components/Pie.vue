@@ -92,9 +92,9 @@ export default {
   name: "Pie",
   data() {
     return {
-      width: 450,
-      height: 450,
-      margin: 40,
+      width: 350,
+      height: 350,
+      margin: 10,
       detailsTransform: "",
       totals: [],
       colors: [],
@@ -303,7 +303,7 @@ button {
   background: var(--gray-75);
   color: var(--primary-text);
   border: none;
-  padding: 8px 16px;
+  padding: 8px 8px;
   text-align: center;
   font-family: "Open Sans";
   font-size: 13px;
