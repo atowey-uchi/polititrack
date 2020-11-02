@@ -76,8 +76,35 @@
             :key="state.id"
             :transform="state.transform"
           ></path>
-          <text :key="hoveredState + '-title'" text-anchor="middle">
+          <text
+            :key="hoveredState + '-title'"
+            text-anchor="middle"
+            font-family="Open Sans"
+            font-size="24px"
+            :fill="mainColor"
+          >
             {{ hoveredState }}
+          </text>
+          <text
+            key="visits"
+            text-anchor="middle"
+            dy="20"
+            :fill="mainColor"
+            font-size="14px"
+            font-family="Open Sans"
+          >
+            Visited {{ numberOfEvents }}
+            {{ numberOfEvents == 1 ? "time" : "times" }}
+          </text>
+          <text
+            key="visits-percentage"
+            text-anchor="middle"
+            dy="40"
+            :fill="mainColor"
+            font-size="14px"
+            font-family="Open Sans"
+          >
+            {{ eventsPercentage }}% of all events
           </text>
         </transition-group>
       </svg>
@@ -174,7 +201,7 @@ export default {
         dy = bounds[1][1] - bounds[0][1],
         x = (bounds[0][0] + bounds[1][0]) / 2,
         y = (bounds[0][1] + bounds[1][1]) / 2,
-        scale = 0.25 / Math.max(dx / this.width, dy / this.height),
+        scale = 0.3 / Math.max(dx / this.width, dy / this.height),
         translate = [-scale * x, -scale * y];
       return `translate(${translate})scale(${scale})`;
     },
@@ -194,6 +221,39 @@ export default {
     });
   },
   computed: {
+    activeKey() {
+      if (this.trumpOnly) {
+        return "Trump";
+      } else if (this.bidenOnly) {
+        return "Biden";
+      } else {
+        return "Total";
+      }
+    },
+    eventsPercentage() {
+      return (
+        (this.totals.filter(state => state["State"] == this.hoveredState)[0][
+          this.activeKey
+        ] /
+          this.totals
+            .map(d => d[this.activeKey])
+            .reduce((total, current) => {
+              return total + current;
+            }, 0)) *
+        100
+      ).toFixed(1);
+    },
+    numberOfEvents() {
+      return this.totals.filter(
+        state => state["State"] == this.hoveredState
+      )[0][this.activeKey];
+    },
+    highestTotal() {
+      return this.stateTotals[this.stateTotals.length - 1];
+    },
+    mainColor() {
+      return getComputedStyle(document.body).getPropertyValue("--primary-text");
+    },
     radius() {
       return Math.min(this.width, this.height) / 2 - this.margin;
     },
@@ -201,16 +261,31 @@ export default {
       return `translate(${this.width / 2}, ${this.height / 2})`;
     },
     colorRange() {
-      return d3
-        .scaleOrdinal()
-        .domain(this.stateList)
-        .range(this.colors);
+      if (this.trumpOnly) {
+        return d3
+          .scaleSequential(d3.interpolate("#f05752", "#eb2019")) // reds
+          .domain([1, this.highestTotal]);
+      } else if (this.bidenOnly) {
+        return d3
+          .scaleSequential(d3.interpolate("#143ce1", "#0d2691")) // blues
+          .domain([1, this.highestTotal]);
+      } else {
+        return d3
+          .scaleSequential(d3.interpolate("#c869e4", "#360c43")) // purples
+          .domain([1, this.highestTotal]);
+      }
     },
     stateList() {
       return this.totals
         .filter(total => total["State"] != "Total")
         .map(total => total["State"])
         .sort();
+    },
+    stateTotals() {
+      return this.totals
+        .filter(total => total["State"] != "Total")
+        .map(total => total[this.activeKey])
+        .sort((a, b) => a - b);
     },
     slices() {
       if (this.totals && this.colors) {
@@ -235,7 +310,7 @@ export default {
               .outerRadius(this.radius)
               .startAngle(d.startAngle)
               .endAngle(d.endAngle)(),
-            fill: this.colorRange(d.data.State),
+            fill: this.colorRange(d.data.Total),
             stroke: "white",
             style: {
               strokeWidth: "2px"
@@ -260,7 +335,7 @@ export default {
           id: stateData?.properties.name,
           d: this.path(stateData),
           style: {
-            fill: this.colorRange(stateData.properties.name)
+            fill: this.colorRange(this.numberOfEvents)
           },
           transform: this.stateTransform(stateData)
         };
@@ -288,6 +363,10 @@ export default {
 
 #pie .slices path:hover {
   opacity: 0.75;
+}
+
+#pie text {
+  text-shadow: 4px 4px 8px black;
 }
 
 .buttons {
