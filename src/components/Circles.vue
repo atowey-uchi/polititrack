@@ -5,8 +5,6 @@
 <script>
 import * as d3 from "d3";
 
-src = "https://d3js.org/d3.v4.js";
-
 export default {
   name: "Line",
   data() {
@@ -17,8 +15,9 @@ export default {
   },
   methods: {
     init() {
-      const svg = d3.select("#line-graph");
-      .append("svg")
+      const svg = d3
+        .select("#line-graph")
+        .append("svg")
         .attr("width")
         .attr("height")
         .append("g");

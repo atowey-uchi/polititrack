@@ -20,7 +20,7 @@
           <p>Line Graph of Stops over Time</p>
         </div>
         <div class="right-bottom">
-          <p>Bubble chart for Number of stops per person</p>
+          <BubbleChart></BubbleChart>
         </div>
       </div>
     </div>
@@ -31,12 +31,14 @@
 </template>
 
 <script>
+import BubbleChart from "@/components/BubbleChart.vue";
 import DataTable from "@/components/DataTable.vue";
 import Pie from "@/components/Pie.vue";
 
 export default {
   name: "Insights",
   components: {
+    BubbleChart,
     DataTable,
     Pie
   }
