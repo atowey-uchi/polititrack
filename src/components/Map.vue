@@ -136,13 +136,55 @@
           <div class="polling-key">
             <h3>Polling Data</h3>
             <ul class="legend">
-              <li><span class="solidD"></span> Solid Biden</li>
-              <li><span class="likelyD"></span>Likely Biden</li>
-              <li><span class="leanD"></span>Lean Biden</li>
-              <li><span class="tossup"></span>Toss Up</li>
-              <li><span class="leanR"></span>Lean Trump</li>
-              <li><span class="likelyR"></span>Likely Trump</li>
-              <li><span class="solidR"></span>Solid Trump</li>
+              <li>
+                <span
+                  class="solidD"
+                  :class="{ highContrast: highContrast }"
+                ></span>
+                Solid Biden
+              </li>
+              <li>
+                <span
+                  class="likelyD"
+                  :class="{ highContrast: highContrast }"
+                ></span
+                >Likely Biden
+              </li>
+              <li>
+                <span
+                  class="leanD"
+                  :class="{ highContrast: highContrast }"
+                ></span
+                >Lean Biden
+              </li>
+              <li>
+                <span
+                  class="tossup"
+                  :class="{ highContrast: highContrast }"
+                ></span
+                >Toss Up
+              </li>
+              <li>
+                <span
+                  class="leanR"
+                  :class="{ highContrast: highContrast }"
+                ></span
+                >Lean Trump
+              </li>
+              <li>
+                <span
+                  class="likelyR"
+                  :class="{ highContrast: highContrast }"
+                ></span
+                >Likely Trump
+              </li>
+              <li>
+                <span
+                  class="solidR"
+                  :class="{ highContrast: highContrast }"
+                ></span
+                >Solid Trump
+              </li>
             </ul>
           </div>
           <div class="stops-key">
@@ -318,7 +360,12 @@ export default {
           })
           .filter(function(stop) {
             return (
-              !that.candidatesOnly || stop.who == "Biden" || stop.who == "Trump"
+              !that.candidatesOnly ||
+              stop.who == "Joe Biden" ||
+              stop.who == "Joe Biden, Jill Biden" ||
+              stop.who == "Joe Biden, Kamala Harris" ||
+              stop.who == "Donald Trump" ||
+              stop.who == "Donald Trump, Mike Pence"
             );
           })
           .map(function(d) {
@@ -636,7 +683,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .how-to {
   position: relative;
   width: 100%;
@@ -686,7 +733,8 @@ export default {
     border-radius: 15px;
     margin: 0 auto;
     margin-top: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+      0 10px 20px 0 rgba(0, 0, 0, 0.08);
   }
   .slider:hover {
     opacity: 1;
@@ -771,7 +819,8 @@ export default {
     z-index: 10000;
     padding-top: 10px;
     padding-bottom: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+      0 10px 20px 0 rgba(0, 0, 0, 0.08);
   }
 
   .tooltip h2,
@@ -827,6 +876,8 @@ export default {
     width: 380px;
     height: 180px;
     opacity: 0.9;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+      0 10px 20px 0 rgba(0, 0, 0, 0.08);
   }
 
   .projections-data h2,
@@ -836,10 +887,10 @@ export default {
   }
 
   .projections-data .not-active h4 {
-font-style: italic;
-margin: 0 auto;
-text-align: center;
-padding-top: 60px;
+    font-style: italic;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 60px;
   }
 
   .projections-data h4.likely {
@@ -847,23 +898,20 @@ padding-top: 60px;
     font-weight: 200;
     font-size: 14px;
     margin: 0;
-
   }
 
   .projections-data h4.chance-label {
     padding-top: 0;
     padding-bottom: 20px;
     margin: 0;
-
   }
 
   .projections-data .hovered-state {
     padding-top: 10px;
-
   }
 
-.projections-data .predictions-text {
-}
+  .projections-data .predictions-text {
+  }
 
   .projections-data.active,
   .tooltip.active {
@@ -1069,6 +1117,8 @@ padding-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+      0 10px 20px 0 rgba(0, 0, 0, 0.08);
   }
 
   .legend {
@@ -1097,24 +1147,59 @@ padding-top: 60px;
     margin-right: 5px;
   }
 
+  // "#EB2019",
+  //           "#ff7c62",
+  //           "#ffbfae",
+  //           "#ededed",
+
   .legend .solidD {
     background-color: var(--blue);
   }
+
+  .legend .solidD.highContrast {
+    background-color: var(--blue);
+  }
+
   .legend .likelyD {
     background-color: var(--bluestep2);
   }
+
+  .legend .likelyD.highContrast {
+    background-color: #7268b6;
+  }
+
   .legend .leanD {
     background-color: var(--bluestep3);
   }
+
+  .legend .leanD.highContrast {
+    background-color: #bab1db;
+  }
+
   .legend .tossup {
     background-color: var(--middle-purple);
   }
+
+  .legend .tossup.highContrast {
+    background-color: #ededed;
+  }
+
   .legend .leanR {
     background-color: var(--redstep3);
   }
+
+  .legend .leanR.highContrast {
+    background-color: #ffbfae;
+  }
+
   .legend .likelyR {
     background-color: var(--redstep2);
   }
+
+  .legend .likelyR.highContrast {
+    background-color: #ff7c62;
+  }
+
   .legend .solidR {
     background-color: var(--red);
   }
@@ -1128,6 +1213,8 @@ padding-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+    0 10px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 .stops-key #biden span {

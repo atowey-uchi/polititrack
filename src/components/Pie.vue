@@ -38,7 +38,6 @@
         Trump
       </button>
     </div>
-    <!-- Create a div where the graph will take place -->
     <div id="pie">
       <svg :width="width" :height="height">
         <transition-group
@@ -263,15 +262,15 @@ export default {
     colorRange() {
       if (this.trumpOnly) {
         return d3
-          .scaleSequential(d3.interpolate("#f05752", "#eb2019")) // reds
+          .scaleSequential(d3.interpolate("#f9c3c1", "#eb2019")) // reds
           .domain([1, this.highestTotal]);
       } else if (this.bidenOnly) {
         return d3
-          .scaleSequential(d3.interpolate("#143ce1", "#0d2691")) // blues
+          .scaleSequential(d3.interpolate("#a8b7f7", "#0d2691")) // blues
           .domain([1, this.highestTotal]);
       } else {
         return d3
-          .scaleSequential(d3.interpolate("#c869e4", "#360c43")) // purples
+          .scaleSequential(d3.interpolate("#ebcbf5", "#360c43")) // purples
           .domain([1, this.highestTotal]);
       }
     },

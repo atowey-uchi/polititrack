@@ -91,7 +91,8 @@ section {
   background: var(--panel-back);
   border-radius: 5px;
   height: 1100px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+    0 10px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 .right-top {
@@ -100,7 +101,8 @@ section {
   background: var(--panel-back);
   border-radius: 5px;
   margin-left: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+    0 10px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 .right-bottom {
@@ -110,7 +112,8 @@ section {
   border-radius: 5px;
   margin-left: 30px;
   margin-top: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+    0 10px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 .bottom {
@@ -119,7 +122,8 @@ section {
   background: var(--panel-back);
   margin-top: 30px;
   border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
+    0 10px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 h2 {
