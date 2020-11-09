@@ -250,6 +250,7 @@ export default {
       thresholds: [10, 25, 40, 60, 75, 90],
       currentDate: "",
       startDate: "June 1, 2020 00:00:00",
+      endDate: "November 3, 2020 00:00:00",
       chart: "",
       colorRange: "",
       namesRange: "",
@@ -624,13 +625,13 @@ export default {
     },
     setupSlider() {
       const slider = document.getElementById("date-slider");
-      let today = new Date();
-      today.setHours(0, 0, 0, 0);
+      let electionDay = new Date(this.endDate);
+      electionDay.setHours(0, 0, 0, 0);
       slider.setAttribute("min", 0);
-      this.dayMax = this.daysBetween(new Date(this.startDate), today);
+      this.dayMax = this.daysBetween(new Date(this.startDate), electionDay);
     },
     getNextDay(date) {
-      const endDate = new Date();
+      const endDate = new Date(this.endDate);
       endDate.setHours(0, 0, 0, 0);
       date.setDate(date.getDate() + 1);
       if (date >= endDate) {
