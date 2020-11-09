@@ -684,7 +684,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .how-to {
   position: relative;
   width: 100%;
@@ -803,7 +803,7 @@ export default {
     width: 170px;
     height: 130px;
     padding: 5px;
-    font: 14px;
+    font-size: 14px;
     background: var(--primary-text);
     opacity: 0.9;
     border: 0px;
