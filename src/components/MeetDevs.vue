@@ -87,7 +87,7 @@
             <span>Marcus Schimizzi</span> is a software engineer by trade and a
             policy wonk by passion. He graduated from the University of Notre
             Dame in 2019, where he majored in Computer Science. <br />
-            &#8594; <a href="#">Check out his website!</a>
+            &#8594; <a href="https://schimizzi.io">Check out his website!</a>
           </p>
         </div>
         <div class="developer-image">

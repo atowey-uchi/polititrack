@@ -56,7 +56,7 @@ export default {
       width: 350,
       height: 350,
       campaignStops: {},
-      scaleFactor: 2,
+      scaleFactor: 1.6,
       totals: [],
       circles: [],
       dems: new Set(),
@@ -182,8 +182,6 @@ export default {
   mounted() {
     this.updateSize();
 
-    // this.simulation.force("x").x(() => this.center[0]);
-    // this.simulation.force("y").y(() => this.center[1]);
     this.simulation
       .force("center")
       .x(this.width * 0.5)
