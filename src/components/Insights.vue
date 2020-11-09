@@ -20,6 +20,7 @@
           <p>Line Graph of Stops over Time</p>
         </div>
         <div class="right-bottom">
+          <h2>Events By Person</h2>
           <BubbleChart></BubbleChart>
         </div>
       </div>

@@ -208,5 +208,6 @@ circle:hover {
 
 text {
   user-select: none;
+  fill: white;
 }
 </style>
