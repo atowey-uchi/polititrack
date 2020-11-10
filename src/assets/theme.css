@@ -22,16 +22,14 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 :root {
-    /* gradient
- 
- /*  */
- --blue: #0D2791;
- --bluestep2: #2D228D;
- --bluestep3: #4D1D89;
- --middle-purple: #6D1886;
- --redstep3: #971A61;
- --redstep2: #C11d3d;
- --red: #EB2019;
+    /* gradient */
+    --blue: #0D2791;
+    --bluestep2: #2D228D;
+    --bluestep3: #4D1D89;
+    --middle-purple: #6D1886;
+    --redstep3: #971A61;
+    --redstep2: #C11d3d;
+    --red: #EB2019;
     --blue-75: rgba(19, 57, 135, 0.75);
     --blue-60: rgba(19, 57, 135, 0.5);
     --blue-trans: rgba(13, 39, 145, 0.4);
@@ -69,7 +67,6 @@ body.dark-mode {
     --contact-back: var(--lighter-black);
     --panel-back: var(--gray-50);
 }
-
 
 html, body {
     margin: 0;

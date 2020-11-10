@@ -1,15 +1,11 @@
 <template>
-  <div class="line-chart">
-
-  </div>
+  <div class="line-chart"></div>
 </template>
 
 <script>
 export default {
   name: "LineChart"
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
