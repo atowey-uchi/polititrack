@@ -223,7 +223,7 @@
       <div
         class="tooltip"
         v-html="tooltipData"
-        @mouseout="hideTooltip($event)"
+        @mouseleave="hideTooltip($event)"
       ></div>
     </div>
   </div>
@@ -291,7 +291,9 @@ export default {
       selectedSpeed: "",
       speedSelectActive: false,
       highContrast: false,
-      candidatesOnly: false
+      candidatesOnly: false,
+      tooltipInterval: "",
+      pauseDelay: 500
     };
   },
   created() {
@@ -470,10 +472,13 @@ export default {
     }
   },
   methods: {
+    isElementHovered(x, y, element) {
+      const box = element.getBoundingClientRect();
+      return y >= box.top && y <= box.bottom && x >= box.left && x <= box.right;
+    },
     toggleCandidatesOnly() {
       this.candidatesOnly = !this.candidatesOnly;
     },
-
     toggleSettings() {
       let popover = document.querySelector(".settings-popover");
       popover.classList.toggle("active");
@@ -559,6 +564,7 @@ export default {
       this.hoveredState = "";
     },
     showTooltip(event) {
+      clearInterval(this.tooltipInterval);
       const tooltip = document.querySelector(".tooltip");
       tooltip.classList.add("active");
       tooltip.style.left =
@@ -566,10 +572,15 @@ export default {
       tooltip.style.top = event.clientY + "px";
       this.hoveredStop = event.target.id;
     },
-    hideTooltip() {
+    hideTooltip(event) {
+      clearInterval(this.tooltipInterval);
       const tooltip = document.querySelector(".tooltip");
-      tooltip.classList.remove("active");
-      this.hoveredStop = "";
+      if (!this.isElementHovered(event.clientX, event.clientY, tooltip)) {
+        this.tooltipInterval = setTimeout(() => {
+          tooltip.classList.remove("active");
+          this.hoveredStop = "";
+        }, this.pauseDelay);
+      }
     },
     fetchData() {
       d3.csv("/projections.csv").then(data => {
@@ -808,7 +819,6 @@ export default {
     opacity: 0.9;
     border: 0px;
     border-radius: 8px;
-    pointer-events: none;
     display: none;
     transition: 0.1s ease-in;
     filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.8));
