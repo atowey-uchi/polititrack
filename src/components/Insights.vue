@@ -17,7 +17,7 @@
       </div>
       <div class="right-panel">
         <div class="right-top">
-          <p>Line Graph of Stops over Time</p>
+          <h2>Events Over Time</h2>
         </div>
         <div class="right-bottom">
           <h2>Events By Person</h2>
