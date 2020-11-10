@@ -44,14 +44,14 @@
             <div class="link-name">Map</div>
           </a>
         </li>
-        <!-- <li>
+        <li>
           <a href="#insights">
             <span>
               <font-awesome-icon icon="chart-line" />
             </span>
             <div class="link-name">Insights</div>
           </a>
-        </li> -->
+        </li>
         <li>
           <a href="#about">
             <span>
@@ -301,14 +301,20 @@ nav .topnav .links ul li a {
 }
 
 .sidenav li:nth-child(3) span {
-  background: #7b3b6c;
+  background: #98375f;
 }
 
+// Middle color: #7b3b6c
+
 .sidenav li:nth-child(4) span {
-  background: #424385;
+  background: #5f3f79;
 }
 
 .sidenav li:nth-child(5) span {
+  background: #424385;
+}
+
+.sidenav li:nth-child(6) span {
   background: #094c9e;
 }
 
@@ -321,14 +327,18 @@ nav .topnav .links ul li a {
 }
 
 .sidenav li:nth-child(3) .link-name {
-  background: #7b3b6c;
+  background: #98375f;
 }
 
 .sidenav li:nth-child(4) .link-name {
-  background: #424385;
+  background: #5f3f79;
 }
 
 .sidenav li:nth-child(5) .link-name {
+  background: #424385;
+}
+
+.sidenav li:nth-child(6) .link-name {
   background: #094c9e;
 }
 
