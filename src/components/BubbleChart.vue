@@ -199,13 +199,19 @@ export default {
 </script>
 
 <style>
+
+circle {
+  opacity: .9;
+}
+
 circle:hover {
   opacity: 0.75;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 text {
   user-select: none;
   fill: white;
+  opacity: .75;
 }
 </style>

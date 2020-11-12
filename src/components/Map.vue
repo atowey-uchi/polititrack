@@ -813,7 +813,6 @@ export default {
     text-align: left;
     width: 170px;
     height: 130px;
-    padding: 5px;
     font-size: 14px;
     background: var(--primary-text);
     opacity: 0.9;
@@ -881,7 +880,6 @@ export default {
 
   .projections-data div {
     position: relative;
-    padding: 5px;
     background: var(--panel-back);
     border-radius: 5px;
     width: 380px;
@@ -891,10 +889,16 @@ export default {
       0 10px 20px 0 rgba(0, 0, 0, 0.08);
   }
 
+
+.projections-data .hovered-state {
+  padding-top: 20px;
+}
+
   .projections-data h2,
   .projections-data p {
     color: var(--primary-text);
     margin: 0;
+    padding-left: 20px;
   }
 
   .projections-data .not-active h4 {
@@ -909,12 +913,14 @@ export default {
     font-weight: 200;
     font-size: 14px;
     margin: 0;
+    padding-left: 20px;
   }
 
   .projections-data h4.chance-label {
     padding-top: 0;
     padding-bottom: 20px;
     margin: 0;
+    padding-left: 20px;
   }
 
   .projections-data .hovered-state {
