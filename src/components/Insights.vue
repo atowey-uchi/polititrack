@@ -18,6 +18,7 @@
       <div class="right-panel">
         <div class="right-top">
           <h2>Events Over Time</h2>
+          <LineChart></LineChart>
         </div>
         <div class="right-bottom">
           <h2>Events By Person</h2>
@@ -34,6 +35,7 @@
 <script>
 import BubbleChart from "@/components/BubbleChart.vue";
 import DataTable from "@/components/DataTable.vue";
+import LineChart from "@/components/LineChart.vue";
 import Pie from "@/components/Pie.vue";
 
 export default {
@@ -41,6 +43,7 @@ export default {
   components: {
     BubbleChart,
     DataTable,
+    LineChart,
     Pie
   }
 };
