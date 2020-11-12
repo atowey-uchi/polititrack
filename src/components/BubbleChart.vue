@@ -213,5 +213,6 @@ text {
   user-select: none;
   fill: white;
   opacity: .75;
+  font-weight: 200;
 }
 </style>
