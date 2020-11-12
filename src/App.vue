@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Loading />
+    <Loading v-show="!loaded" />
     <Nav />
     <Header />
     <Map />
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Loading from "./components/Loading.vue"
+import Loading from "./components/Loading.vue";
 import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import Map from "./components/Map.vue";
@@ -36,6 +36,11 @@ export default {
     Contact,
     Footer
   },
+  data() {
+    return {
+      loaded: false
+    };
+  },
   methods: {
     activateAnimation() {
       const bodyTop = document.querySelector("body").getBoundingClientRect()
@@ -57,6 +62,9 @@ export default {
   mounted() {
     window.addEventListener("scroll", this.activateAnimation);
     this.activateAnimation();
+    setTimeout(() => {
+      this.loaded = true;
+    }, 300);
   },
   destroyed() {
     window.removeEventListener("scroll", this.activateAnimation);
