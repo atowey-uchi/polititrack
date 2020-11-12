@@ -32,6 +32,29 @@ export default {
     MeetDevs,
     Contact,
     Footer
+  },
+    methods: {
+    activateAnimation() {
+      const bodyTop = document.querySelector("body").getBoundingClientRect()
+        .top;
+      const entries = document.querySelectorAll(".fade-up-and-in");
+      const windowScroll = window.scrollY + window.innerHeight;
+      entries.forEach(entry => {
+        const top = entry.getBoundingClientRect().top - bodyTop;
+        if (windowScroll >= top) {
+          entry.classList.add("active");
+        } else {
+          entry.classList.remove("active");
+        }
+      });
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.activateAnimation);
+    this.activateAnimation();
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.activateAnimation);
   }
 };
 </script>

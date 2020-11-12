@@ -1,5 +1,5 @@
 <template>
-  <section class="about" id="about">
+  <section class="about fade-up-and-in" id="about">
     <div class="gradient-swoosh">
       <img src="@/assets/images/brush1.svg" />
     </div>

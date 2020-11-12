@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative;" class="map-section">
+  <div style="position: relative;" class="map-section fade-up-and-in">
     <div class="how-to">
       <p>
         <b>&#9432;</b>
@@ -708,6 +708,8 @@ export default {
   text-align: center;
   width: 55%;
   color: var(--secondary-text);
+  font-weight: 200;
+  font-size: 16px;
 }
 
 .main {
@@ -846,13 +848,13 @@ export default {
 
   .tooltip h2 {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 300;
     font-family: "Poppins";
   }
 
   .tooltip h3 {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 200;
     font-family: "Bai Jamjuree";
   }
 
@@ -861,7 +863,7 @@ export default {
     margin: 0;
     font-size: 16px;
     font-family: "Open Sans";
-    font-weight: 300;
+    font-weight: 200;
     font-style: italic;
     padding-bottom: 10px;
   }
@@ -873,7 +875,7 @@ export default {
   .tooltip a {
     color: var(--blue);
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 300;
     padding-bottom: 10px;
     padding-top: 10px;
   }
@@ -937,7 +939,7 @@ export default {
 
   .projections-data p #Biden,
   #Trump {
-    font-weight: 400;
+    font-weight: 300;
   }
 
   .controls {
@@ -989,7 +991,7 @@ export default {
     position: relative;
     color: var(--primary-text);
     font-family: "Open Sans";
-    font-weight: 400;
+    font-weight: 300;
     padding-right: 20px;
     z-index: 1000;
     border-radius: 5px;
@@ -1155,6 +1157,7 @@ export default {
     color: var(--secondary-text);
     display: flex;
     align-items: center;
+    font-weight: 200;
   }
   .legend span {
     border: 1px solid var(--tertiary-text);
@@ -1261,7 +1264,7 @@ export default {
 
 .stops-key div.dot-and-text p {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 300;
   font-family: "Open Sans";
   margin-left: 5px;
 }

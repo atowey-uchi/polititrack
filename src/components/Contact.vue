@@ -1,5 +1,5 @@
 <template>
-  <section class="contact" id="contact">
+  <section class="contact fade-up-and-in" id="contact">
     <h1>Contact Us!</h1>
 
     <section class="contactform" v-if="!messageSent">

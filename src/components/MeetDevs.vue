@@ -1,5 +1,5 @@
 <template>
-  <section class="meet-devs" id="developers">
+  <section class="meet-devs fade-up-and-in" id="developers">
     <!-- <div class="gradients">
       <img src="@/assets/images/brush3color.svg" id="topbar" />
       <img src="@/assets/images/brush3color2.svg" id="secondbar" />

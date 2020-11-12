@@ -92,14 +92,14 @@ h1 {
 
 h2, h3, h4, h5, h6 {
     font-family: "Bai Jamjuree", sans-serif;
-    font-weight: 300;
+    font-weight: 200;
     color: var(--primary-text);
 }
 
 p, a {
     font-family:"Open Sans", sans-serif;
     color: var(--secondary-text);
-    font-weight: 100;
+    font-weight: 200;
     font-size: 16px;
     margin: 0;
     text-decoration: none;
@@ -117,4 +117,27 @@ text-shadow: 4px 4px 20px var(--blue);
 .red--text {
     color: var(--primary-text);
     text-shadow: 2px 2px 20px var(--red);
+}
+.fade-up-and-in {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.fade-up-and-in.active {
+    animation-name: fadeUpAndIn;
+    animation-duration: 0.9s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeUpAndIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    } 
+   
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
 }

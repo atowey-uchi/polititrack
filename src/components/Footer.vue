@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="fade-up-and-in">
     <div id="container">
       <div id="columns">
         <div id="block"></div>
