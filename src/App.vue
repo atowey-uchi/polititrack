@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Loading />
     <Nav />
     <Header />
     <Map />
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import Loading from "./components/Loading.vue"
 import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import Map from "./components/Map.vue";
@@ -24,6 +26,7 @@ import Footer from "./components/Footer.vue";
 export default {
   name: "App",
   components: {
+    Loading,
     Header,
     Nav,
     Map,
