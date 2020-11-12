@@ -24,7 +24,9 @@
           </ul>
         </div>
         <div id="logo">
+          <a href="#">
           <h1><span>Politi</span>Track</h1>
+          </a>
         </div>
       </div>
       <div id="copyright">

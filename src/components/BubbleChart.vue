@@ -83,7 +83,6 @@ export default {
         .restart();
     },
     circles() {
-      console.warn("Circles have changed!");
       this.simulation.nodes(this.circles).restart();
     }
   },
@@ -168,7 +167,6 @@ export default {
           )
         };
       });
-      console.log(this.circles);
     }
   },
   computed: {

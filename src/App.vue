@@ -52,9 +52,9 @@ export default {
       entries.forEach(entry => {
         const top = entry.getBoundingClientRect().top - bodyTop;
         if (windowScroll >= top) {
-          entry.classList.add("active");
+          entry.classList.add("in-view");
         } else {
-          entry.classList.remove("active");
+          entry.classList.remove("in-view");
         }
       });
     }
@@ -64,7 +64,7 @@ export default {
     this.activateAnimation();
     setTimeout(() => {
       this.loaded = true;
-    }, 300);
+    }, 600);
   },
   destroyed() {
     window.removeEventListener("scroll", this.activateAnimation);
