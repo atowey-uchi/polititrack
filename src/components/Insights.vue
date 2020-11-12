@@ -9,24 +9,24 @@
       </h1>
     </div>
     <div class="panels">
-      <div class="left-panel">
+      <div class="left-panel pop-in">
         <div class="where">
           <DataTable></DataTable>
           <Pie></Pie>
         </div>
       </div>
       <div class="right-panel">
-        <div class="right-top">
+        <div class="right-top pop-in">
           <h2>Events Over Time</h2>
           <LineChart></LineChart>
         </div>
-        <div class="right-bottom">
+        <div class="right-bottom pop-in">
           <h2>Events By Person</h2>
           <BubbleChart></BubbleChart>
         </div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom pop-in">
       <p>Sunburst charts for state/person</p>
     </div>
   </section>
@@ -109,6 +109,7 @@ section {
   margin-left: 30px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
     0 10px 20px 0 rgba(0, 0, 0, 0.08);
+  animation-delay: 0.3s;
 }
 
 .right-bottom {

@@ -54,7 +54,7 @@
     <div class="title">
       <h1>Meet the Developers</h1>
     </div>
-    <div class="developer allison">
+    <div class="developer allison slide-in-right">
       <div class="gradient">
         <img src="@/assets/images/brush3color.svg" id="topbar" />
       </div>
@@ -77,7 +77,7 @@
         </div>
       </div>
     </div>
-    <div class="developer marcus">
+    <div class="developer marcus slide-in-left">
       <div class="gradient">
         <img src="@/assets/images/brush3color.svg" id="topbar" />
       </div>
@@ -279,5 +279,13 @@ export default {
 
 .developer#marcus .description {
   margin-left: 60px;
+}
+
+.allison {
+  animation-delay: 0.3s;
+}
+
+.marcus {
+  animation-delay: 0.6s;
 }
 </style>

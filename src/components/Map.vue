@@ -133,7 +133,7 @@
       </div>
       <div class="map-right">
         <div class="keys">
-          <div class="polling-key">
+          <div class="polling-key pop-in">
             <h3>Polling Data</h3>
             <ul class="legend">
               <li>
@@ -187,7 +187,7 @@
               </li>
             </ul>
           </div>
-          <div class="stops-key">
+          <div class="stops-key pop-in">
             <h3>Campaign Events</h3>
             <div class="dot-and-text" id="biden">
               <span></span>
@@ -199,7 +199,7 @@
             </div>
           </div>
         </div>
-        <div class="projections-data">
+        <div class="projections-data pop-in">
           <div class="predictions-text" v-if="hoveredState">
             <h2 class="hovered-state">{{ hoveredState }}</h2>
             <h4 class="chance-label">
@@ -891,10 +891,9 @@ export default {
       0 10px 20px 0 rgba(0, 0, 0, 0.08);
   }
 
-
-.projections-data .hovered-state {
-  padding-top: 20px;
-}
+  .projections-data .hovered-state {
+    padding-top: 20px;
+  }
 
   .projections-data h2,
   .projections-data p {
@@ -1138,6 +1137,7 @@ export default {
     align-items: center;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
       0 10px 20px 0 rgba(0, 0, 0, 0.08);
+    animation-delay: 0.3s;
   }
 
   .legend {
@@ -1235,6 +1235,7 @@ export default {
   align-items: center;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
     0 10px 20px 0 rgba(0, 0, 0, 0.08);
+  animation-delay: 0.6s;
 }
 
 .stops-key #biden span {
@@ -1267,5 +1268,9 @@ export default {
   font-weight: 300;
   font-family: "Open Sans";
   margin-left: 5px;
+}
+
+.projections-data {
+  animation-delay: 0.9s;
 }
 </style>

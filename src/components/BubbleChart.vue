@@ -199,9 +199,8 @@ export default {
 </script>
 
 <style>
-
 circle {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 circle:hover {
@@ -212,7 +211,7 @@ circle:hover {
 text {
   user-select: none;
   fill: white;
-  opacity: .75;
+  opacity: 0.75;
   font-weight: 200;
 }
 </style>

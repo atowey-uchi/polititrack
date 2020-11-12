@@ -33,11 +33,13 @@ export default {
     Contact,
     Footer
   },
-    methods: {
+  methods: {
     activateAnimation() {
       const bodyTop = document.querySelector("body").getBoundingClientRect()
         .top;
-      const entries = document.querySelectorAll(".fade-up-and-in");
+      const entries = document.querySelectorAll(
+        ".fade-up-and-in, .pop-in, .slide-in-left, .slide-in-right"
+      );
       const windowScroll = window.scrollY + window.innerHeight;
       entries.forEach(entry => {
         const top = entry.getBoundingClientRect().top - bodyTop;
