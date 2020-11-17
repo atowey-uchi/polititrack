@@ -18,7 +18,6 @@
       <div class="right-panel">
         <div class="right-top pop-in">
           <h2>Events Over Time</h2>
-          <LineChart></LineChart>
         </div>
         <div class="right-bottom pop-in">
           <h2>Events By Person</h2>
@@ -27,7 +26,8 @@
       </div>
     </div>
     <div class="bottom pop-in">
-      <p>Sunburst charts for state/person</p>
+      <h2>Events Over Time</h2>
+      <LineChart></LineChart>
     </div>
   </section>
 </template>

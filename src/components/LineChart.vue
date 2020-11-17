@@ -1,14 +1,19 @@
 <template>
   <div class="line-chart">
-    <svg :width="settings.width" :height="settings.height">
-      <g class="line-chart" :transform="transform">
-        <g :transform="yTransform" class="axis">
-          <g ref="yAxis"></g>
-        </g>
-        <g :transform="xTransform" class="axis">
-          <g ref="xAxis"></g>
-        </g>
-        <path class="line" :d="line"></path>
+    <svg :width="this.settings.width" :height="this.settings.height">
+      <g :transform="yTransform" class="axis">
+        <g ref="yAxis"></g>
+      </g>
+      <g :transform="xTransform" class="axis">
+        <g ref="xAxis"></g>
+      </g>
+      <g ref="chart">
+        <path
+          :d="line.d"
+          v-for="line in lines"
+          :key="line.index"
+          :class="line.class + ' line'"
+        ></path>
       </g>
     </svg>
   </div>
@@ -23,67 +28,27 @@ export default {
     return {
       settings: {
         width: 400,
-        height: 400
+        height: 400,
+        margin: {
+          top: 40,
+          left: 40,
+          bottom: 40,
+          right: 0
+        }
       },
       campaignStops: [],
       totals: [],
-      transform: "translate(50, -20)",
-      yTransform: "translate(0, 0)",
-      xTransform: "translate(0, 400)",
-      // line: "",
-      stops: [
-        {
-          day: "01-11-2016",
-          count: 80
-        },
-        {
-          day: "02-12-2016",
-          count: 250
-        },
-        {
-          day: "03-13-2016",
-          count: 150
-        },
-        {
-          day: "04-14-2016",
-          count: 496
-        },
-        {
-          day: "05-15-2016",
-          count: 140
-        },
-        {
-          day: "06-16-2016",
-          count: 380
-        },
-        {
-          day: "07-17-2016",
-          count: 140
-        },
-        {
-          day: "08-17-2016",
-          count: 240
-        },
-        {
-          day: "09-18-2016",
-          count: 100
-        },
-        {
-          day: "10-18-2016",
-          count: 260
-        },
-        {
-          day: "11-18-2016",
-          count: 100
-        },
-        {
-          day: "12-18-2016",
-          count: 150
-        }
-      ]
+      transform: "translate(50, -20)"
     };
   },
   methods: {
+    updateSize() {
+      console.log(this.$el.getBoundingClientRect());
+      console.log(this.$el.parentElement.getBoundingClientRect());
+      const { width, height } = this.$el.getBoundingClientRect();
+      this.settings.width = width;
+      this.settings.height = height;
+    },
     fetchCampaignData() {
       let that = this;
       let xhr = new XMLHttpRequest();
@@ -95,6 +60,9 @@ export default {
             that.campaignStops[i].id = i;
           }
           that.totals = that.computeTotalsByData();
+
+          d3.select(that.$refs.xAxis).call(that.xAxis);
+          d3.select(that.$refs.yAxis).call(that.yAxis);
         }
       };
       xhr.open("GET", "https://api.polititrack.us/campaigns", true);
@@ -110,7 +78,8 @@ export default {
             totals[stop.date] = {
               Trump: 0,
               Biden: 0,
-              date: d3.timeParse("%m/%d/%Y")(stop.date)
+              date: d3.timeParse("%m/%d/%Y")(stop.date),
+              day: stop.date
             };
             totals[stop.date][stop.candidate] += 1;
           }
@@ -120,32 +89,50 @@ export default {
     }
   },
   computed: {
-    path() {
-      return d3
-        .line()
-        .x(d => {
-          return this.x(d.date);
-        })
-        .y(d => {
-          return this.y(d.Biden);
-        })
-        .curve(d3.curveCardinal);
+    yTransform() {
+      return `translate(${this.settings.margin.left}, 0)`;
+    },
+    xTransform() {
+      return `translate(${this.settings.margin.left}, ${this.settings.height +
+        this.settings.margin.top})`;
+    },
+    lines() {
+      const selectors = [
+        { selector: d => d.Trump, candidate: "trump" },
+        { selector: d => d.Biden, candidate: "biden" }
+      ];
+      if (this.totals.length) {
+        return selectors.map((selector, index) => {
+          return {
+            id: index,
+            d: d3
+              .line()
+              .x(d => {
+                return this.x(d.date);
+              })
+              .y(d => {
+                return this.y(selector.selector(d));
+              })
+              .curve(d3.curveCardinal)(this.totals),
+            class: selector.candidate
+          };
+        });
+      }
+      return "";
     },
     line() {
-      return this.path(this.totals);
+      if (this.path) {
+        return this.path(this.totals);
+      }
+      return "";
     },
     x() {
       return d3
         .scaleTime()
-        .domain(
-          // d3.extent(this.totals, function(d) {
-          //   return d.date;
-          // })
-          [
-            d3.timeParse("%m/%d/%Y")("6/1/2020"),
-            d3.timeParse("%m/%d/%Y")("11/3/2020")
-          ]
-        )
+        .domain([
+          d3.timeParse("%m/%d/%Y")("6/1/2020"),
+          d3.timeParse("%m/%d/%Y")("11/3/2020")
+        ])
         .rangeRound([0, this.settings.width]);
     },
     y() {
@@ -154,7 +141,7 @@ export default {
         .domain([
           0,
           d3.max(this.totals, function(d) {
-            return d.Biden;
+            return Math.max(d.Biden, d.Trump);
           })
         ])
         .range([this.settings.height, 0]);
@@ -163,18 +150,7 @@ export default {
       return d3
         .axisBottom()
         .scale(this.x)
-        .tickFormat(d3.timeFormat("%b"))
-        .tickValues(
-          this.totals
-            .map(function(d, i) {
-              if (i > 0) {
-                return d.date;
-              }
-              return false;
-            })
-            .splice(1)
-        )
-        .ticks(4);
+        .tickFormat(d3.timeFormat("%b"));
     },
     yAxis() {
       return d3
@@ -187,8 +163,7 @@ export default {
     this.fetchCampaignData();
   },
   mounted() {
-    d3.select(this.$refs.xAxis).call(this.xAxis);
-    d3.select(this.$refs.yAxis).call(this.yAxis);
+    this.updateSize();
   }
 };
 </script>
@@ -201,12 +176,19 @@ export default {
 
 path.line {
   fill: none;
-  stroke: #ecbc3a;
   stroke-width: 3px;
+  stroke-opacity: 0.9;
+}
+
+path.line.trump {
+  stroke: var(--red);
+}
+
+path.line.biden {
+  stroke: var(--blue);
 }
 
 svg .line-chart > path {
-  stroke: #ecbc3a;
   stroke-width: 3;
   stroke-dasharray: 4813.713;
   stroke-dashoffset: 4813.713;
