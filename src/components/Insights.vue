@@ -18,6 +18,11 @@
       <div class="right-panel">
         <div class="right-top pop-in">
           <h2>Events Over Time</h2>
+          <h1
+            style="font-weight: 100; text-align: center; margin-top: 200px; font-size: 2em;"
+          >
+            Coming soon!
+          </h1>
         </div>
         <div class="right-bottom pop-in">
           <h2>Events By Person</h2>
