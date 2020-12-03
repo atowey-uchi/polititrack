@@ -16,7 +16,9 @@
           :style="circle.style"
           :data-cx="circle.x"
         >
-          <title>{{ circle.person }}: {{ circle.events }} events</title>
+          <title :key="circle.id + '--tooltip'">
+            {{ circle.person }}: {{ circle.events }} events
+          </title>
         </circle>
         <text
           text-anchor="middle"

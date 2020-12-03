@@ -1,19 +1,21 @@
 <template>
   <div class="line-chart">
-    <svg :width="this.settings.width" :height="this.settings.height">
-      <g :transform="yTransform" class="axis">
-        <g ref="yAxis"></g>
-      </g>
-      <g :transform="xTransform" class="axis">
-        <g ref="xAxis"></g>
-      </g>
-      <g ref="chart">
-        <path
-          :d="line.d"
-          v-for="line in lines"
-          :key="line.index"
-          :class="line.class + ' line'"
-        ></path>
+    <svg width="100%" height="100%">
+      <g class="line-chart-content" :transform="transform">
+        <g :transform="yTransform" class="axis">
+          <g ref="yAxis"></g>
+        </g>
+        <g :transform="xTransform" class="axis">
+          <g ref="xAxis"></g>
+        </g>
+        <g ref="chart">
+          <path
+            :d="line.d"
+            v-for="line in lines"
+            :key="line.index"
+            :class="line.class + ' line'"
+          ></path>
+        </g>
       </g>
     </svg>
   </div>
@@ -30,22 +32,22 @@ export default {
         width: 400,
         height: 400,
         margin: {
-          top: 40,
+          top: 5,
           left: 40,
           bottom: 40,
           right: 0
         }
       },
       campaignStops: [],
-      totals: [],
-      transform: "translate(50, -20)"
+      totals: []
     };
   },
   methods: {
     updateSize() {
-      const { width, height } = this.$el.getBoundingClientRect();
-      this.settings.width = width;
-      this.settings.height = height;
+      if (this.$el) {
+        this.settings.width = this.$el.clientWidth * 0.8;
+        this.settings.height = this.$el.clientHeight * 0.8;
+      }
     },
     fetchCampaignData() {
       let that = this;
@@ -87,6 +89,11 @@ export default {
     }
   },
   computed: {
+    transform() {
+      return `translate(${this.settings.width * 0.1}, ${this.settings.height *
+        0.1 +
+        5})`;
+    },
     yTransform() {
       return `translate(${this.settings.margin.left}, 0)`;
     },
@@ -167,6 +174,11 @@ export default {
 </script>
 
 <style>
+.line-chart {
+  width: 100%;
+  height: 100%;
+}
+
 .axis path,
 .axis line {
   stroke: var(--primary-text);
@@ -186,7 +198,7 @@ path.line.biden {
   stroke: var(--blue);
 }
 
-svg .line-chart > path {
+.in-view svg .line-chart > path {
   stroke-width: 3;
   stroke-dasharray: 4813.713;
   stroke-dashoffset: 4813.713;

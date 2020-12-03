@@ -34,7 +34,9 @@
     </div>
     <div class="bottom pop-in">
       <h2>Events Over Time</h2>
-      <LineChart></LineChart>
+      <div>
+        <LineChart></LineChart>
+      </div>
     </div>
   </section>
 </template>
@@ -144,6 +146,12 @@ section {
   border-radius: 5px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
     0 10px 20px 0 rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom > div {
+  flex-grow: 1;
 }
 
 h2 {
