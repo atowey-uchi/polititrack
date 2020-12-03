@@ -26,7 +26,9 @@
         </div>
         <div class="right-bottom pop-in">
           <h2>Events By Person</h2>
-          <BubbleChart></BubbleChart>
+          <div>
+            <BubbleChart></BubbleChart>
+          </div>
         </div>
       </div>
     </div>
@@ -126,6 +128,12 @@ section {
   margin-top: 30px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
     0 10px 20px 0 rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.right-bottom > div {
+  flex-grow: 1;
 }
 
 .bottom {

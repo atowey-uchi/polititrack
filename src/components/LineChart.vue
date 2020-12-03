@@ -43,8 +43,6 @@ export default {
   },
   methods: {
     updateSize() {
-      console.log(this.$el.getBoundingClientRect());
-      console.log(this.$el.parentElement.getBoundingClientRect());
       const { width, height } = this.$el.getBoundingClientRect();
       this.settings.width = width;
       this.settings.height = height;

@@ -1,6 +1,6 @@
 <template>
   <div class="bubble-chart">
-    <svg :width="width" :height="height">
+    <svg width="100%" height="100%">
       <transition-group
         tag="g"
         class="circles"
@@ -35,8 +35,8 @@
           :key="circle.id + '--events'"
           :x="circle.x"
           :y="circle.y"
-          :dy="circle.r > 30 ? 18 : 0"
-          font-size="16px"
+          :dy="circle.r > 30 ? 18 : 5"
+          :font-size="circle.r > 10 ? '16px' : '12px'"
           font-family="Open Sans"
         >
           {{ circle.r > 5 ? circle.events : "" }}
@@ -53,8 +53,8 @@ export default {
   name: "BubbleChart",
   data() {
     return {
-      width: 350,
-      height: 350,
+      width: 535,
+      height: 507,
       campaignStops: {},
       scaleFactor: 1.6,
       totals: [],
@@ -84,6 +84,12 @@ export default {
     },
     circles() {
       this.simulation.nodes(this.circles).restart();
+    },
+    width() {
+      this.updateSize();
+    },
+    height() {
+      this.updateSize();
     }
   },
   methods: {
@@ -140,9 +146,8 @@ export default {
     },
     updateSize() {
       if (this.$el) {
-        const { width } = this.$el.getBoundingClientRect();
-        this.width = width;
-        this.height = width;
+        this.width = this.$el.clientWidth;
+        this.height = this.$el.clientHeight;
       }
     },
     initCircles(totals) {
@@ -187,8 +192,9 @@ export default {
     this.simulation
       .force("collide")
       .strength(0.4)
-      .radius(d => d.r);
+      .radius(d => d.r + 2);
     this.fetchCampaignData();
+    this.updateSize();
     window.addEventListener("resize", () => {
       this.updateSize();
     });
@@ -197,6 +203,11 @@ export default {
 </script>
 
 <style>
+.bubble-chart {
+  width: 100%;
+  height: 100%;
+}
+
 circle {
   opacity: 0.9;
 }
