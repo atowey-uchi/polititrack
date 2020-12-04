@@ -10,6 +10,7 @@
     </div>
     <div class="panels">
       <div class="left-panel pop-in">
+        <h2>Events Per State</h2>
         <div class="where">
           <DataTable></DataTable>
           <Pie></Pie>
@@ -25,7 +26,7 @@
           </h1>
         </div>
         <div class="right-bottom pop-in">
-          <h2>Events By Person</h2>
+          <h2>Events Per Person</h2>
           <div>
             <BubbleChart></BubbleChart>
           </div>
@@ -33,9 +34,9 @@
       </div>
     </div>
     <div class="bottom pop-in">
-      <h2>Events Over Time</h2>
-      <div>
-        <LineChart></LineChart>
+      <h2>Events Per Day, By Candidate</h2>
+      <div class="histogram">
+        <Histogram :width="900"></Histogram>
       </div>
     </div>
   </section>
@@ -44,7 +45,7 @@
 <script>
 import BubbleChart from "@/components/BubbleChart.vue";
 import DataTable from "@/components/DataTable.vue";
-import LineChart from "@/components/LineChart.vue";
+import Histogram from "@/components/Histogram.vue";
 import Pie from "@/components/Pie.vue";
 
 export default {
@@ -52,7 +53,7 @@ export default {
   components: {
     BubbleChart,
     DataTable,
-    LineChart,
+    Histogram,
     Pie
   }
 };
@@ -152,11 +153,14 @@ section {
 
 .bottom > div {
   flex-grow: 1;
+  margin: 0 auto;
 }
 
 h2 {
   text-align: center;
   font-size: 22px;
   font-weight: 400;
+  padding-top: 20px;
+  padding-bottom:10px;
 }
 </style>

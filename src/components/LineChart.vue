@@ -117,8 +117,7 @@ export default {
               })
               .y(d => {
                 return this.y(selector.selector(d));
-              })
-              .curve(d3.curveCardinal)(this.totals),
+              })(this.totals),
             class: selector.candidate
           };
         });

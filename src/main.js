@@ -1,7 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
-
 // import fontawesome dependencies and setup library
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {

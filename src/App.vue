@@ -64,7 +64,7 @@ export default {
     this.activateAnimation();
     setTimeout(() => {
       this.loaded = true;
-    }, 600);
+    }, 2400);
   },
   destroyed() {
     window.removeEventListener("scroll", this.activateAnimation);
