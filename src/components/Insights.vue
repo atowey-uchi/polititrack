@@ -11,8 +11,12 @@
     <div class="panels">
       <div class="left-panel pop-in">
         <div class="where">
-          <DataTable></DataTable>
-          <Pie></Pie>
+          <div>
+            <DataTable></DataTable>
+          </div>
+          <div>
+            <Pie></Pie>
+          </div>
         </div>
       </div>
       <div class="right-panel">
