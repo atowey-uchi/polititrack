@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="fade-up-and-in">
     <!-- <div class="gradient">
       <img src="@/assets/images/gradientback.png">
     </div> -->

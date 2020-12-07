@@ -1,56 +1,5 @@
 <template>
   <section class="meet-devs fade-up-and-in" id="developers">
-    <!-- <div class="gradients">
-      <img src="@/assets/images/brush3color.svg" id="topbar" />
-      <img src="@/assets/images/brush3color2.svg" id="secondbar" />
-    </div>
-    <div class="title">
-      <h1>Meet the Developers</h1>
-    </div>
-    <section class="developer" id="allison">
-      <div class="developer-image">
-        <div class="circles">
-          <div class="circle">
-            <img src="@/assets/images/circle.svg" />
-          </div>
-          <div class="circle blue">
-            <img src="@/assets/images/circle.svg" />
-          </div>
-        </div>
-        <div class="profile">
-          <img src="@/assets/images/girl.svg" />
-        </div>
-      </div>
-      <div class="description">
-      <p>
-        <span>Allison Towey </span> is currently a Policy Analyst in the educational technology space by day, data nerd by night.
-        She has previously worked as a Product Manager and interned in the US Senate. She graduated from the University of Notre Dame in 2019, where
-        she studied Political Science.
-        <a href="www.allisontowey.com">Check out her website!</a>
-      </p>
-      </div>
-    </section>
-    <section class="developer" id="marcus">
-      <div class="developer-image">
-        <div class="circles">
-          <div class="circle">
-            <img src="@/assets/images/circle.svg" />
-          </div>
-          <div class="circle blue">
-            <img src="@/assets/images/circle.svg" />
-          </div>
-        </div>
-        <div class="profile">
-          <img src="@/assets/images/boy.svg" />
-        </div>
-      </div>
-      <div class="description">
-      <p>
-        <span> Marcus Schimizzi </span> is a Software Developer. He graduated
-        from the University of Notre Dame in 2019 with a degree in Computer
-        Science. <a href="#">Find his website here.</a>
-      </p>
-    </section> -->
     <div class="title">
       <h1>Meet the Developers</h1>
     </div>

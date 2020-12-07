@@ -962,6 +962,137 @@
   resolved "https://registry.npm.taobao.org/@soda/get-current-script/download/@soda/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha1-pTUV2yXYA4N0OBtzryC7Ty5QjYc=
 
+"@syncfusion/ej2-base@~18.3.47", "@syncfusion/ej2-base@~18.3.51", "@syncfusion/ej2-base@~18.3.52":
+  version "18.3.52"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-18.3.52.tgz#961449dece28ddaaa0d416d00d5900eacc05628b"
+  integrity sha512-g32+xrxnktzz7PhAPlmVhM/Lu4Ad+VuEYDOIw6+/tTHc4FkfNglZxyNmom+9J4bfDkz9AyVv0JmbPyeBxDvETg==
+  dependencies:
+    "@syncfusion/ej2-icons" "~18.3.47"
+
+"@syncfusion/ej2-buttons@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-buttons/-/ej2-buttons-18.3.47.tgz#67ec94642a412945405a628689b622c0b84a1eed"
+  integrity sha512-V/uzgfaE4f0bfbxKbztIs4Px6cVEVYKKoSMMTWxGFOAD1Ol2Hp055MJzDjQTzmoaq7TlLjyHXGZDsYoKGuguGw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.47"
+
+"@syncfusion/ej2-calendars@~18.3.52":
+  version "18.3.52"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-calendars/-/ej2-calendars-18.3.52.tgz#5f590b82d6e954fc28374f71a3ab59372f935a2f"
+  integrity sha512-Y0XSMji7yNXKSvVk8YhfvUMfMwueMQO17zfgfQeeJ0/5NjMGf6PIXyp5LYmEOC0AWch16yWDN2uhJka39JGoRA==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.52"
+    "@syncfusion/ej2-buttons" "~18.3.47"
+    "@syncfusion/ej2-inputs" "~18.3.52"
+    "@syncfusion/ej2-lists" "~18.3.47"
+    "@syncfusion/ej2-popups" "~18.3.52"
+
+"@syncfusion/ej2-charts@^18.3.52":
+  version "18.3.52"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-charts/-/ej2-charts-18.3.52.tgz#65ca900dc3eecb0c9c6c6b4790d58059ace86dd8"
+  integrity sha512-4tPT2b4ixpJBCCijmVrjv0jUNhvt9WZdewT10d4hBgozqNdsFubzzibTuHsXfRKmWIsyh/5RaJWesnvZIAB2Kw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.52"
+    "@syncfusion/ej2-calendars" "~18.3.52"
+    "@syncfusion/ej2-compression" "~18.3.47"
+    "@syncfusion/ej2-data" "~18.3.47"
+    "@syncfusion/ej2-file-utils" "~18.3.47"
+    "@syncfusion/ej2-navigations" "~18.3.51"
+    "@syncfusion/ej2-pdf-export" "~18.3.47"
+    "@syncfusion/ej2-svg-base" "~18.3.51"
+
+"@syncfusion/ej2-compression@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-compression/-/ej2-compression-18.3.47.tgz#f7ae16b0b8a358a30bfa49a24ca02d5cfdfef4bc"
+  integrity sha512-cPE6MupWtNLy1X5MAEJXSB43wyB/BTkqsSmjHjqGpuSSX2HoyIkCyNHVlHPEovX3FlPaoCmHavett9CCaQDP5A==
+  dependencies:
+    "@syncfusion/ej2-file-utils" "~18.3.47"
+
+"@syncfusion/ej2-data@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-data/-/ej2-data-18.3.47.tgz#24eabc24290ab61714f716f41f250f8fdf0a6e9c"
+  integrity sha512-9ugdrThHhh/7ShZIotuBIsUUAhh8L/jCXrXGTbepmikgZpsMp5npv5BNK3E5M7LE70Pl5MMzLyqORrS5l8v4Ow==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.47"
+
+"@syncfusion/ej2-file-utils@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-file-utils/-/ej2-file-utils-18.3.47.tgz#45ee290cf96b133835e4eb56660beb3c94024456"
+  integrity sha512-00PD++8yfCM8naCbxcFqUgorvO3fQGEFXK3wEgl+gXPpFHLygEyTndccysbm/285pP7B6Q1f/mw+chr3WAW58w==
+
+"@syncfusion/ej2-icons@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-18.3.47.tgz#992645d63122ba487e06eb31ea160350b8a50f18"
+  integrity sha512-SSasO60RF0wZuPvz7KUMhvqeZgHCBOrCy2IjPywg3YDOgH244E90NasE0jfGm/1HDdkkVhxWATh8bZh79Ivg/g==
+
+"@syncfusion/ej2-inputs@~18.3.51", "@syncfusion/ej2-inputs@~18.3.52":
+  version "18.3.52"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-inputs/-/ej2-inputs-18.3.52.tgz#a7d808965d86fcba1a1591a25cd47f5804db78fc"
+  integrity sha512-+uN/eGlCsoPISsx/j/HA3MO1TQALDiRVVPe/Cr9kmtxirgIFfkFeY5kOZ3vbYho+5fomSU/4JQX1FMXNV3xQ9A==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.52"
+    "@syncfusion/ej2-buttons" "~18.3.47"
+    "@syncfusion/ej2-popups" "~18.3.52"
+    "@syncfusion/ej2-splitbuttons" "~18.3.52"
+
+"@syncfusion/ej2-lists@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-lists/-/ej2-lists-18.3.47.tgz#0a88180edb8680a857c257f99348c47c4cddab46"
+  integrity sha512-1fZ9ApsyFFRHLIqZyQ6sWCOFbFLNnRxfaoT81jfA1cQdGdiCuA6B5Q4FLXEnZ6/QZMkgfrWr7VxDP8QNkud0pA==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.47"
+    "@syncfusion/ej2-buttons" "~18.3.47"
+    "@syncfusion/ej2-data" "~18.3.47"
+
+"@syncfusion/ej2-navigations@~18.3.51":
+  version "18.3.51"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-navigations/-/ej2-navigations-18.3.51.tgz#81474acf35b6f99c74518192b00bf7b0a0c2dc69"
+  integrity sha512-vHaUjpnXTGK1+eXPcv3uCwZzzgH7pJE4pZUbYa7o8JON+0vdbbH8/ns/LJXL/Ov7kjd2R/STnOWQx1WYHsmPLQ==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.51"
+    "@syncfusion/ej2-buttons" "~18.3.47"
+    "@syncfusion/ej2-data" "~18.3.47"
+    "@syncfusion/ej2-inputs" "~18.3.51"
+    "@syncfusion/ej2-lists" "~18.3.47"
+    "@syncfusion/ej2-popups" "~18.3.50"
+
+"@syncfusion/ej2-pdf-export@~18.3.47":
+  version "18.3.47"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-pdf-export/-/ej2-pdf-export-18.3.47.tgz#fce441fdb78ebd8e20bf52d77a96c6e5e2b33765"
+  integrity sha512-MtakM2SvR357718uvfpau+/14Yo2djjZ2yeJPPrfs/+Cegeb2icmyS+IQKL7Z8OEdD42hex4btw3hBPG+HvDuA==
+  dependencies:
+    "@syncfusion/ej2-compression" "~18.3.47"
+
+"@syncfusion/ej2-popups@~18.3.50", "@syncfusion/ej2-popups@~18.3.52":
+  version "18.3.52"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-popups/-/ej2-popups-18.3.52.tgz#75e4d5115e8febaa6bac6e119c3fb36311dd5304"
+  integrity sha512-5+dAQaUkMYH59Ka82Rg7d4RvjP5dQm5GtZWGbAkN9TpIh4wfDhLTeBOhN87f7n8RsuDA9bBtCRk1YEdBfTpEGw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.52"
+    "@syncfusion/ej2-buttons" "~18.3.47"
+
+"@syncfusion/ej2-splitbuttons@~18.3.52":
+  version "18.3.52"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-18.3.52.tgz#a050bf1a6182e3a9c33b0a71ef27544855fa6c1b"
+  integrity sha512-KgZ4MGpohJzhX5HoRE+unMkeiU0d9tJbNgEhmhLKK4IsXeVx579gc9ftlTtmofjtOU9UyyHvjmYI6y+gobprww==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.52"
+    "@syncfusion/ej2-popups" "~18.3.52"
+
+"@syncfusion/ej2-svg-base@~18.3.51":
+  version "18.3.51"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-svg-base/-/ej2-svg-base-18.3.51.tgz#a59cc278afe19ca078af3a8bd990f922abfa7b56"
+  integrity sha512-u5Ou0EgDIMiEfwio+0VVgM+9FxMCMZPIh9nN5b5sPMdGs0JnxLQS1rD3Osa9rUUJpkUSuNXUEmpW0Bf4DTSlPw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.3.51"
+
+"@types/chart.js@^2.7.55":
+  version "2.9.28"
+  resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.9.28.tgz#75f1a456ee2eace136073c3264da271a27dcdc8a"
+  integrity sha512-9YYhsxRngRJb0dkuaU5BezkF+zvvVHnwdRw+rtlahtFb4zqNf9YSgWsOq+dLYeh0fqsWmHUYLR64eNigh02F+w==
+  dependencies:
+    moment "^2.10.2"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/@types/color-name/download/@types/color-name-1.1.1.tgz?cache=0&sync_timestamp=1596837531904&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fcolor-name%2Fdownload%2F%40types%2Fcolor-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -2254,6 +2385,29 @@ chardet@^0.7.0:
   resolved "https://registry.npm.taobao.org/chardet/download/chardet-0.7.0.tgz?cache=0&sync_timestamp=1594010605707&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchardet%2Fdownload%2Fchardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha1-kAlISfCTfy7twkJdDSip5fDLrZ4=
 
+chart.js@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
+  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
+  dependencies:
+    chartjs-color "^2.1.0"
+    moment "^2.10.2"
+
+chartjs-color-string@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz#1df096621c0e70720a64f4135ea171d051402f71"
+  integrity sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A==
+  dependencies:
+    color-name "^1.0.0"
+
+chartjs-color@^2.1.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.4.1.tgz#6118bba202fe1ea79dd7f7c0f9da93467296c3b0"
+  integrity sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w==
+  dependencies:
+    chartjs-color-string "^0.6.0"
+    color-convert "^1.9.3"
+
 check-types@^8.0.3:
   version "8.0.3"
   resolved "https://registry.npm.taobao.org/check-types/download/check-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
@@ -2439,7 +2593,7 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-color-convert@^1.9.0, color-convert@^1.9.1:
+color-convert@^1.9.0, color-convert@^1.9.1, color-convert@^1.9.3:
   version "1.9.3"
   resolved "https://registry.npm.taobao.org/color-convert/download/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha1-u3GFBpDh8TZWfeYp0tVHHe2kweg=
@@ -5876,6 +6030,11 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "^1.2.5"
 
+moment@^2.10.2:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+
 moment@^2.27.0:
   version "2.27.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
@@ -8811,6 +8970,13 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
+
+vue-chartjs@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-3.5.1.tgz#d25e845708f7744ae51bed9d23a975f5f8fc6529"
+  integrity sha512-foocQbJ7FtveICxb4EV5QuVpo6d8CmZFmAopBppDIGKY+esJV8IJgwmEW0RexQhxqXaL/E1xNURsgFFYyKzS/g==
+  dependencies:
+    "@types/chart.js" "^2.7.55"
 
 vue-eslint-parser@^7.0.0:
   version "7.1.0"
