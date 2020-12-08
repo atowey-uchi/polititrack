@@ -10,7 +10,7 @@
     </div>
     <div class="panels">
       <div class="left-panel pop-in">
-        <h2>Events Per State</h2>
+        <h2>Number of Events Per State</h2>
         <div class="where">
           <div>
             <DataTable></DataTable>
@@ -22,13 +22,14 @@
       </div>
       <div class="right-panel">
         <div class="right-top pop-in">
-          <h2>Events Over Time</h2>
-          <div>
+          <h2>Number of Events Per Person, By State</h2>
+          <!-- <div>
             <StackedChart></StackedChart>
-          </div>
+          </div>  -->
+          <h3><i>Coming soon.</i></h3>
         </div>
         <div class="right-bottom pop-in">
-          <h2>Events Per Person</h2>
+          <h2>Number of Events Per Person</h2>
           <div>
             <BubbleChart></BubbleChart>
           </div>
@@ -36,7 +37,7 @@
       </div>
     </div>
     <div class="bottom pop-in">
-      <h2>Events Per Day, By Candidate</h2>
+      <h2>Number of Events Per Day, By Candidate</h2>
       <div class="histogram">
         <Histogram :width="900"></Histogram>
       </div>
@@ -48,7 +49,7 @@
 import BubbleChart from "@/components/BubbleChart.vue";
 import DataTable from "@/components/DataTable.vue";
 import Histogram from "@/components/Histogram.vue";
-import StackedChart from "@/components/StackedChart.vue";
+// import StackedChart from "@/components/StackedChart.vue";
 import Pie from "@/components/Pie.vue";
 
 export default {
@@ -58,7 +59,7 @@ export default {
     DataTable,
     Histogram,
     Pie,
-    StackedChart
+    // StackedChart
   }
 };
 </script>
@@ -166,5 +167,11 @@ h2 {
   font-weight: 400;
   padding-top: 20px;
   padding-bottom: 10px;
+}
+
+h3 {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 20px;
 }
 </style>

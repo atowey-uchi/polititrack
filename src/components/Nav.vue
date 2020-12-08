@@ -343,7 +343,7 @@ nav .topnav .links ul li a {
 }
 
 .dark-mode-slider {
-  display: flex;
+  display: none;
   justify-content: space-evenly;
   align-items: center;
   width: 160px;
