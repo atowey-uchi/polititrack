@@ -86,6 +86,38 @@
         </li>
       </ul>
     </div>
+    <div class="mobilenav">
+      <div class="left">
+        <div class="logo">
+          <h1><span>politi</span>track</h1>
+        </div>
+        <div class="menu-btn open">
+          <font-awesome-icon :icon="['fas', 'bars']" @click="openMobileNav()" />
+        </div>
+      </div>
+    </div>
+    <div class="menu-overlay">
+      <div class="menu-btn close">
+        <font-awesome-icon :icon="['fas', 'times']" @click="closeMobileNav()" />
+      </div>
+      <ul>
+        <li>
+          <a href="#map" @click="closeMobileNav()">Map</a>
+        </li>
+        <li>
+          <a href="#insights" @click="closeMobileNav()">Insights</a>
+        </li>
+        <li>
+          <a href="#about" @click="closeMobileNav()">About</a>
+        </li>
+        <li>
+          <a href="#developers" @click="closeMobileNav()">Team</a>
+        </li>
+        <li>
+          <a href="#contact" @click="closeMobileNav()">Contact</a>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -117,6 +149,15 @@ export default {
       } else {
         element.classList.remove("dark-mode");
       }
+    },
+    openMobileNav() {
+      console.log("opening nav...");
+      document.querySelector(".menu-overlay").classList.add("open");
+    },
+    closeMobileNav() {
+      console.log("closing nav...");
+      const overlay = this.$el.querySelector(".menu-overlay");
+      overlay.classList.remove("open");
     }
   },
   created() {
@@ -133,7 +174,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topnav {
+.topnav,
+.mobilenav {
   display: flex;
   padding: 30px 40px;
   position: absolute;
@@ -150,8 +192,13 @@ export default {
   justify-content: space-between;
 }
 
-.topnav .logo {
+.topnav .logo,
+.mobilenav .logo {
   padding-top: 10px;
+}
+
+.mobilenav {
+  display: none;
 }
 
 .logo {
@@ -160,12 +207,12 @@ export default {
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
 }
 
-nav .topnav .logo h1 span {
+.logo h1 span {
   font-family: LoveloLineLight;
   font-size: 34px;
 }
 
-nav .topnav .logo h1 {
+.logo h1 {
   font-family: LoveloBlack;
   font-size: 35px;
   padding-right: 40px;
@@ -416,13 +463,108 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.mobilenav .menu-btn {
+  font-size: 35px;
+  color: var(--primary-text);
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.menu-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.91);
+  overflow-x: hidden;
+  z-index: 1000000;
+  top: -100vh;
+  transition: top 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-overlay.open {
+  top: 0;
+}
+
+.menu-overlay .close {
+  color: var(--primary-text);
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.menu-overlay ul {
+  height: max-content;
+  list-style: none;
+}
+
+.menu-overlay ul li a {
+  color: white;
+  font-size: 50px;
+}
+
+.menu-overlay ul li:nth-child(1) a {
+  color: var(--red);
+}
+
+.menu-overlay ul li:nth-child(2) a {
+  color: var(--redstep2);
+}
+
+.menu-overlay ul li:nth-child(3) a {
+  color: var(--middle-purple);
+}
+
+.menu-overlay ul li:nth-child(4) a {
+  color: var(--bluestep2);
+}
+
+.menu-overlay ul li:nth-child(5) a {
+  color: var(--blue);
+}
+
 @media screen and (max-width: 800px) {
-  .sidenav {
+  .sidenav,
+  .topnav {
     display: none;
   }
 
-  .topnav {
-    display: none;
+  .mobilenav {
+    display: inherit;
+  }
+
+  .mobilenav .logo {
+    padding-top: 6px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .mobilenav {
+    padding: 0;
+    padding-top: 5px;
+    width: 100%;
+  }
+
+  .left {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .logo h1,
+  .logo h1 span {
+    font-size: 25px;
+  }
+
+  .mobilenav .menu-btn {
+    font-size: 25px;
   }
 }
 </style>

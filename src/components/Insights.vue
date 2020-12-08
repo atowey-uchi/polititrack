@@ -58,7 +58,7 @@ export default {
     BubbleChart,
     DataTable,
     Histogram,
-    Pie,
+    Pie
     // StackedChart
   }
 };

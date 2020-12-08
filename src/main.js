@@ -16,7 +16,9 @@ import {
   faCog,
   faSun,
   faMoon,
-  faChartLine
+  faChartLine,
+  faBars,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -33,7 +35,9 @@ library.add(
   faCog,
   faSun,
   faMoon,
-  faChartLine
+  faChartLine,
+  faBars,
+  faTimes
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
