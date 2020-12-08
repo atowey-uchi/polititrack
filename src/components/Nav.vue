@@ -415,4 +415,14 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+@media screen and (max-width: 800px) {
+  .sidenav {
+    display: none;
+  }
+
+  .topnav {
+    display: none;
+  }
+}
 </style>
