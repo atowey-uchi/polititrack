@@ -191,7 +191,8 @@ export default {
     updateSize() {
       let pie = document.querySelector(".pie-chart");
       if (!pie) return;
-      this.width = pie.parentElement.getBoundingClientRect().width * 0.8;
+      const { width, height } = pie.parentElement.getBoundingClientRect();
+      this.width = Math.min(width, height) * 0.8;
       this.height = this.width;
     },
     stateTransform(d) {
@@ -216,6 +217,9 @@ export default {
   mounted() {
     this.updateSize();
     window.addEventListener("resize", () => {
+      this.updateSize();
+    });
+    this.$nextTick(() => {
       this.updateSize();
     });
   },

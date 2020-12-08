@@ -58,7 +58,6 @@ export default {
       width: 535,
       height: 507,
       campaignStops: {},
-      scaleFactor: 1.6,
       totals: [],
       circles: [],
       dems: new Set(),
@@ -147,10 +146,11 @@ export default {
       xhr.send();
     },
     updateSize() {
-      if (this.$el) {
-        this.width = this.$el.clientWidth;
-        this.height = this.$el.clientHeight;
-      }
+      let bubble = document.querySelector(".bubble-chart");
+      if (!bubble) return;
+      const { width, height } = bubble.getBoundingClientRect();
+      this.width = width;
+      this.height = height;
     },
     initCircles(totals) {
       this.circles = totals.map((person, i) => {
@@ -177,6 +177,9 @@ export default {
     }
   },
   computed: {
+    scaleFactor() {
+      return this.height > 400 ? 1.6 : 1.2;
+    },
     center() {
       return [this.width * 0.5, this.height * 0.5];
     },

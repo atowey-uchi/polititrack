@@ -12,10 +12,10 @@
       <div class="left-panel pop-in">
         <h2>Number of Events Per State</h2>
         <div class="where">
-          <div>
+          <div class="data-table-container">
             <DataTable></DataTable>
           </div>
-          <div>
+          <div class="pie-container">
             <Pie></Pie>
           </div>
         </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="right-bottom pop-in">
           <h2>Number of Events Per Person</h2>
-          <div>
+          <div class="bubble-container">
             <BubbleChart></BubbleChart>
           </div>
         </div>
@@ -39,7 +39,7 @@
     <div class="bottom pop-in">
       <h2>Number of Events Per Day, By Candidate</h2>
       <div class="histogram">
-        <Histogram :width="900"></Histogram>
+        <Histogram :width="panelWidth"></Histogram>
       </div>
     </div>
   </section>
@@ -60,6 +60,45 @@ export default {
     Histogram,
     Pie
     // StackedChart
+  },
+  data() {
+    return {
+      panelWidth: 1100
+    };
+  },
+  methods: {
+    configureSizes() {
+      const panelHeight = document.querySelector(".left-panel").clientHeight;
+      const titleHeight = document.querySelector(".left-panel > h2")
+        .clientHeight;
+      const tableHeight = document.querySelector(
+        ".left-panel .data-table-container"
+      ).clientHeight;
+      document.querySelector(".left-panel .where").style.height =
+        panelHeight - titleHeight + "px";
+      document.querySelector(".left-panel .pie-container").style.height =
+        panelHeight - titleHeight - tableHeight + "px";
+
+      const rightPanelHeight = document.querySelector(".right-bottom")
+        .clientHeight;
+      const rightTitleHeight = document.querySelector(".right-bottom > h2")
+        .clientHeight;
+      document.querySelector(".right-bottom .bubble-container").style.height =
+        rightPanelHeight - rightTitleHeight + "px";
+
+      this.panelWidth = document.querySelector(".bottom").clientWidth;
+    }
+  },
+  mounted() {
+    this.configureSizes();
+    this.$nextTick(() => {
+      this.configureSizes();
+
+      window.addEventListener("resize", this.configureSizes);
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.configureSizes);
   }
 };
 </script>
@@ -114,6 +153,8 @@ section {
   height: 1100px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08),
     0 10px 20px 0 rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
 }
 
 .right-top {
@@ -173,5 +214,75 @@ h3 {
   margin: 0 auto;
   text-align: center;
   padding-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .insights {
+    width: 820px;
+  }
+
+  .left-panel {
+    width: 400px;
+    height: 820px;
+  }
+
+  .right-top {
+    width: 400px;
+    height: 400px;
+    margin-left: 20px;
+  }
+
+  .right-bottom {
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .bottom {
+    width: 820px;
+    height: 400px;
+  }
+
+  .data-table-container {
+    height: 400px;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .insights {
+    width: 100%;
+  }
+
+  .panels {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-panel,
+  .right-panel,
+  .bottom {
+    width: 90%;
+  }
+
+  .right-bottom,
+  .right-top {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .bottom {
+    margin: 20px auto 0;
+  }
+
+  .left-panel {
+    height: 1100px;
+  }
+
+  .data-table-container {
+    height: auto;
+  }
 }
 </style>
