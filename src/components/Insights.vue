@@ -23,11 +23,9 @@
       <div class="right-panel">
         <div class="right-top pop-in">
           <h2>Events Over Time</h2>
-          <h1
-            style="font-weight: 100; text-align: center; margin-top: 200px; font-size: 2em;"
-          >
-            Coming soon!
-          </h1>
+          <div>
+            <StackedChart></StackedChart>
+          </div>
         </div>
         <div class="right-bottom pop-in">
           <h2>Events Per Person</h2>
@@ -50,6 +48,7 @@
 import BubbleChart from "@/components/BubbleChart.vue";
 import DataTable from "@/components/DataTable.vue";
 import Histogram from "@/components/Histogram.vue";
+import StackedChart from "@/components/StackedChart.vue";
 import Pie from "@/components/Pie.vue";
 
 export default {
@@ -58,7 +57,8 @@ export default {
     BubbleChart,
     DataTable,
     Histogram,
-    Pie
+    Pie,
+    StackedChart
   }
 };
 </script>
@@ -165,6 +165,6 @@ h2 {
   font-size: 22px;
   font-weight: 400;
   padding-top: 20px;
-  padding-bottom:10px;
+  padding-bottom: 10px;
 }
 </style>

@@ -87,6 +87,85 @@ export default {
         }
       }
       return Object.values(totals);
+    },
+    computeTotals(stops) {
+      let totals = {};
+      let states = new Set();
+      for (let stop of stops) {
+        states.add(stop.state);
+        let people = stop.who.split(",");
+        for (let person of people) {
+          person = person.trim();
+          if (person in totals) {
+            if (stop.state in totals[person]["states"]) {
+              totals[person]["states"][stop.state] += 1;
+            } else {
+              totals[person]["states"][stop.state] = 1;
+            }
+          } else {
+            totals[person] = {
+              states: {}
+            };
+            totals[person]["states"][stop.state] = 1;
+          }
+        }
+      }
+
+      // fill out states for each person
+      for (let person in totals) {
+        for (let state in states) {
+          if (!(state in totals[person][states])) {
+            totals[person][states][state] = 0;
+          }
+        }
+      }
+      console.log("totals ", totals);
+      // flatten sums to array
+      // let totalArray = [];
+      // for (let person of Object.keys(totals)) {
+      //   totalArray.push({
+      //     person: person,
+      //     events: totals[person]
+      //   });
+      // }
+      let labels = new Set();
+      let datasets = {};
+      for (let person in totals) {
+        labels.add(person);
+        for (let state in totals[person]["states"]) {
+          const stops = totals[person]["states"][state]
+            ? totals[person]["states"][state]
+            : 0;
+          if (state in datasets) {
+            datasets[state]["data"].push(stops);
+          } else {
+            datasets[state] = {
+              label: state,
+              data: [stops]
+            };
+          }
+        }
+      }
+      console.log(totals);
+      console.log(labels);
+      console.log(datasets);
+      // return totalArray;
+    },
+    fetchData() {
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          let campaignStops = JSON.parse(this.responseText);
+          // add ids
+          for (let i = 0; i < campaignStops.length; i++) {
+            campaignStops[i].id = i;
+          }
+          that.computeTotals(campaignStops);
+        }
+      };
+      xhr.open("GET", "https://api.polititrack.us/campaigns", true);
+      xhr.send();
     }
   },
   data: function() {
@@ -131,23 +210,14 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                // fontColor: document.body.classList.contains("dark-mode")
-                //   ? "white"
-                //   : "#1a1a1a",
                 fontColor: "white",
                 fontFamily: "Open Sans"
               },
               gridLines: {
                 display: true,
-                // color: document.body.classList.contains("dark-mode")
-                //   ? "white"
-                //   : "rgba(105, 105, 105, 0.3)",
                 color: "white",
                 beginAtZero: true,
                 drawBorder: true,
-                // zeroLineColor: document.body.classList.contains("dark-mode")
-                //   ? "white"
-                //   : "#1a1a1a"
                 zeroLineColor: "white"
               }
             }
@@ -164,18 +234,12 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                // fontColor: document.body.classList.contains("dark-mode")
-                //   ? "white"
-                //   : "#1a1a1a",
                 fontColor: "white",
                 fontFamily: "Open Sans"
               },
               gridLines: {
                 display: false,
                 drawBorder: true,
-                // zeroLineColor: document.body.classList.contains("dark-mode")
-                //   ? "white"
-                //   : "#1a1a1a"
                 zeroLineColor: "white"
               }
             }
@@ -185,9 +249,6 @@ export default {
           display: true,
           position: "bottom",
           labels: {
-            // fontColor: document.body.classList.contains("dark-mode")
-            //   ? "white"
-            //   : "#1a1a1a",
             fontColor: "white",
             fontFamily: "Open Sans"
           }
@@ -211,6 +272,7 @@ export default {
   },
   mounted() {
     this.fetchCampaignData();
+    this.fetchData();
   }
 };
 </script>
