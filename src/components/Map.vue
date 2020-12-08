@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative;" class="map-section fade-up-and-in">
-    <div class="how-to">
+    <div class="how-to" v-if="windowWidth > 1061">
       <p>
         <b>&#9432;</b>
         <i> Press Play </i>( &#9658; )
@@ -11,7 +11,7 @@
         </i>
       </p>
     </div>
-    <div class="main">
+    <div class="main" v-if="windowWidth > 1061">
       <div class="map-left">
         <div class="map-controls">
           <div class="controls">
@@ -226,6 +226,14 @@
         @mouseleave="hideTooltip($event)"
       ></div>
     </div>
+    <div class="mobile-message" v-if="windowWidth <= 1061">
+      <h3>
+        Our full campaign map experience is designed for larger screens. Feel
+        free to check out the preview below, and give us a visit the next time
+        you're on a laptop.
+      </h3>
+      <video src="../assets/images/demo.webm" autoplay loop muted></video>
+    </div>
   </div>
 </template>
 
@@ -293,7 +301,8 @@ export default {
       highContrast: false,
       candidatesOnly: false,
       tooltipInterval: "",
-      pauseDelay: 500
+      pauseDelay: 500,
+      windowWidth: window.innerWidth
     };
   },
   created() {
@@ -307,6 +316,9 @@ export default {
     this.selectedSpeed = this.speeds[2];
     this.setupSlider();
     this.setupChart();
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.updateWindowWidth);
+    });
   },
   watch: {
     day: function() {
@@ -472,6 +484,9 @@ export default {
     }
   },
   methods: {
+    updateWindowWidth() {
+      this.windowWidth = window.innerWidth;
+    },
     isElementHovered(x, y, element) {
       const box = element.getBoundingClientRect();
       return y >= box.top && y <= box.bottom && x >= box.left && x <= box.right;
@@ -691,6 +706,9 @@ export default {
 
       paths.exit().remove();
     }
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.updateWindowHeight);
   }
 };
 </script>
@@ -1272,5 +1290,21 @@ export default {
 
 .projections-data {
   animation-delay: 0.9s;
+}
+
+.mobile-message {
+  margin: 0 auto;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mobile-message h3 {
+  font-size: 1.2em;
+}
+
+.mobile-message video {
+  width: 100%;
 }
 </style>

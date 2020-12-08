@@ -252,7 +252,8 @@ h2 {
     font-size: 20px;
   }
 
-  #whitehouseroad {
+  #whitehouseroad,
+  .dark-mode #whitehouseroad-dm {
     width: 250px;
   }
 }
@@ -271,7 +272,8 @@ h2 {
     font-size: 16px;
   }
 
-  #whitehouseroad {
+  #whitehouseroad,
+  .dark-mode #whitehouseroad-dm {
     width: 220px;
   }
 }
@@ -282,7 +284,8 @@ h2 {
     --text-top: 115px;
   }
 
-  #whitehouseroad {
+  #whitehouseroad,
+  .dark-mode #whitehouseroad-dm {
     width: 180px;
   }
 }
