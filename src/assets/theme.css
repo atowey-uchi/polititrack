@@ -216,3 +216,9 @@ text-shadow: 4px 4px 20px var(--blue);
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 800px) {
+    body, html {
+        overflow-x: hidden;
+    }
+}
