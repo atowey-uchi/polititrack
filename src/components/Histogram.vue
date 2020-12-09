@@ -120,6 +120,14 @@ export default {
         chartArea: {
           backgroundColor: "rgba(105, 105, 105, 0.75)"
         },
+        layout: {
+          padding: {
+            left: 20,
+            right: 20,
+            bottom: 20,
+            top: 20
+          }
+        },
         scales: {
           yAxes: [
             {
@@ -204,8 +212,7 @@ export default {
           }
         },
         responsive: true,
-        maintainAspectRatio: false,
-        height: 200
+        maintainAspectRatio: false
       }
     };
   },

@@ -39,7 +39,7 @@
     <div class="bottom pop-in">
       <h2>Number of Events Per Day, By Candidate</h2>
       <div class="histogram">
-        <Histogram :width="panelWidth"></Histogram>
+        <Histogram :styles="barChartStyles"></Histogram>
       </div>
     </div>
   </section>
@@ -63,7 +63,12 @@ export default {
   },
   data() {
     return {
-      panelWidth: 1100
+      layout: {
+        bottom: {
+          width: 0,
+          height: 0
+        }
+      }
     };
   },
   methods: {
@@ -86,7 +91,19 @@ export default {
       document.querySelector(".right-bottom .bubble-container").style.height =
         rightPanelHeight - rightTitleHeight + "px";
 
-      this.panelWidth = document.querySelector(".bottom").clientWidth;
+      const bottomPanel = document.querySelector(".bottom");
+      const bottomTitleHeight = bottomPanel.querySelector("h2").clientHeight;
+      this.layout.bottom.height = bottomPanel.clientHeight - bottomTitleHeight;
+      this.layout.bottom.width = bottomPanel.clientWidth;
+    }
+  },
+  computed: {
+    barChartStyles() {
+      return {
+        height: `${this.layout.bottom.height}px`,
+        width: `${this.layout.bottom.width}px`,
+        position: "relative"
+      };
     }
   },
   mounted() {
