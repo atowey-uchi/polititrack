@@ -52,7 +52,6 @@ body {
     --nav-text: white;
     --link-text: var(--blue);
     --contact-back: var(--light-gray);
-    overflow-x: hidden;
     max-width: 100%;
     --panel-back: rgba(255, 255, 255, 0.6);
 }
