@@ -293,6 +293,7 @@ nav .topnav .links ul li a {
 
 .sidenav li {
   position: relative;
+  list-style: none;
 }
 
 .sidenav li a {
