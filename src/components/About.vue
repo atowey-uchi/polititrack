@@ -1,5 +1,6 @@
 <template>
   <section class="about fade-up-and-in" id="about">
+    <div class="content-wrapper">
     <div class="gradient-swoosh">
       <img src="@/assets/images/brush1.svg" />
     </div>
@@ -124,6 +125,7 @@
         </p>
       </div>
     </section>
+    </div>
   </section>
 </template>
 
@@ -135,12 +137,19 @@ export default {
 
 <style scoped lang="scss">
 .about {
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   padding-top: 40px;
   padding-bottom: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.content-wrapper {
   max-width: 1280px;
-  margin: 0 auto;
 }
 
 .gradient-swoosh {
@@ -149,7 +158,6 @@ export default {
   left: -150px;
   z-index: -1;
   opacity: 0.3;
-  // padding: 0;
   overflow: hidden;
 }
 

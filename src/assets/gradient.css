@@ -61,7 +61,7 @@ section .section-title-1 {
 }
 
 .section-background-wrap {
-    width: calc(100vw + 24px);
+    width: 100vw;
     height: calc(30% + var(--gradient-padding) + var(--gradient-title-margin) + var(--transform-origin-x) * var(--section-angle-sin));
     position: absolute;
     top: -10%;

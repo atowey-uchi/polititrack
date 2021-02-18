@@ -1,45 +1,47 @@
 <template>
   <section class="insights fade-up-and-in" id="insights">
-    <div class="gradient-swoosh">
-      <img src="@/assets/images/brush1.svg" />
-    </div>
-    <div class="title">
-      <h1>
-        Insights
-      </h1>
-    </div>
-    <div class="panels">
-      <div class="left-panel pop-in">
-        <h2>Number of Events Per State</h2>
-        <div class="where">
-          <div class="data-table-container">
-            <DataTable></DataTable>
-          </div>
-          <div class="pie-container">
-            <Pie></Pie>
+    <div class="content-wrapper">
+      <div class="gradient-swoosh">
+        <img src="@/assets/images/brush1.svg" />
+      </div>
+      <div class="title">
+        <h1>
+          Insights
+        </h1>
+      </div>
+      <div class="panels">
+        <div class="left-panel pop-in">
+          <h2>Number of Events Per State</h2>
+          <div class="where">
+            <div class="data-table-container">
+              <DataTable></DataTable>
+            </div>
+            <div class="pie-container">
+              <Pie></Pie>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="right-panel">
-        <div class="right-top pop-in">
-          <h2>Number of Events Per Person, By State</h2>
-          <!-- <div>
+        <div class="right-panel">
+          <div class="right-top pop-in">
+            <h2>Number of Events Per Person, By State</h2>
+            <!-- <div>
             <StackedChart></StackedChart>
           </div>  -->
-          <h3><i>Coming soon.</i></h3>
-        </div>
-        <div class="right-bottom pop-in">
-          <h2>Number of Events Per Person</h2>
-          <div class="bubble-container">
-            <BubbleChart></BubbleChart>
+            <h3><i>Coming soon.</i></h3>
+          </div>
+          <div class="right-bottom pop-in">
+            <h2>Number of Events Per Person</h2>
+            <div class="bubble-container">
+              <BubbleChart></BubbleChart>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="bottom pop-in">
-      <h2>Number of Events Per Day, By Candidate</h2>
-      <div class="histogram">
-        <Histogram :styles="barChartStyles"></Histogram>
+      <div class="bottom pop-in">
+        <h2>Number of Events Per Day, By Candidate</h2>
+        <div class="histogram">
+          <Histogram :styles="barChartStyles"></Histogram>
+        </div>
       </div>
     </div>
   </section>
@@ -122,12 +124,19 @@ export default {
 
 <style scoped lang="scss">
 .insights {
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   padding-top: 40px;
   padding-bottom: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.content-wrapper {
   width: 1100px;
-  margin: 0 auto;
 }
 
 .gradient-swoosh {
@@ -234,7 +243,7 @@ h3 {
 }
 
 @media screen and (max-width: 1200px) {
-  .insights {
+  .content-wrapper {
     width: 820px;
   }
 
@@ -268,7 +277,7 @@ h3 {
 }
 
 @media screen and (max-width: 850px) {
-  .insights {
+  .content-wrapper {
     width: 100%;
   }
 

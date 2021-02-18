@@ -1,48 +1,50 @@
 <template>
   <section class="meet-devs fade-up-and-in" id="developers">
-    <div class="title">
-      <h1>Meet the Developers</h1>
-    </div>
-    <div class="developer allison slide-in-right">
-      <div class="gradient">
-        <img src="@/assets/images/brush3color.svg" id="topbar" />
+    <div class="content-wrapper">
+      <div class="title">
+        <h1>Meet the Developers</h1>
       </div>
-      <div class="developer-content">
-        <div class="developer-image">
-          <img src="@/assets/images/circle.svg" class="circle blue" />
-          <img src="@/assets/images/circle.svg" class="circle red" />
-          <img src="@/assets/images/girl.svg" class="profile" />
+      <div class="developer allison slide-in-right">
+        <div class="gradient">
+          <img src="@/assets/images/brush3color.svg" id="topbar" />
         </div>
-        <div class="bio">
-          <p>
-            <span>Allison Towey</span> is a policy analyst working in the
-            educational technology space. She has experience as a Product
-            Manager and intern in the US Senate. She graduated from the
-            University of Notre Dame in 2019, majoring in Political Science.
-            <br />
-            &#8594;
-            <a href="https://www.allisontowey.com">Check out her website!</a>
-          </p>
+        <div class="developer-content">
+          <div class="developer-image">
+            <img src="@/assets/images/circle.svg" class="circle blue" />
+            <img src="@/assets/images/circle.svg" class="circle red" />
+            <img src="@/assets/images/girl.svg" class="profile" />
+          </div>
+          <div class="bio">
+            <p>
+              <span>Allison Towey</span> is a policy analyst working in the
+              educational technology space. She has experience as a Product
+              Manager and intern in the US Senate. She graduated from the
+              University of Notre Dame in 2019, majoring in Political Science.
+              <br />
+              &#8594;
+              <a href="https://www.allisontowey.com">Check out her website!</a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="developer marcus slide-in-left">
-      <div class="gradient">
-        <img src="@/assets/images/brush3color.svg" id="topbar" />
-      </div>
-      <div class="developer-content">
-        <div class="bio">
-          <p>
-            <span>Marcus Schimizzi</span> is a software engineer by trade and a
-            policy wonk by passion. He graduated from the University of Notre
-            Dame in 2019, where he majored in Computer Science. <br />
-            &#8594; <a href="https://schimizzi.io">Check out his website!</a>
-          </p>
+      <div class="developer marcus slide-in-left">
+        <div class="gradient">
+          <img src="@/assets/images/brush3color.svg" id="topbar" />
         </div>
-        <div class="developer-image">
-          <img src="@/assets/images/circle.svg" class="circle blue" />
-          <img src="@/assets/images/circle.svg" class="circle red" />
-          <img src="@/assets/images/boy.svg" class="profile" />
+        <div class="developer-content">
+          <div class="bio">
+            <p>
+              <span>Marcus Schimizzi</span> is a software engineer by trade and
+              a policy wonk by passion. He graduated from the University of
+              Notre Dame in 2019, where he majored in Computer Science. <br />
+              &#8594; <a href="https://schimizzi.io">Check out his website!</a>
+            </p>
+          </div>
+          <div class="developer-image">
+            <img src="@/assets/images/circle.svg" class="circle blue" />
+            <img src="@/assets/images/circle.svg" class="circle red" />
+            <img src="@/assets/images/boy.svg" class="profile" />
+          </div>
         </div>
       </div>
     </div>
@@ -57,10 +59,17 @@ export default {
 
 <style lang="scss" scoped>
 .meet-devs {
-  width: 80%;
-  margin: 0 auto;
   position: relative;
-  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.content-wrapper {
+  position: relative;
+  width: 80%;
 }
 
 .title h1 {
