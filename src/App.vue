@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Loading v-show="!loaded" />
+    <ProgressBar />
     <Nav />
     <Header />
     <Map />
@@ -14,6 +15,7 @@
 
 <script>
 import Loading from "./components/Loading.vue";
+import ProgressBar from "./components/ProgressBar.vue";
 import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import Map from "./components/Map.vue";
@@ -27,6 +29,7 @@ export default {
   name: "App",
   components: {
     Loading,
+    ProgressBar,
     Header,
     Nav,
     Map,
