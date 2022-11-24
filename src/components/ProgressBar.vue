@@ -7,7 +7,7 @@ export default {
   name: "ProgressBar",
   data() {
     return {
-      progress: 0
+      progress: 0,
     };
   },
   mounted() {
@@ -20,7 +20,6 @@ export default {
   methods: {
     updateScroll() {
       this.progress = this.computeProgress();
-      console.info(this.progress);
       document
         .querySelector(".progress-bar")
         .style.setProperty("--progress", `${this.progress}%`);
@@ -38,8 +37,8 @@ export default {
       }
 
       return progress * 100;
-    }
-  }
+    },
+  },
 };
 </script>
 
